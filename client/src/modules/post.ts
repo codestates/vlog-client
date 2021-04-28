@@ -8,36 +8,30 @@ const DISPLAYDATA = 'post/DISPLAYDATA' as const;
 
 
 //만약 추가나 삭제 버튼을 눌렀을경우 데이터가 변경 
-export const displayData = ()=>({
+export const displayData = (data:any)=>({
     type : DISPLAYDATA,
+    data
 
 });
+
+
+
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 모든 액션 리턴값 지정해줌.
 type PostAction =
     |ReturnType<typeof displayData>
 
-
-const apiKey = 'AIzaSyAzRlhVFB_RyvkvG-3JVdJEwcwwYMPzCjk'
-
-
-   
- const youtube =  function axios():any { 
-     return axios.get(`https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=${apiKey}&part=snippet,contentDetails,statistics,status`)
-                .then((res) => res);
-    
-    }
-
-//reducer part
 type DataState = {
     data:any;
 }
 
 const init: DataState ={
-    data: youtube
-
+    data: null
 }
+   
+//reducer part
+
  
 
 export default function postReducer(state:DataState = init, action:PostAction):DataState{
@@ -45,6 +39,7 @@ export default function postReducer(state:DataState = init, action:PostAction):D
         case DISPLAYDATA:
             return {
             ...state,
+            data: [action.data]
         }
 
         default:
