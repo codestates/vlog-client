@@ -1,20 +1,24 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import MainPage from './Pages/MainPage';
-import MyPage from './Pages/Mypage';
 
 function App() {
   return (
-<<<<<<< HEAD
     <div className="App">
       <header className="App-header">
-
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
       </header>
-=======
-    <div>
-      <MainPage />
-      <MyPage />
->>>>>>> 8dc8978f09e05f0a334fcf3f964000498a0d67d0
     </div>
   );
 }
