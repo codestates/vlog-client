@@ -13,6 +13,7 @@ const UserInfo = styled.div``
 function MyPage() {
     return (
         <Container>
+            <div>hello</div>
             {/* <TagsList /> */}
             <UserInfo></UserInfo>
             {/* <PostLists /> */}

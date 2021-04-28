@@ -1,17 +1,16 @@
-    import React from 'react'
+import React from "react";
 
+type propsPostList = {
+  el: any;
+  key: string;
+};
 
-    type propsPostList ={
-        element:any;
-        key:string;
+function PostList({ el, key }: propsPostList) {
+  return (
+    <div>
+      <img key={el.id} src={el.snippet.thumbnails.default.url} />
+    </div>
+  );
+}
 
-    }
-    
-    export default function PostList({element,key}:propsPostList) {
-        return (
-            <div>
-              <img key = {element.id}  src={element.snippet.thumbnails.default.url}/>
-            </div>
-        )
-    }
-    
+export default PostList;

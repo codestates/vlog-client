@@ -1,54 +1,40 @@
-
-// state (변하는 상태는):dummy_date 이유 =  데이터를 추가하고 삭제할수 있기 때문에: 데이터가 변경이 될 수 있다. 
-import {fakeData} from '../fakeData'
+import { fakeData } from "../fakeData";
 import axios from "axios";
 
-//action part
-const DISPLAYDATA = 'post/DISPLAYDATA' as const;
+//액션 type 선언 (리덕스 액션 안에 들어가게 될 type 선언)
+const DISPLAYDATA = "post/DISPLAYDATA" as const;
 
-
-//만약 추가나 삭제 버튼을 눌렀을경우 데이터가 변경 
-export const displayData = ()=>({
-    type : DISPLAYDATA,
-
+//액션 생성 함수 선언
+export const displayData = (el: any) => ({
+  type: DISPLAYDATA,
+  payload: {el}
 });
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
-// 모든 액션 리턴값 지정해줌.
-type PostAction =
-    |ReturnType<typeof displayData>
+// 액션 객체들에 대한 type 준비하기(typescript의 type)
+type PostAction = ReturnType<typeof displayData>;
 
+// state의 타입
+type StateOption = {
+  data: any;
+};
 
-const apiKey = 'AIzaSyAzRlhVFB_RyvkvG-3JVdJEwcwwYMPzCjk'
+// state 초기값 선언
+const initialState: StateOption = {
+  data: null,
+};
 
+// reducer 작성
+function postReducer(state: StateOption = initialState, action: PostAction): StateOption {
+  switch (action.type) {
+    case DISPLAYDATA:
+        const newState = {...state}
+        newState.data = [...action.payload.el]
+      return newState;
 
-   
- const youtube =  function axios():any { 
-     return axios.get(`https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=${apiKey}&part=snippet,contentDetails,statistics,status`)
-                .then((res) => res);
-    
-    }
-
-//reducer part
-type DataState = {
-    data:any;
+    default:
+      return state;
+  }
 }
 
-const init: DataState ={
-    data: youtube
-
-}
- 
-
-export default function postReducer(state:DataState = init, action:PostAction):DataState{
-    switch(action.type){
-        case DISPLAYDATA:
-            return {
-            ...state,
-        }
-
-        default:
-            return state;
-    }
-
-} 
+export default postReducer;

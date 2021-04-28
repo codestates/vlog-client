@@ -132,7 +132,7 @@ const Modal_SignInBtn = styled.button`
 `;
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
