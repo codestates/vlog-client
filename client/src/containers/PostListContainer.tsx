@@ -10,6 +10,7 @@ export default function PostListContainer() {
   
    const state = useSelector((state:RootState) => (state.postReducer.data));
    
+   console.log(state);
 
     
     return (
