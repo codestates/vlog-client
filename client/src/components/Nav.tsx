@@ -13,6 +13,7 @@ const LeftNav = styled.div`
   left: 0;
   margin-left: 100px;
 `;
+
 const RightNav = styled.div`
   position: absolute;
   right: 0;
@@ -132,7 +133,7 @@ const Modal_SignInBtn = styled.button`
 `;
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
@@ -172,3 +173,7 @@ function Nav() {
 }
 
 export default Nav;
+
+
+
+

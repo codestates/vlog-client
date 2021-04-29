@@ -1,17 +1,31 @@
-    import React from 'react'
+import React from "react";
+
+import styled from "styled-components";
 
 
-    type propsPostList ={
-        element:any;
-        key:string;
 
-    }
-    
-    export default function PostList({element,key}:propsPostList) {
-        return (
-            <div>
-              <img key = {element.id}  src={element.snippet.thumbnails.default.url}/>
-            </div>
-        )
-    }
-    
+const Items = styled.img`
+  background: #fff;
+  border: 2px solid yellow;
+  border-radius: 2px;
+  margin:20px;
+`;
+
+
+
+type propsPostList = {
+  el: any;
+  key: string;
+};
+
+function PostList({ el, key }: propsPostList) {
+  return (
+      <div>
+
+            <Items key={el.id} src={el.snippet.thumbnails.default.url} />
+
+      </div>
+  );
+}
+
+export default PostList;
