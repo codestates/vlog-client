@@ -3,6 +3,7 @@ import "./App.css";
 import MainPage from "./Pages/MainPage";
 import { Router, Switch, Route } from "react-router-dom";
 import Nav from './components/Nav'
+import MyPage from './Pages/MyPage';
 
 function App() {
   // const handleClick = (title:any) => {
@@ -13,6 +14,7 @@ function App() {
       <Nav></Nav>
       <Switch>
         <Route exact path='/' render={() => <MainPage />} />
+        <Route exact path='/page' render={() => <MyPage />} />
       </Switch>
     </div>
     
