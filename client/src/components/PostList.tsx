@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 function PostList() {
   const { state } = usePoster()
+  console.log('hi')
 
   return (
   

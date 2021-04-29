@@ -6,11 +6,8 @@ const DISPLAYDATA = "post/DISPLAYDATA" as const;
 //액션 생성 함수 선언
 export const displayData = (el: any) => ({
   type: DISPLAYDATA,
-  payload: {el}
+  payload: { el },
 });
-
-
-
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
@@ -30,9 +27,9 @@ const initialState: StateOption = {
 function postReducer(state: StateOption = initialState, action: PostAction): StateOption {
   switch (action.type) {
     case DISPLAYDATA:
-        const newState = {...state}
-        console.log(newState);
-        newState.data = [...action.payload.el]
+      const newState = { ...state };
+      console.log(newState);
+      newState.data = [...action.payload.el];
       return newState;
 
     default:
