@@ -1,6 +1,30 @@
 import react from 'react'
 import styled from 'styled-components'
 
+function SignUpModal(props:any) {
+    return (
+        <ModalContainer onClick={props.handleModal}>
+        <ModalBox onClick={(e) => e.stopPropagation()}>
+          <form onSubmit={(e) => {e.preventDefault()}}>
+            <Modal_Title>회원가입</Modal_Title>
+            <Modal_UserInfo>email</Modal_UserInfo>
+            <Modal_Input></Modal_Input>
+            <Modal_UserInfo>password</Modal_UserInfo>
+            <Modal_Input></Modal_Input>
+            <div>
+              <Modal_LoginBtn>회원가입</Modal_LoginBtn>
+            </div>
+            <div>
+              <Modal_SideBtn>이미 아이디가 있으신가요?</Modal_SideBtn>
+            </div>
+          </form>
+        </ModalBox>
+      </ModalContainer>
+    )
+}
+
+export default SignUpModal
+
 const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -53,7 +77,7 @@ const Modal_LoginBtn = styled.button`
   cursor: pointer;
 `;
 
-const Modal_SignInBtn = styled.button`
+const Modal_SideBtn = styled.button`
   width: 320px;
   height: 35px;
   border-radius: 20px;
@@ -69,27 +93,3 @@ const Modal_SignInBtn = styled.button`
     color: white;
   }
 `;
-
-function Modal(props:any) {
-    return (
-        <ModalContainer onClick={props.handleModal}>
-        <ModalBox onClick={(e) => e.stopPropagation()}>
-          <form onSubmit={(e) => {e.preventDefault()}}>
-            <Modal_Title>로그인</Modal_Title>
-            <Modal_UserInfo>email</Modal_UserInfo>
-            <Modal_Input></Modal_Input>
-            <Modal_UserInfo>password</Modal_UserInfo>
-            <Modal_Input></Modal_Input>
-            <div>
-              <Modal_LoginBtn>로그인</Modal_LoginBtn>
-            </div>
-            <div>
-              <Modal_SignInBtn>회원가입</Modal_SignInBtn>
-            </div>
-          </form>
-        </ModalBox>
-      </ModalContainer>
-    )
-}
-
-export default Modal

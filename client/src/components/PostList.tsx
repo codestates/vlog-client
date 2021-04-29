@@ -1,18 +1,6 @@
 import React from "react";
 import usePoster from '../Hooks/usePoster'
 
-// type propsPostList = {
-//   el: any;
-//   key: string;
-// };
-
-// function PostList({ el, key }: propsPostList) {
-//   return (
-//     <div>
-//       <img key={el.id} src={el.snippet.thumbnails.default.url} />
-//     </div>
-//   );
-// }
 function PostList() {
   const { state } = usePoster()
 
@@ -27,3 +15,16 @@ function PostList() {
 
 
 export default PostList;
+
+// type propsPostList = {
+//   el: any;
+//   key: string;
+// };
+
+// function PostList({ el, key }: propsPostList) {
+//   return (
+//     <div>
+//       <img key={el.id} src={el.snippet.thumbnails.default.url} />
+//     </div>
+//   );
+// }
