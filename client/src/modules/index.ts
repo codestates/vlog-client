@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
 
 import postReducer from "./postModule";
+import newPostReducer from "./newPostModule";
 
 const rootReducer = combineReducers({
-  postReducer,
+  
+  newPostReducer,
+  postReducer
+
 });
 
 export default rootReducer;

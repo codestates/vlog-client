@@ -4,9 +4,11 @@ import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
 import menuIcon from "../../icon/menu_gray.png";
+import { Link } from 'react-router-dom';
+
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
@@ -52,7 +54,7 @@ function Nav() {
       <RightNav>
         {isLogin ? (
           <BtnContainer>
-            <NewPostBtn>새 글 작성</NewPostBtn>
+            <NewPostBtn to ='/newPost'>새 글 작성</NewPostBtn>
             <MenuBtn src={menuIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (
@@ -117,7 +119,7 @@ const BtnContainer = styled.div`
   display: flex;
 `;
 
-const NewPostBtn = styled.button`
+const NewPostBtn = styled(Link)`
   border: 1px solid #424242;
   border-radius: 20px;
   background: #424242;
