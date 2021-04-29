@@ -1,4 +1,3 @@
-import { fakeData } from "../fakeData";
 import axios from "axios";
 
 //액션 type 선언 (리덕스 액션 안에 들어가게 될 type 선언)

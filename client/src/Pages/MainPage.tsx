@@ -1,13 +1,14 @@
 import React from 'react'
-import PostListContainer from '../containers/PostListContainer'
+import PostListContainer from '../Hooks/usePoster'
 import axios from "axios";
+import PostList from '../components/PostList';
 
 
 function MainPage() {
 
     return (
         <div>
-            <PostListContainer/>
+            <PostList />
         </div>
     )
 }
