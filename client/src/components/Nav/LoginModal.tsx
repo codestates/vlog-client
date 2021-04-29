@@ -20,7 +20,7 @@ function LoginModal(props: any) {
             <Modal_LoginBtn>로그인</Modal_LoginBtn>
           </div>
           <div>
-            <Modal_SideBtn onClick={props.handleSignupModal}>회원가입</Modal_SideBtn>
+            <Modal_SideBtn onClick={props.handleSideBtn}>회원가입</Modal_SideBtn>
           </div>
         </form>
       </ModalBox>

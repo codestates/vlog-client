@@ -83,6 +83,7 @@ const LeftNav = styled.div`
   left: 0;
   margin-left: 100px;
 `;
+
 const RightNav = styled.div`
   position: absolute;
   right: 0;

@@ -15,7 +15,7 @@ function SignUpModal(props:any) {
               <Modal_LoginBtn>회원가입</Modal_LoginBtn>
             </div>
             <div>
-              <Modal_SideBtn>이미 아이디가 있으신가요?</Modal_SideBtn>
+              <Modal_SideBtn onClick={props.handleSideBtn}>이미 아이디가 있으신가요?</Modal_SideBtn>
             </div>
           </form>
         </ModalBox>

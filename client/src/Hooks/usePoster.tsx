@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import PostList from "../components/PostList";
 import { displayData } from "../modules/postModule";
 import { RootState } from "../modules";
 import axios from "axios";
@@ -20,7 +19,3 @@ export default function usePoster() {
     state,
   };
 }
-
-// {state.map((element: any) => {
-//     return <PostList element={element} key={element.etag} />;
-//   })}

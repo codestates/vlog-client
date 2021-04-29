@@ -9,6 +9,9 @@ export const displayData = (el: any) => ({
   payload: {el}
 });
 
+
+
+
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
 type PostAction = ReturnType<typeof displayData>;
@@ -28,6 +31,7 @@ function postReducer(state: StateOption = initialState, action: PostAction): Sta
   switch (action.type) {
     case DISPLAYDATA:
         const newState = {...state}
+        console.log(newState);
         newState.data = [...action.payload.el]
       return newState;
 
