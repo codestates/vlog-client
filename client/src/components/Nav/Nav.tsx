@@ -20,14 +20,14 @@ function Nav() {
       setLoginModal(true);
     }
   };
-  
+
   const handleSignUpModal = () => {
-    if(signUpModal) {
-      setSignUpModal(false)
+    if (signUpModal) {
+      setSignUpModal(false);
     } else {
-      setSignUpModal(true)
+      setSignUpModal(true);
     }
-  }
+  };
 
   const handleMenuModal = () => {
     if (menuModal) {
@@ -37,18 +37,15 @@ function Nav() {
     }
   };
 
-
   const handleSideBtn = () => {
-    console.log('hi')
-    handleLoginModal()
-    handleSignUpModal()
-    // if(!signUpModal && loginModal) {
-    //   handleLoginModal()
-
-    // } else {
-    //   handleLoginModal()
-    // }
-  }
+    if (loginModal && !signUpModal) {
+      setLoginModal(false);
+      setSignUpModal(true);
+    } else if (!loginModal && signUpModal) {
+      setLoginModal(true);
+      setSignUpModal(false);
+    }
+  };
   return (
     <Container>
       <LeftNav>
@@ -64,8 +61,8 @@ function Nav() {
           <MainLoginBtn onClick={handleLoginModal}>로그인</MainLoginBtn>
         )}
       </RightNav>
-      {loginModal ? <LoginModal handleModal={handleLoginModal} handleSideBtn={handleSideBtn} /> : null}
-      {signUpModal ? <SignUpModal handleSideBtn={handleSideBtn}/> : null}
+      {loginModal ? <LoginModal handleLoginModal={handleLoginModal} handleSideBtn={handleSideBtn} /> : null}
+      {signUpModal ? <SignUpModal handleSignUpModal={handleSignUpModal} handleSideBtn={handleSideBtn} /> : null}
       {menuModal ? <MenuModal handleMenuModal={handleMenuModal} /> : null}
     </Container>
   );

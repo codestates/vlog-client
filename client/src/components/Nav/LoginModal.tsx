@@ -4,7 +4,7 @@ import styled from "styled-components";
 function LoginModal(props: any) {
 
   return (
-    <ModalContainer onClick={props.handleModal}>
+    <ModalContainer onClick={props.handleLoginModal}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
         <form
           onSubmit={(e) => {
@@ -12,9 +12,9 @@ function LoginModal(props: any) {
           }}
         >
           <Modal_Title>로그인</Modal_Title>
-          <Modal_UserInfo>email</Modal_UserInfo>
+          <Modal_UserInfo>이메일</Modal_UserInfo>
           <Modal_Input></Modal_Input>
-          <Modal_UserInfo>password</Modal_UserInfo>
+          <Modal_UserInfo>비밀번호</Modal_UserInfo>
           <Modal_Input></Modal_Input>
           <div>
             <Modal_LoginBtn>로그인</Modal_LoginBtn>
@@ -91,7 +91,7 @@ const Modal_SideBtn = styled.button`
   border: 2px solid black;
   cursor: pointer;
   outline: none;
-  transition: 0.3s ease-in-out;
+  transition: 0.4s ease-in-out;
 
   &:hover {
     background-color: black;
