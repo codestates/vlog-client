@@ -7,29 +7,19 @@ assignees: ''
 
 ---
 
-## Task Card
+# Task Card
 
-**Assignee** : (본명)
+## **작성자** : (이름)
 
-#### Job Description
+## 구현할 기능
 > 작업 내용을 적어주세요
 
-Express 서버 제작
+## 해야 할 일
+> 해당 작업이 완성되기 위해서 완료되어야 하는 작업 리스트를 적어주세요.
 
-#### Todo
-> 해당 작업이 완성되기 위해서 완료되어야 하는 작업 리스트를 적어주세요
-
-1. 프로젝트 기획
-2.
-3.
-
-#### *important*
-
-##### estimated / consumed
+## 예상 소요 시간, 실제 소요된 시간
 
 Task Card 하나의 estimated time / consumed time이 최대 3h 이 넘어가지 않게 작성해 주시기 바랍니다.
 
-##### Labelling
-
-- estimated time : `E:2h`
-- consumed time : `C:1h`
+> estimated time : `E:1h`
+> consumed time : `C:1h`
