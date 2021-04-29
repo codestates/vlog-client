@@ -31,7 +31,6 @@ function postReducer(state: StateOption = initialState, action: PostAction): Sta
   switch (action.type) {
     case DISPLAYDATA:
         const newState = {...state}
-        console.log(newState);
         newState.data = [...action.payload.el]
       return newState;
 
