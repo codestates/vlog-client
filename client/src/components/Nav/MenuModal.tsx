@@ -1,11 +1,21 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
+import {useDispatch} from 'react-redux'
+import {displayMyData} from '../../modules/myPageModule'
 
 function MenuModal(props: any) {
   const history = useHistory();
+  const dispatch = useDispatch()
 
   const handleMoveToMypage = () => {
+    // 유저가 로그인 성공했을 시, 해당하는 유저의 정보와 포스트들을 마이페이지에 뿌려주는 요청
+    // 요청 성공 시, 데이터들을 받아온다. 
+
+    axios.get('http://localhost:8080/posts')
+    .then(res => console.log(res))
+    // .then(res => dispatch(displayMyData(res)))
     history.push("/page");
     props.handleMenuModal();
   };
