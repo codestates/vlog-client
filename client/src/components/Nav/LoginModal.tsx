@@ -1,14 +1,34 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios"
+import { useHistory } from "react-router-dom";
 
 function LoginModal(props: any) {
+  const [userInfo, setUserInfo] = useState({
+    email: 'kimcoding@authstates.com',
+    password: '1234'
+  })
+  const history = useHistory()
+  const handleLoginBtn = () => {
+       
+    axios.post('http://localhost:8080/session',{email:userInfo.email ,password:userInfo.password})
+    .then(res => {
+      
+      history.push('/')
+    })
+    .catch(err => console.log(err))
+  
+  }
+
+
 
   return (
     <ModalContainer onClick={props.handleLoginModal}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
+            e.preventDefault()
+            handleLoginBtn()
           }}
         >
           <Modal_Title>로그인</Modal_Title>

@@ -1,5 +1,7 @@
 import react, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios"
+
 
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const userNamePattern = /^[가-힣]{2,4}$/;
@@ -60,6 +62,12 @@ function SignUpModal(props: any) {
     }
   };
 
+
+  function handleSignIn(){
+
+  }
+
+
   return (
     <ModalContainer onClick={props.handleSignUpModal}>
       <ModalBox
@@ -84,7 +92,7 @@ function SignUpModal(props: any) {
           {testResults.passwordResult === null ? null : testResults.passwordResult === true ? <span>가능</span> : <span>불가능</span>}
 
           <div>
-            <Modal_LoginBtn>회원가입</Modal_LoginBtn>
+            <Modal_LoginBtn onClick={props.handleSignIn}>회원가입</Modal_LoginBtn>
           </div>
           <div>
             <Modal_SideBtn onClick={props.handleSideBtn}>이미 아이디가 있으신가요?</Modal_SideBtn>

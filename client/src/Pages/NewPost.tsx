@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { newPosttitle } from "../modules/newPostModule";
 import { newPostbody } from "../modules/newPostModule";
 import { newPostHash } from "../modules/newPostModule";
-
+import axios from "axios"
 import { useHistory } from "react-router-dom";
 
 export default function NewPost() {
@@ -24,12 +24,27 @@ export default function NewPost() {
     }
   }
 
+
+  // //{
+  //   title:
+  //   body:
+  // }
+
   function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(state);
-    history.push("/");
+    // const { title, body } = state
+    axios.post("http://localhost:8080/posts", {title: state.title, body:state.body}).then(res => console.log(res))
+  
   }
 
+
+
+  // 업로드 성공시 요청 보내기
   function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {
+    
+    
+    
+    
+    
     history.push("/");
   }
 
@@ -97,8 +112,8 @@ const NewPostButton = styled.button`
   transition: 0.2s ease-in-out;
   cursor: pointer;
 
-  &: hover {
-    background: #9e9e9e;
-    border: 1px solid #9e9e9e;
-  }
-`;
+  // &: hover {
+  //   background: #9e9e9e;
+  //   border: 1px solid #9e9e9e;
+  // }
+`
