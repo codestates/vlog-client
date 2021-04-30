@@ -26,8 +26,6 @@ function SignUpModal(props: any) {
 
   const { emailResult, passwordResult, nicknameResult } = testResults;
 
-  // const [emailResult, setEmailResult] = useState<null | Boolean>(null);
-
   const handleUserInfo = ({ name, value }: any) => {
     if (name === "email") {
       if (emailPattern.test(value)) {
@@ -53,7 +51,7 @@ function SignUpModal(props: any) {
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: react.FormEvent<HTMLFormElement>) => {
     if (emailResult && passwordResult && nicknameResult) {
       console.log("완-벽");
     } else {
@@ -64,7 +62,11 @@ function SignUpModal(props: any) {
 
   return (
     <ModalContainer onClick={props.handleSignUpModal}>
-      <ModalBox onClick={(e) => e.stopPropagation()}>
+      <ModalBox
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <form
           onSubmit={(e) => {
             handleSubmit(e);

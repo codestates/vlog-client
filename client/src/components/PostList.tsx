@@ -11,7 +11,7 @@ function PostList() {
   
       <ListContainer>
         {state === null ? <div>로딩 중입니다</div> : state.map((el:any) => (
-          <Item src={el.snippet.thumbnails.default.url} key={el.id}/>
+          <Item onClick={() => console.log('hi')} src={el.snippet.thumbnails.default.url} key={el.id}/>
         ))}
       </ListContainer>
    

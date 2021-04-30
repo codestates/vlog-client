@@ -5,7 +5,6 @@ import PostList from "../components/PostList";
 import styled from "styled-components";
 
 function MainPage() {
-    console.log('mainpage')
   return (
     <TopContainer>
       <PostList />
@@ -15,7 +14,7 @@ function MainPage() {
 
 const TopContainer = styled.div`
   margin-top: 6rem;
-  width: 1024px;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
 `;

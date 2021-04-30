@@ -15,7 +15,7 @@ type PostAction = ReturnType<typeof displayData>;
 
 // state의 타입
 type StateOption = {
-  data: any;
+  data: null | object[];
 };
 
 // state 초기값 선언
@@ -28,7 +28,6 @@ function postReducer(state: StateOption = initialState, action: PostAction): Sta
   switch (action.type) {
     case DISPLAYDATA:
       const newState = { ...state };
-      console.log(newState);
       newState.data = [...action.payload.el];
       return newState;
 

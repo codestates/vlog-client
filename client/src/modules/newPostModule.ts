@@ -25,7 +25,6 @@ type newPostStateOption = {
   body:string;
   titleValue:string;
   bodyValue:string;
-
 };
 
 // state 초기값 선언
