@@ -1,14 +1,31 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+// axios.defaults.withCredentials = true
+
 
 function MenuModal(props: any) {
   const history = useHistory();
 
   const handleMoveToMypage = () => {
-    history.push("/page");
-    props.handleMenuModal();
+    axios.get('http://localhost:8080/mypage')
+    .then(res => {
+      console.log(res)
+      history.push("/page");
+      props.handleMenuModal();
+    })
+    
   };
+
+  const handleLogout = () => {
+    axios.delete('http://localhost:8080/session')
+    .then(res => {
+      props.setIsLogin(false)
+      props.setMenuModal(false)
+      history.push('/')
+    })
+  }
 
   useEffect(() => {
     window.addEventListener("click", props.handleMenuModal);
@@ -21,7 +38,7 @@ function MenuModal(props: any) {
     <ModalContainer>
       <ModalBox>
         <Modal_Page onClick={handleMoveToMypage}>내 Vlog</Modal_Page>
-        <Modal_Logout>로그아웃</Modal_Logout>
+        <Modal_Logout onClick={handleLogout}>로그아웃</Modal_Logout>
       </ModalBox>
     </ModalContainer>
   );
@@ -51,16 +68,16 @@ const Modal_Page = styled.div`
   padding: 10px;
   margin: 5px;
 
-  &: hover {
-    background: #f5f5f5;
-  }
+  // &: hover {
+  //   background: #f5f5f5;
+  // }
 `;
 const Modal_Logout = styled.div`
   cursor: pointer;
   padding: 10px;
   margin: 5px;
 
-  &: hover {
-    background: #f5f5f5;
-  }
+  // &: hover {
+  //   background: #f5f5f5;
+  // }
 `;
