@@ -1,3 +1,4 @@
+import axios from "axios";
 import react, { useState } from "react";
 import styled from "styled-components";
 
@@ -51,9 +52,26 @@ function SignUpModal(props: any) {
     }
   };
 
+  //회원가입 버튼을 눌렀을 경우
   const handleSubmit = (e: react.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (emailResult && passwordResult && nicknameResult) {
-      console.log("완-벽");
+      console.log(userInfo);
+      //회원가입에 성공했을경우 서버에 요청보냄
+      axios
+        .post("https://localhost:8080/", {
+          email: userInfo.email,
+          password: userInfo.password,
+          nickname: userInfo.nickname,
+        })
+        .then((res) => {
+          console.log("회원가입 성공!");
+          props.handleSideBtn();
+        })
+        .catch((err) => {
+          alert("오류임");
+          props.handleSideBtn();
+        });
     } else {
       e.preventDefault();
       console.log("완벽하게 입력해주세요.");

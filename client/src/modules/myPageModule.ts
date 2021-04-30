@@ -1,4 +1,4 @@
-import { fakedata } from "./../fakedata";
+// import { fakedata } from "./../fakedata";
 
 //액션 type 선언 (리덕스 액션 안에 들어가게 될 type 선언)
 const DISPLAYMYDATA = "post/DISPLAYMYDATA" as const;
@@ -23,13 +23,14 @@ type myPageAction =
 // state의 타입
 
 type StateOption = {
-  posts: {
-    id: number;
-    title: string;
-    body: string;
-    nick_name: string;
-    tag_name: string;
-  }[];
+  // posts: {
+  //   id: number;
+  //   title: string;
+  //   body: string;
+  //   nick_name: string;
+  //   tag_name: string;
+  // }[];
+  posts: null | object[];
   currentPost: null | object[];
 };
 
@@ -37,7 +38,7 @@ type StateOption = {
 
 // state 초기값 선언
 const initialState: StateOption = {
-  posts: fakedata,
+  posts: null,
   currentPost: null,
 };
 
@@ -45,7 +46,7 @@ const initialState: StateOption = {
 function myPageReducer(state: StateOption = initialState, action: myPageAction): StateOption {
   switch (action.type) {
     case DISPLAYMYDATA:
-      return state;
+      return {...state, posts: action.payload.el};
 
     case DISPLAYMYPOST:
       return {...state, currentPost: action.payload.el};

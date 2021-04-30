@@ -18,23 +18,13 @@ function PostList() {
 
     dispatch(openPostPage(findData));
 
-    history.push("/OpenContentPage");
+    history.push("/MainCurrentPost");
   }
 
   console.log(state);
   return (
     <ListContainer onClick={handleClick}>
-      {state.data === null ? (
-        <div>로딩 중입니다</div>
-      ) : (
-        state.data.map((el: any) => (
-          <Item
-            src={el.snippet.thumbnails.default.url}
-            id={el.etag}
-            key={el.id}
-          />
-        ))
-      )}
+      {state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <Item src={el.snippet.thumbnails.default.url} id={el.etag} key={el.id} />)}
     </ListContainer>
   );
 }

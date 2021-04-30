@@ -7,6 +7,7 @@ import { newPostbody } from "../modules/newPostModule";
 import { newPostHash } from "../modules/newPostModule";
 
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 export default function NewPost() {
   const history = useHistory();
@@ -25,8 +26,9 @@ export default function NewPost() {
   }
 
   function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(state);
-    history.push("/");
+    axios.post('http://localhost:8080/posts', {title: state.title, body: state.body})
+    .then(res => history.push("/"))
+    .catch(err => console.log(err))
   }
 
   function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {

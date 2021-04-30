@@ -8,7 +8,7 @@ export const displayData = (el: object[]) => ({
   payload: { el },
 });
 
-export const openPostPage = (current: object[]) => ({
+export const openPostPage = (current: []) => ({
   type: OPENPOSTPAGE,
   payload: current,
 });
