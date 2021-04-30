@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
@@ -63,7 +63,7 @@ function Nav() {
           <MainLoginBtn onClick={handleLoginModal}>로그인</MainLoginBtn>
         )}
       </RightNav>
-      {loginModal ? <LoginModal handleLoginModal={handleLoginModal} handleSideBtn={handleSideBtn} /> : null}
+      {loginModal ? <LoginModal handleLoginModal={handleLoginModal} handleSideBtn={handleSideBtn} setIsLogin={setIsLogin} /> : null}
       {signUpModal ? <SignUpModal handleSignUpModal={handleSignUpModal} handleSideBtn={handleSideBtn} /> : null}
       {menuModal ? <MenuModal handleMenuModal={handleMenuModal} /> : null}
     </Container>
