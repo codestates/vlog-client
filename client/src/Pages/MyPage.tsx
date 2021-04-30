@@ -21,9 +21,9 @@ function MyPage() {
 
   return (
     <Container>
-      {state.posts.map(post => (
+      {/* {state.posts.map(post => (
         <MyPagePost myPost={post}/>
-      ))}
+      ))} */}
         
     </Container>
   );

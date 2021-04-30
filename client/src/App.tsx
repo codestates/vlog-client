@@ -5,17 +5,24 @@ import { Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import MyPage from "./Pages/MyPage";
 import NewPost from "./Pages/NewPost";
-import MyPagePostPage from "./Pages/MyPagePostPage";
+import OpenContentPage from "./Pages/OpenContentPage";
 
 function App() {
+  // const handleClick = (title:any) => {
+
+  // }
   return (
     <div>
       <Nav />
       <Switch>
         <Route exact path="/" render={() => <MainPage />} />
-        <Route path="/page" render={() => <MyPage />} />
-        <Route path="/newPost" render={() => <NewPost />} />
-        <Route path="/mypagepost" render={() => <MyPagePostPage />} />
+        <Route exact path="/page" render={() => <MyPage />} />
+        <Route exact path="/newPost" render={() => <NewPost />} />
+        <Route
+          exact
+          path="/OpenContentPage"
+          render={() => <OpenContentPage />}
+        />
       </Switch>
     </div>
   );

@@ -1,51 +1,74 @@
 import axios from "axios";
 
 //액션 type 선언 (리덕스 액션 안에 들어가게 될 type 선언)
-const NEWPOSTDATA = "newpost/NEWPOSTDATA" as const;
+const NEWPOSTTITLE = "newpost/NEWPOSTTITLE" as const;
+const NEWPOSTBODY = "newpost/NEWPOSTBODY" as const;
+const NEWPOSTHASH = "newpost/NEWPOSTHASH" as const;
 
 //액션 생성 함수 선언
-export const newPostData = (newTitle: string, newBody:string, titleValue:string, bodyValue:string) => ({
-  type: NEWPOSTDATA,
+export const newPosttitle = (newTitle: string) => ({
+  type: NEWPOSTTITLE,
   payload: {
-      title: newTitle,
-      body: newBody,
-      titleValue: titleValue,
-      bodyValue:bodyValue
-  }
+    title: newTitle,
+  },
 });
 
+export const newPostbody = (newBody: string) => ({
+  type: NEWPOSTBODY,
+  payload: {
+    body: newBody,
+  },
+});
+
+export const newPostHash = (newHash: string) => ({
+  type: NEWPOSTHASH,
+  payload: {
+    hashTag: newHash,
+  },
+});
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type newPostAction = ReturnType<typeof newPostData>;
+type newPostAction =
+  | ReturnType<typeof newPosttitle>
+  | ReturnType<typeof newPostbody>
+  | ReturnType<typeof newPostHash>;
 
 // state의 타입
 type newPostStateOption = {
-  title:string;
-  body:string;
-  titleValue:string;
-  bodyValue:string;
+  title: string;
+  body: string;
+  hashTag: string;
 };
 
 // state 초기값 선언
 const initialState: newPostStateOption = {
-  title: '',
-  body: '',
-  titleValue:'',
-  bodyValue:''
+  title: "",
+  body: "",
+  hashTag: " ",
 };
 
 // reducer 작성
-function newPostReducer(state: newPostStateOption = initialState, action: newPostAction): newPostStateOption {
+function newPostReducer(
+  state: newPostStateOption = initialState,
+  action: newPostAction
+): newPostStateOption {
   switch (action.type) {
-    case NEWPOSTDATA:
+    case NEWPOSTTITLE:
       return {
-          ...state,
-          title: action.payload.title,
-          body: action.payload.body,
-          titleValue: action.payload.titleValue,
-          bodyValue: action.payload.bodyValue
-      }
+        ...state,
+        title: action.payload.title,
+      };
+    case NEWPOSTBODY:
+      return {
+        ...state,
+        body: action.payload.body,
+      };
+    case NEWPOSTHASH:
+      return {
+        ...state,
+        hashTag: action.payload.hashTag,
+      };
 
     default:
       return state;

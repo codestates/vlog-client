@@ -6,7 +6,6 @@ import myPageReducer from "./myPageModule"
 
 
 const rootReducer = combineReducers({
-  
   newPostReducer,
   postReducer,
   myPageReducer
