@@ -59,11 +59,15 @@ function SignUpModal(props: any) {
       console.log(userInfo);
       //회원가입에 성공했을경우 서버에 요청보냄
       axios
-        .post("https://localhost:8080/", {
-          email: userInfo.email,
-          password: userInfo.password,
-          nickname: userInfo.nickname,
-        })
+        .post(
+          "https://localhost:8080/",
+          {
+            email: userInfo.email,
+            password: userInfo.password,
+            nickname: userInfo.nickname,
+          },
+          { withCredentials: true }
+        )
         .then((res) => {
           console.log("회원가입 성공!");
           props.handleSideBtn();
