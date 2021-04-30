@@ -1,40 +1,59 @@
 import styled from "styled-components";
 import useNewPoster from '../Hooks/useNewPoster'
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { newPosttitle } from "../modules/newPostModule";
+import { newPostbody } from "../modules/newPostModule";
+import { newPostHash } from "../modules/newPostModule";
 
+import { useHistory } from "react-router-dom";
 
 export default function NewPost() {
 
+    const history = useHistory();
     const { state } = useNewPoster();
+    const dispatch = useDispatch();
+
+
+    function handleInputValue(e:React.ChangeEvent<HTMLInputElement> |React.ChangeEvent<HTMLTextAreaElement>){
+
+        const value = e.target.value;
+        if(e.target.name === 'newPostTitle'){
+            dispatch(newPosttitle(value))
+        } else if(e.target.name === 'hashTage'){
+            dispatch(newPostHash(value))
+        } else{
+            dispatch(newPostbody(value))
+        }
+
+    }
+
+    function handleButton(e: React.MouseEvent<HTMLButtonElement>){
+
+        console.log(state);
+        history.push("/")
+    
+    }
+
+    function handleButton_Exit(e:React.MouseEvent<HTMLButtonElement>){
+        history.push("/")
+    }
+
+   console.log(state);
 
     
-    // function previewFile() {
-    //     const preview = document.querySelector('img');
-    //     const file = document.querySelector('input[type=file]').files[0];
-    //     const reader = new FileReader();
-      
-    //     reader.addEventListener("load", function () {
-    //       // convert image file to base64 string
-    //       preview.src = reader.result;
-    //     }, false);
-      
-    //     if (file) {
-    //       reader.readAsDataURL(file);
-    //     }
-    //   }
-
     return (
         <Container>
             <TitleContainer>
-                <PostTitle type="text"  placeholder="제목을 입력하세용"/>
+                <PostTitle name ='newPostTitle' type="text"  placeholder="제목을 입력하세요" onChange={handleInputValue}/>
+                <HashTage name ="hashTage" type="text" placeholder = "해쉬테그를 입력하세요" onChange={handleInputValue}/>
             </TitleContainer>
-{/* 
-            <input type="file" accept="image/png" />
-            <img src={fileUrl}/> */}
-
             <BodyContainer>
-                <PostBody type="text" placeholder="기억에 남을만한 일들을 기록해보세용 ㅎㅎ"/>
-            </BodyContainer>
+                <PostBody name = 'newPostBody' placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue}/>
+           </BodyContainer>
+                <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
+                <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+
         </Container>
     )
 }
@@ -52,32 +71,50 @@ const TitleContainer = styled.div`
 `
 
 const BodyContainer = styled.div`
-    padding-top: 2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-
-
+    padding:3rem;
 `
-
 
 const PostTitle = styled.input`
-border-color:white;
-padding-top: 2rem;
-padding-left: 3rem;
-padding-right: 3rem;
-font-size : 50px
+  
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top: 1rem;
+    border: 4px inset;
+    border-radius: 10px;
+
 `
 
-const PostBody = styled.input`
-overflow: scroll!important;
-margin-top: 30px;
-    margin-bottom: -30px;
-    margin-right: -30px;
-    padding-bottom: 30px;
-    height: 100%;
-    outline: none;
-    position: relative;
-    width:100%;
-    border-color:white;
+const HashTage = styled.input`
+    font-size: 1.125rem;
+    line-height: 2rem;
+    margin: 1rem;
+    border: 4px inset;
+    border-radius: 10px;
+
 `
+const PostBody = styled.textarea`
+
+    font-size: 1.5rem;
+    margin: 0px;
+    width: 603px;
+    height: 608px;
+    border: 4px inset;  
+    border-radius: 10px;
+
+`
+
+const NewPostButton = styled.button`
+  border: 1px solid #424242;
+  border-radius: 20px;
+  background: #424242;
+  color: white;
+  font-size: 17px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  
+  &: hover {
+      background: #9E9E9E;
+      border: 1px solid #9E9E9E
+  }
+`;
 

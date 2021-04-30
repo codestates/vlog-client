@@ -4,10 +4,8 @@ import postReducer from "./postModule";
 import newPostReducer from "./newPostModule";
 
 const rootReducer = combineReducers({
-  
   newPostReducer,
-  postReducer
-
+  postReducer,
 });
 
 export default rootReducer;
