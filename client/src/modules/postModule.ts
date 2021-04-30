@@ -18,9 +18,7 @@ export const openPostPage = (current: object) => ({
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type PostAction =
-  | ReturnType<typeof displayData>
-  | ReturnType<typeof openPostPage>;
+type PostAction = ReturnType<typeof displayData> | ReturnType<typeof openPostPage>;
 
 // state의 타입
 type StateOption = {
@@ -35,10 +33,7 @@ const initialState: StateOption = {
 };
 
 // reducer 작성
-function postReducer(
-  state: StateOption = initialState,
-  action: PostAction
-): StateOption {
+function postReducer(state: StateOption = initialState, action: PostAction): StateOption {
   switch (action.type) {
     case DISPLAYDATA:
       return {

@@ -18,11 +18,7 @@ function App() {
         <Route exact path="/" render={() => <MainPage />} />
         <Route exact path="/page" render={() => <MyPage />} />
         <Route exact path="/newPost" render={() => <NewPost />} />
-        <Route
-          exact
-          path="/OpenContentPage"
-          render={() => <OpenContentPage />}
-        />
+        <Route exact path="/OpenContentPage" render={() => <OpenContentPage />} />
       </Switch>
     </div>
   );

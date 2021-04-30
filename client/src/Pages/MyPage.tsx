@@ -10,12 +10,7 @@ const Container = styled.div`
 const UserInfo = styled.div``;
 
 function MyPage() {
-  
-
-  return (
-    <Container>
-    </Container>
-  );
+  return <Container></Container>;
 }
 
 export default MyPage;
@@ -38,9 +33,6 @@ export default MyPage;
 // 1. 해당하는 글에 있는 hashTags들을 확인할 수 있는 사이드바 구현
 // --> hashTag를 클릭하면, 해당 hashTag를 가진 게시물들을 필터할 수 있다.
 
-
-
-
 // const [fileState, setFileState] = useState<any>({
 //     file: '',
 //     previewURL: '',
@@ -56,4 +48,6 @@ export default MyPage;
 //     reader.readAsDataURL(file)
 //     console.log(fileState)
 
-{/* <input type="file" accept="image/*" name="profile_img" onChange={e => handleFileChange(e)} /> */}
+{
+  /* <input type="file" accept="image/*" name="profile_img" onChange={e => handleFileChange(e)} /> */
+}
