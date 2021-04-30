@@ -1,7 +1,7 @@
 import React from "react";
 import PostListContainer from "../Hooks/usePoster";
 import axios from "axios";
-import PostList from "../components/PostList";
+import PostList from "../components/MainPostsList";
 import styled from "styled-components";
 
 function MainPage() {

@@ -5,20 +5,21 @@ const DISPLAYMYDATA = "post/DISPLAYMYDATA" as const;
 const DISPLAYMYPOST = "post/DISPLAYMYPOST" as const;
 
 //액션 생성 함수 선언
-export const displayMyData = (el: any) => ({
+export const displayMyData = (el: object[]) => ({
   type: DISPLAYMYDATA,
   payload: { el },
 });
 
-export const displayMyPost = (el: any) => ({
+export const displayMyPost = (el: object[]) => ({
   type: DISPLAYMYPOST,
-  palyload: { el }
-})
+  payload: { el },
+});
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type myPageAction = ReturnType<typeof displayMyData>;
-
+type myPageAction = 
+    |ReturnType<typeof displayMyData>
+    |ReturnType<typeof displayMyPost>
 // state의 타입
 
 type StateOption = {
@@ -36,7 +37,8 @@ type StateOption = {
 
 // state 초기값 선언
 const initialState: StateOption = {
-  posts: fakedata, currentPost: null
+  posts: fakedata,
+  currentPost: null,
 };
 
 // reducer 작성
@@ -44,6 +46,9 @@ function myPageReducer(state: StateOption = initialState, action: myPageAction):
   switch (action.type) {
     case DISPLAYMYDATA:
       return state;
+
+    case DISPLAYMYPOST:
+      return {...state, currentPost: action.payload.el};
 
     default:
       return state;

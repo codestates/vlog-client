@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useMyPage from "../Hooks/useMyPage";
-import {useHistory} from 'react-router-dom'
-import MyPagePost from '../components/MyPagePost'
-
+import { useHistory } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+import {displayMyPost} from '../modules/myPageModule'
 type PropsOption = {
-  myPosts: object[]
-}
-
-
+  myPosts: object[];
+};
 
 function MyPage() {
   const { state } = useMyPage();
-  const history = useHistory()
-  const handleClick = (e:React.MouseEvent<HTMLDivElement>) => {
-    // const filtered = state.posts.filter(post => post.nick_name ===)
-    console.log(e.target)
-    // history.push('/mypagepost')
-  }
+  const history = useHistory();
+  const dispatch = useDispatch()
+
+  const handleClick = (nickname:string) => {
+    const filtered = state.posts.filter((post) => post.nick_name === nickname)
+    dispatch(displayMyPost(filtered));
+    history.push("/MyPageCurrentPost");
+  };
+  console.log(state)
 
   return (
-    <Container>
-      {/* {state.posts.map(post => (
-        <MyPagePost myPost={post}/>
-      ))} */}
-        
-    </Container>
+  <Container>
+    {state.posts.map(post => (
+      <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
+        <div>{post.title}</div>
+        <div>{post.nick_name}</div>
+        <div>{post.body}</div>
+      </PostBox>
+    ))}
+  </Container>
   );
 }
 
@@ -33,14 +37,12 @@ export default MyPage;
 
 const Container = styled.div`
   border: 1px solid black;
-`
+`;
 
 const PostBox = styled.div`
   border: 1px solid black;
   cursor: pointer;
-`
-
-
+`;
 // {state.posts.map((el) => (
 //   <PostBox key={el.id} onClick={e => {handleClick(e)}}>
 //     <div>{el.title}</div>
@@ -49,13 +51,6 @@ const PostBox = styled.div`
 //     <div>{el.body}</div>
 //   </PostBox>
 // ))}
-
-
-
-
-
-
-
 
 // 구현해야될 것들
 // 1. 로그인한 유저의 데이터들을 담은 state 구현
