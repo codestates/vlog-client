@@ -45,9 +45,9 @@ const Item = styled.img`
   display: flex;
   flex-direction: column;
 
-  &: hover {
+  &:hover {
     z-index: 1;
-    backbround-color: white;
+    background-color: white;
     transform: scale(1.5);
     background: #9e9e9e;
     border: 5px solid gold;

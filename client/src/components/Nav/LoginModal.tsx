@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+// axios.defaults.withCredentials = true
 
 function LoginModal(props: any) {
   const [userInfo, setUserInfo] = useState({
@@ -21,19 +22,20 @@ function LoginModal(props: any) {
   const handleSubmit = () => {
     const { email, password } = userInfo;
     if (email && password) {
-      // axios
-      //   .post("http://localhost:8080/session", { email: email, password: password })
-      //   .then((res) => {
-      //     props.handleLoginModal();
-      //     props.setIsLogin(true);
-      //     history.push("/");
-      //   })
-      //   .catch((err) => alert("로그인 불가"));
-      props.handleLoginModal();
-      props.setIsLogin(true);
-      history.push("/");
+      axios
+        .post("http://localhost:8080/session", { email: email, password: password })
+        .then((res) => {
+          console.log(res)
+          props.handleLoginModal();
+          props.setIsLogin(true);
+          history.push("/");
+        })
+        .catch((err) => alert("로그인 불가"));
+      // props.handleLoginModal();
+      // props.setIsLogin(true);
+      // history.push("/");
     } else {
-      console.log("올바르게 입력해주세요");
+      alert("올바르게 입력해주세요");
     }
   };
   console.log(userInfo);

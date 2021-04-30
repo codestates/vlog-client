@@ -1,6 +1,8 @@
 import axios from "axios";
 import react, { useState } from "react";
 import styled from "styled-components";
+// axios.defaults.withCredentials = true
+
 
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const userNamePattern = /^[가-힣]{2,4}$/;
@@ -59,10 +61,10 @@ function SignUpModal(props: any) {
       console.log(userInfo);
       //회원가입에 성공했을경우 서버에 요청보냄
       axios
-        .post("https://localhost:8080/", {
+        .post("http://localhost:8080/signup", {
           email: userInfo.email,
           password: userInfo.password,
-          nickname: userInfo.nickname,
+          nick_name: userInfo.nickname,
         })
         .then((res) => {
           console.log("회원가입 성공!");

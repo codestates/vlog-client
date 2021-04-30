@@ -63,7 +63,7 @@ function Nav() {
       </RightNav>
       {loginModal ? <LoginModal handleLoginModal={handleLoginModal} handleSideBtn={handleSideBtn} setIsLogin={setIsLogin} /> : null}
       {signUpModal ? <SignUpModal handleSignUpModal={handleSignUpModal} handleSideBtn={handleSideBtn} /> : null}
-      {menuModal ? <MenuModal handleMenuModal={handleMenuModal} /> : null}
+      {menuModal ? <MenuModal handleMenuModal={handleMenuModal} setIsLogin={setIsLogin} setMenuModal={setMenuModal} /> : null}
     </Container>
   );
 }
@@ -93,7 +93,7 @@ const HomeBtn = styled.button`
   border: none;
   background: none;
   width: 70px;
-  height 60px;
+  height: 60px;
   font-size: 30px;
 `;
 const MainLoginBtn = styled.button`
@@ -102,14 +102,14 @@ const MainLoginBtn = styled.button`
   background: #424242;
   color: white;
   width: 80px;
-  height 30px;
+  height: 30px;
   font-size: 17px;
   margin: 20px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
   
 
-  &: hover {
+  &:hover {
       background: #9E9E9E;
       border: 1px solid #9E9E9E
   }
@@ -125,11 +125,11 @@ const NewPostBtn = styled(Link)`
   background: #424242;
   color: white;
   width: 100px;
-  height 30px;
+  height: 30px;
   font-size: 17px;
   margin: 20px;
 
-&: hover {
+&:hover {
     background: #9E9E9E;
     border: 1px solid #9E9E9E
 }
