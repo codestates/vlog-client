@@ -1,17 +1,14 @@
-import axios from "axios";
-import { ObjectLiteralElement } from "typescript";
-
 //액션 type 선언 (리덕스 액션 안에 들어가게 될 type 선언)
 const DISPLAYDATA = "post/DISPLAYDATA" as const;
 const OPENPOSTPAGE = "post/OPENPOSTPAGE" as const;
 
 //액션 생성 함수 선언
-export const displayData = (el: any) => ({
+export const displayData = (el: object[]) => ({
   type: DISPLAYDATA,
   payload: { el },
 });
 
-export const openPostPage = (current: object) => ({
+export const openPostPage = (current: []) => ({
   type: OPENPOSTPAGE,
   payload: current,
 });
@@ -22,14 +19,14 @@ type PostAction = ReturnType<typeof displayData> | ReturnType<typeof openPostPag
 
 // state의 타입
 type StateOption = {
-  data: any;
-  current: object;
+  data: any | object[];
+  currentPost: object;
 };
 
 // state 초기값 선언
 const initialState: StateOption = {
   data: null,
-  current: [],
+  currentPost: [],
 };
 
 // reducer 작성
@@ -43,7 +40,7 @@ function postReducer(state: StateOption = initialState, action: PostAction): Sta
     case OPENPOSTPAGE:
       return {
         ...state,
-        current: action.payload,
+        currentPost: action.payload,
       };
 
     default:

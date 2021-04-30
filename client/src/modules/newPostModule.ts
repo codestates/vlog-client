@@ -29,10 +29,7 @@ export const newPostHash = (newHash: string) => ({
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type newPostAction =
-  | ReturnType<typeof newPosttitle>
-  | ReturnType<typeof newPostbody>
-  | ReturnType<typeof newPostHash>;
+type newPostAction = ReturnType<typeof newPosttitle> | ReturnType<typeof newPostbody> | ReturnType<typeof newPostHash>;
 
 // state의 타입
 type newPostStateOption = {
@@ -49,10 +46,7 @@ const initialState: newPostStateOption = {
 };
 
 // reducer 작성
-function newPostReducer(
-  state: newPostStateOption = initialState,
-  action: newPostAction
-): newPostStateOption {
+function newPostReducer(state: newPostStateOption = initialState, action: newPostAction): newPostStateOption {
   switch (action.type) {
     case NEWPOSTTITLE:
       return {

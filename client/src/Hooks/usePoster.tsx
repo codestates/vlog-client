@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { displayData } from "../modules/postModule";
+import { displayData } from "../modules/mainPageModule";
 import { RootState } from "../modules";
 import axios from "axios";
 

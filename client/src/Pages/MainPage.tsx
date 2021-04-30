@@ -1,7 +1,7 @@
 import React from "react";
 import PostListContainer from "../Hooks/usePoster";
 import axios from "axios";
-import PostList from "../components/PostList";
+import PostList from "../components/MainPostsList";
 import styled from "styled-components";
 
 function MainPage() {
@@ -15,7 +15,7 @@ function MainPage() {
 
 const TopContainer = styled.div`
   margin-top: 6rem;
-  width: 1024px;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
 `;

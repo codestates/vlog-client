@@ -46,6 +46,8 @@ function Nav() {
       setSignUpModal(false);
     }
   };
+
+
   return (
     <Container>
       <LeftNav>

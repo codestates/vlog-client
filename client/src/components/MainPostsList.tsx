@@ -2,7 +2,7 @@ import React from "react";
 import usePoster from "../Hooks/usePoster";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { openPostPage } from "../modules/postModule";
+import { openPostPage } from "../modules/mainPageModule";
 import { useHistory } from "react-router-dom";
 
 function PostList() {
@@ -10,16 +10,15 @@ function PostList() {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  console.log("hi");
 
   function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
-    const findData = state.data.filter((el: object | any) => {
+    const findData = state.data.filter((el: any) => {
       return el.etag === e.target.id;
     });
 
     dispatch(openPostPage(findData));
 
-    history.push("/OpenContentPage");
+    history.push("/MainCurrentPost");
   }
 
   console.log(state);

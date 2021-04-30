@@ -49,6 +49,7 @@ const ModalBox = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   background: white;
+  transition: 0.4s ease-in;
 `;
 
 const Modal_Title = styled.h1``;
