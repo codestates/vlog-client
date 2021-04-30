@@ -4,8 +4,7 @@ import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
 import menuIcon from "../../icon/menu_gray.png";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 function Nav() {
   const [isLogin, setIsLogin] = useState(false);
@@ -47,7 +46,6 @@ function Nav() {
     }
   };
 
-
   return (
     <Container>
       <LeftNav>
@@ -56,7 +54,7 @@ function Nav() {
       <RightNav>
         {isLogin ? (
           <BtnContainer>
-            <NewPostBtn to ='/newPost'>새 글 작성</NewPostBtn>
+            <NewPostBtn to="/newPost">새 글 작성</NewPostBtn>
             <MenuBtn src={menuIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (

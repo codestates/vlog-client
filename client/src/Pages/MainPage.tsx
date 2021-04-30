@@ -5,6 +5,7 @@ import PostList from "../components/MainPostsList";
 import styled from "styled-components";
 
 function MainPage() {
+  console.log("mainpage");
   return (
     <TopContainer>
       <PostList />
