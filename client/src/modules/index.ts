@@ -1,13 +1,15 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
-import postReducer from './post';
+import postReducer from "./mainPageModule";
+import newPostReducer from "./newPostModule";
+import myPageReducer from "./myPageModule";
 
 const rootReducer = combineReducers({
-    postReducer
+  newPostReducer,
+  postReducer,
+  myPageReducer,
 });
-
 
 export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
-

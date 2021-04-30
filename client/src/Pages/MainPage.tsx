@@ -1,13 +1,22 @@
-import React from 'react'
-import PostListContainer from '../containers/PostListContainer'
-
+import React from "react";
+import PostListContainer from "../Hooks/usePoster";
+import axios from "axios";
+import PostList from "../components/MainPostsList";
+import styled from "styled-components";
 
 function MainPage() {
-    return (
-        <div>
-            <PostListContainer/>
-        </div>
-    )
+  return (
+    <TopContainer>
+      <PostList />
+    </TopContainer>
+  );
 }
 
-export default MainPage
+const TopContainer = styled.div`
+  margin-top: 6rem;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export default MainPage;
