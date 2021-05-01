@@ -7,7 +7,7 @@ import menuIcon from "../../icon/menu_gray.png";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
@@ -107,11 +107,10 @@ const MainLoginBtn = styled.button`
   margin: 20px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
-  
 
   &:hover {
-      background: #9E9E9E;
-      border: 1px solid #9E9E9E
+    background: #9e9e9e;
+    border: 1px solid #9e9e9e;
   }
 `;
 
@@ -129,11 +128,10 @@ const NewPostBtn = styled(Link)`
   font-size: 17px;
   margin: 20px;
 
-&:hover {
-    background: #9E9E9E;
-    border: 1px solid #9E9E9E
-}
-
+  &:hover {
+    background: #9e9e9e;
+    border: 1px solid #9e9e9e;
+  }
 `;
 
 const MenuBtn = styled.img`

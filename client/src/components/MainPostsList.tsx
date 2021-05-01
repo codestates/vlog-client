@@ -8,25 +8,44 @@ import { useHistory } from "react-router-dom";
 function PostList() {
   const { state } = usePoster();
   const history = useHistory();
-
   const dispatch = useDispatch();
-
-  function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
-    const findData = state.data.filter((el: any) => {
-      return el.etag === e.target.id;
-    });
-
-    dispatch(openPostPage(findData));
-
-    history.push("/MainCurrentPost");
-  }
 
   console.log(state);
   return (
-    <ListContainer onClick={handleClick}>
-      {state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <Item src={el.snippet.thumbnails.default.url} id={el.etag} key={el.id} />)}
+    <ListContainer>
+      {state.data === null ? (
+        <div>로딩 중입니다</div>
+      ) : (
+        state.data.map((el: any) => (
+          <Item>
+            <PostTitle>
+              {el.title}
+              <UserName>{el.nick_name}</UserName>
+            </PostTitle>
+
+            <PostBody>{el.body}</PostBody>
+          </Item>
+        ))
+      )}
     </ListContainer>
   );
+
+  // function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
+  //   const findData = state.data.filter((el: any) => {
+  //     return el.etag === e.target.id;
+  //   });
+
+  //   dispatch(openPostPage(findData));
+
+  //   history.push("/MainCurrentPost");
+  // }
+
+  // console.log(state);
+  // return (
+  //   <ListContainer onClick={handleClick}>
+  //     {state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <Item src={el.snippet.thumbnails.default.url} id={el.etag} key={el.id} />)}
+  //   </ListContainer>
+  // );
 }
 
 const ListContainer = styled.div`
@@ -36,7 +55,8 @@ const ListContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Item = styled.img`
+const Item = styled.div`
+  height: 10rem;
   width: 15rem;
   background: white;
   border-radius: 4px;
@@ -53,5 +73,12 @@ const Item = styled.img`
     border: 5px solid gold;
   }
 `;
+
+const PostTitle = styled.div`
+  display: flex;
+`;
+const UserName = styled.div``;
+
+const PostBody = styled.div``;
 
 export default PostList;
