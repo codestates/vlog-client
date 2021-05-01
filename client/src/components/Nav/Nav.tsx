@@ -15,16 +15,20 @@ function Nav() {
   const handleLoginModal = () => {
     if (loginModal) {
       setLoginModal(false);
+      document.body.style.overflow = "unset"
     } else {
       setLoginModal(true);
+      document.body.style.overflow = "hidden"
     }
   };
 
   const handleSignUpModal = () => {
     if (signUpModal) {
       setSignUpModal(false);
+      document.body.style.overflow = "unset"
     } else {
       setSignUpModal(true);
+      document.body.style.overflow = "hidden"
     }
   };
 
@@ -54,7 +58,9 @@ function Nav() {
       <RightNav>
         {isLogin ? (
           <BtnContainer>
-            <NewPostBtn to="/newPost">새 글 작성</NewPostBtn>
+            <NewPostBtn>
+            <NewPostLink to="/newPost" style={{textDecoration: 'none'}}>새 글 작성</NewPostLink>
+            </NewPostBtn>
             <MenuBtn src={menuIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (
@@ -92,9 +98,8 @@ const RightNav = styled.div`
 const HomeBtn = styled.button`
   border: none;
   background: none;
-  width: 70px;
-  height: 60px;
-  font-size: 30px;
+  font-size: 35px;
+  margin-top: 10px;
 `;
 const MainLoginBtn = styled.button`
   border: 1px solid #424242;
@@ -119,7 +124,7 @@ const BtnContainer = styled.div`
   display: flex;
 `;
 
-const NewPostBtn = styled(Link)`
+const NewPostBtn = styled.div`
   border: 1px solid #424242;
   border-radius: 20px;
   background: #424242;
@@ -127,7 +132,10 @@ const NewPostBtn = styled(Link)`
   width: 100px;
   height: 30px;
   font-size: 17px;
-  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px;
 
 &:hover {
     background: #9E9E9E;
@@ -135,6 +143,11 @@ const NewPostBtn = styled(Link)`
 }
 
 `;
+
+const NewPostLink = styled(Link)`
+color: white;
+margin-right: 5px;
+`
 
 const MenuBtn = styled.img`
   margin: 20px;

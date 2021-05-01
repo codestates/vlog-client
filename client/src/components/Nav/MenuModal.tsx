@@ -9,22 +9,26 @@ function MenuModal(props: any) {
   const history = useHistory();
 
   const handleMoveToMypage = () => {
-    axios.get('http://localhost:8080/mypage')
-    .then(res => {
-      console.log(res)
+    // axios.get('https://localhost:8080/mypage')
+    // .then(res => {
+    //   console.log(res)
+    //   history.push("/page");
+    //   props.handleMenuModal();
+    // })
       history.push("/page");
       props.handleMenuModal();
-    })
     
   };
 
   const handleLogout = () => {
-    axios.delete('http://localhost:8080/session')
-    .then(res => {
-      props.setIsLogin(false)
-      props.setMenuModal(false)
-      history.push('/')
-    })
+    // axios.delete('http://localhost:8080/session')
+    // .then(res => {
+    //   props.setIsLogin(false)
+    //   props.setMenuModal(false)
+    //   history.push('/')
+    // })
+          history.push('/')
+
   }
 
   useEffect(() => {
@@ -59,6 +63,7 @@ const ModalBox = styled.div`
   top: 70px;
   right: 50px;
   width: 180px;
+  background: white;
   border: 1px solid black;
   border-radius: 10px;
 `;
@@ -68,16 +73,16 @@ const Modal_Page = styled.div`
   padding: 10px;
   margin: 5px;
 
-  // &: hover {
-  //   background: #f5f5f5;
-  // }
+  &:hover {
+    background: #f5f5f5;
+  }
 `;
 const Modal_Logout = styled.div`
   cursor: pointer;
   padding: 10px;
   margin: 5px;
 
-  // &: hover {
-  //   background: #f5f5f5;
-  // }
+  &:hover {
+    background: #f5f5f5;
+  }
 `;

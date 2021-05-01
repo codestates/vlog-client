@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Noteworthy Light";
+  font-weight: 200;
+  src: url("./fonts/Noteworthy/Noteworthy\ Light.woff2") format("woff2"),
+  url("./fonts/Noteworthy/Noteworthy\ Light.woff") format("woff"),
+  url("./fonts/Noteworthy/Noteworthy\ Light.ttf") format("truetype")
+
+}
+
+/* @font-face {
+  font-family: "Circular Std Book";
+  font-weight: 200;
+  src: url("./fonts/Circular\ Std\ Book/.woff2") format("woff2"),
+  url("./fonts/Circular\ Std\ Book/woff") format("woff"),
+  url("./fonts/Circular\ Std\ Book/.ttf") format("truetype")
+
+} */

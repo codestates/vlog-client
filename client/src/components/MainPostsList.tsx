@@ -34,6 +34,7 @@ const ListContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 40px;
 `;
 
 const Item = styled.img`

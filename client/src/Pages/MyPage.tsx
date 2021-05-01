@@ -22,9 +22,11 @@ function MyPage() {
     console.log('이제 곧 상태 업데이트 됨!!')
   })
 
+  console.log(state)
+
   return (
   <Container>
-    {state === null ? <div>로딩 중입니다.</div> : 
+    {state.posts === null ? <div>로딩 중입니다.</div> : 
     state.posts.map((post:any) => (
       <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
         <div>{post.title}</div>
@@ -46,14 +48,6 @@ const PostBox = styled.div`
   border: 1px solid black;
   cursor: pointer;
 `;
-// {state.posts.map((el) => (
-//   <PostBox key={el.id} onClick={e => {handleClick(e)}}>
-//     <div>{el.title}</div>
-//     <div>{el.nick_name}</div>
-//     <div>{el.tag_name}</div>
-//     <div>{el.body}</div>
-//   </PostBox>
-// ))}
 
 // 구현해야될 것들
 // 1. 로그인한 유저의 데이터들을 담은 state 구현
@@ -73,21 +67,3 @@ const PostBox = styled.div`
 // 1. 해당하는 글에 있는 hashTags들을 확인할 수 있는 사이드바 구현
 // --> hashTag를 클릭하면, 해당 hashTag를 가진 게시물들을 필터할 수 있다.
 
-// const [fileState, setFileState] = useState<any>({
-//     file: '',
-//     previewURL: '',
-//   });
-
-//   const handleFileChange = (e:any) => {
-//     e.preventDefault();
-//     let reader = new FileReader();
-//     let file = e.target.files[0];
-//     reader.onloadend = async () => {
-//         await setFileState({file: file, previewURL : reader.result})
-//     }
-//     reader.readAsDataURL(file)
-//     console.log(fileState)
-
-{
-  /* <input type="file" accept="image/*" name="profile_img" onChange={e => handleFileChange(e)} /> */
-}
