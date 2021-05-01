@@ -10,21 +10,6 @@ function PostList() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
-  // function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
-  //   const findData = state.data.filter((el: any) => {
-  //     return el.etag === e.target.id;
-  //   });
-
-  //   dispatch(openPostPage(findData));
-
-  //   history.push("/MainCurrentPost");
-  // }
-
-  console.log(state);
-  // onClick={handleClick}
-  // return <ListContainer>{state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <div>{el} </div>)}</ListContainer>;
-=======
   console.log(state);
   return (
     <ListContainer>
@@ -62,10 +47,7 @@ function PostList() {
   //   </ListContainer>
   // );
 }
->>>>>>> c68b32d416867ec91889238ca4cccec0ab092c0c
 
-  return <div>{state}</div>;
-}
 const ListContainer = styled.div`
   display: flex;
   align-items: center;
@@ -74,10 +56,7 @@ const ListContainer = styled.div`
 `;
 
 const Item = styled.div`
-<<<<<<< HEAD
-=======
   height: 10rem;
->>>>>>> c68b32d416867ec91889238ca4cccec0ab092c0c
   width: 15rem;
   background: white;
   border-radius: 4px;

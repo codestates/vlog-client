@@ -1,8 +1,11 @@
 import axios from "axios";
 import react, { useState } from "react";
 import styled from "styled-components";
-// axios.defaults.withCredentials = true
+import checkIcon from "../../icon/check_icon.png";
+import xIcon from "../../icon/X_icon.png";
+import xIconGray from "../../icon/X_icon_gray.png";
 
+// axios.defaults.withCredentials = true
 
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const userNamePattern = /^[가-힣]{2,4}$/;
@@ -20,13 +23,12 @@ function SignUpModal(props: any) {
     password: "",
     nickname: "",
   });
-
   const [testResults, setTestResults] = useState<any>({
     emailResult: null,
     passwordResult: null,
     nicknameResult: null,
   });
-
+  const { email, password, nickname } = userInfo;
   const { emailResult, passwordResult, nicknameResult } = testResults;
 
   const handleUserInfo = ({ name, value }: any) => {
@@ -61,23 +63,11 @@ function SignUpModal(props: any) {
       console.log(userInfo);
       //회원가입에 성공했을경우 서버에 요청보냄
       axios
-<<<<<<< HEAD
-        .post(
-          "https://localhost:8080/",
-          {
-            email: userInfo.email,
-            password: userInfo.password,
-            nickname: userInfo.nickname,
-          },
-          { withCredentials: true }
-        )
-=======
         .post("http://localhost:8080/signup", {
           email: userInfo.email,
           password: userInfo.password,
           nick_name: userInfo.nickname,
         })
->>>>>>> c68b32d416867ec91889238ca4cccec0ab092c0c
         .then((res) => {
           console.log("회원가입 성공!");
           props.handleSideBtn();
@@ -86,6 +76,21 @@ function SignUpModal(props: any) {
           alert("오류임");
           props.handleSideBtn();
         });
+
+      // axios
+      //   .post("http://localhost:8080/signup", {
+      //     email: userInfo.email,
+      //     password: userInfo.password,
+      //     nick_name: userInfo.nickname,
+      //   })
+      //   .then((res) => {
+      //     console.log("회원가입 성공!");
+      //     props.handleSideBtn();
+      //   })
+      //   .catch((err) => {
+      //     alert("오류임");
+      //     props.handleSideBtn();
+      //   });
     } else {
       e.preventDefault();
       console.log("완벽하게 입력해주세요.");
@@ -104,20 +109,43 @@ function SignUpModal(props: any) {
             handleSubmit(e);
           }}
         >
+          <CloseBtn onClick={props.handleSignUpModal} src={xIconGray} />
           <Modal_Title>회원가입</Modal_Title>
           <Modal_UserInfo>이메일</Modal_UserInfo>
           <Modal_Input name="email" onChange={(e) => handleUserInfo(e.target)}></Modal_Input>
-          {testResults.emailResult === null ? null : testResults.emailResult === true ? <span>가능</span> : <span>불가능</span>}
+          {testResults.emailResult === null ? null : testResults.emailResult === true ? (
+            <IconBox>
+              <CheckIcon src={checkIcon} />
+            </IconBox>
+          ) : (
+            <IconBox>
+              <XIcon src={xIcon} />
+            </IconBox>
+          )}
           <Modal_UserInfo>닉네임</Modal_UserInfo>
           <Modal_Input name="nickname" onChange={(e) => handleUserInfo(e.target)}></Modal_Input>
-          {testResults.nicknameResult === null ? null : testResults.nicknameResult === true ? <span>가능</span> : <span>불가능</span>}
+          {testResults.nicknameResult === null ? null : testResults.nicknameResult === true ? (
+            <IconBox>
+              <CheckIcon src={checkIcon} />
+            </IconBox>
+          ) : (
+            <IconBox>
+              <XIcon src={xIcon} />
+            </IconBox>
+          )}
           <Modal_UserInfo>비밀번호</Modal_UserInfo>
           <Modal_Input type="password" name="password" onChange={(e) => handleUserInfo(e.target)}></Modal_Input>
-          {testResults.passwordResult === null ? null : testResults.passwordResult === true ? <span>가능</span> : <span>불가능</span>}
+          {testResults.passwordResult === null ? null : testResults.passwordResult === true ? (
+            <IconBox>
+              <CheckIcon src={checkIcon} />
+            </IconBox>
+          ) : (
+            <IconBox>
+              <XIcon src={xIcon} />
+            </IconBox>
+          )}
 
-          <div>
-            <Modal_LoginBtn>회원가입</Modal_LoginBtn>
-          </div>
+          <div>{emailResult && passwordResult && nicknameResult ? <Modal_SignUpBtn_abled>회원가입</Modal_SignUpBtn_abled> : <Modal_SignUpBtn_disabled>회원가입</Modal_SignUpBtn_disabled>}</div>
           <div>
             <Modal_SideBtn onClick={props.handleSideBtn}>이미 아이디가 있으신가요?</Modal_SideBtn>
           </div>
@@ -136,7 +164,6 @@ const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(3px);
-  border: 3px solid black;
 `;
 
 const ModalBox = styled.div`
@@ -145,9 +172,18 @@ const ModalBox = styled.div`
   align-items: center;
   width: 600px;
   height: 500px;
-  border: 1px solid black;
+  border: 1px solid #9e9e9e;
   border-radius: 10px;
   background: white;
+`;
+
+const CloseBtn = styled.img`
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+  position: fixed;
+  top: 135px;
+  right: 440px;
 `;
 
 const Modal_Title = styled.h1``;
@@ -157,6 +193,7 @@ const Modal_UserInfo = styled.div`
 `;
 
 const Modal_Input = styled.input`
+  -webkit-box-shadow: 0 0 0 1000px rgba(237, 237, 237, 1) inset;
   width: 310px;
   border-radius: 20px;
   margin-top: 10px;
@@ -166,19 +203,6 @@ const Modal_Input = styled.input`
   outline: none;
   padding: 10px;
   padding-left: 10px;
-`;
-
-const Modal_LoginBtn = styled.button`
-  width: 320px;
-  height: 35px;
-  border-radius: 20px;
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  outline: none;
-  cursor: pointer;
 `;
 
 const Modal_SideBtn = styled.button`
@@ -196,4 +220,43 @@ const Modal_SideBtn = styled.button`
     background-color: black;
     color: white;
   }
+`;
+
+const Modal_SignUpBtn_abled = styled.button`
+  width: 320px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  outline: none;
+  cursor: pointer;
+`;
+
+const Modal_SignUpBtn_disabled = styled.button`
+  width: 320px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: #7986cb;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  outline: none;
+`;
+
+const IconBox = styled.span`
+  margin-left: 5px;
+`;
+
+const CheckIcon = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+const XIcon = styled.img`
+  width: 20px;
+  height: 20px;
 `;
