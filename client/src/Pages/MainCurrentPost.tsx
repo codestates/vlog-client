@@ -7,7 +7,14 @@ function OpenContentPage() {
   console.log(state.currentPost[0]);
   return (
     <div>
-      <img src={state.currentPost[0].snippet.thumbnails.default.url} />
+      {state.data.map((post: any) => (
+        <div>
+          <div>{post.title}</div>
+          <div>{post.nick_name}</div>
+          <div>{post.body}</div>
+        </div>
+      ))}
+      {/* <img src={state.currentPost[0].snippet.thumbnails.default.url} /> */}
     </div>
   );
 }

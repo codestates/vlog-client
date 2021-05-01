@@ -3,7 +3,7 @@ const DISPLAYDATA = "post/DISPLAYDATA" as const;
 const OPENPOSTPAGE = "post/OPENPOSTPAGE" as const;
 
 //액션 생성 함수 선언
-export const displayData = (el: object[]) => ({
+export const displayData = (el: any) => ({
   type: DISPLAYDATA,
   payload: { el },
 });
@@ -19,7 +19,7 @@ type PostAction = ReturnType<typeof displayData> | ReturnType<typeof openPostPag
 
 // state의 타입
 type StateOption = {
-  data: any | object[];
+  data: any;
   currentPost: object;
 };
 

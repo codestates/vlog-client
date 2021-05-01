@@ -11,24 +11,22 @@ function PostList() {
 
   const dispatch = useDispatch();
 
-  function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
-    const findData = state.data.filter((el: any) => {
-      return el.etag === e.target.id;
-    });
+  // function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
+  //   const findData = state.data.filter((el: any) => {
+  //     return el.etag === e.target.id;
+  //   });
 
-    dispatch(openPostPage(findData));
+  //   dispatch(openPostPage(findData));
 
-    history.push("/MainCurrentPost");
-  }
+  //   history.push("/MainCurrentPost");
+  // }
 
   console.log(state);
-  return (
-    <ListContainer onClick={handleClick}>
-      {state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <Item src={el.snippet.thumbnails.default.url} id={el.etag} key={el.id} />)}
-    </ListContainer>
-  );
-}
+  // onClick={handleClick}
+  // return <ListContainer>{state.data === null ? <div>로딩 중입니다</div> : state.data.map((el: any) => <div>{el} </div>)}</ListContainer>;
 
+  return <div>{state}</div>;
+}
 const ListContainer = styled.div`
   display: flex;
   align-items: center;
@@ -36,7 +34,7 @@ const ListContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Item = styled.img`
+const Item = styled.div`
   width: 15rem;
   background: white;
   border-radius: 4px;
