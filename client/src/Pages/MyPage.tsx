@@ -2,34 +2,37 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useMyPage from "../Hooks/useMyPage";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { displayMyPost } from "../modules/myPageModule";
-type PropsOption = {
-  myPosts: object[];
-};
+
+import {useDispatch} from 'react-redux'
+import {displayMyPost} from '../modules/myPageModule'
+
 
 function MyPage() {
-  const { state } = useMyPage();
+  const { state }:any = useMyPage();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleClick = (nickname: string) => {
-    const filtered = state.posts.filter((post) => post.nick_name === nickname);
+  const handleClick = (nickname:string) => {
+    const filtered = state.posts.filter((post:any) => post.nick_name === nickname)
     dispatch(displayMyPost(filtered));
     history.push("/MainCurrentPost");
   };
-  console.log(state);
+
+  useEffect(() => {
+    console.log('이제 곧 상태 업데이트 됨!!')
+  })
 
   return (
-    <Container>
-      {state.posts.map((post) => (
-        <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
-          <div>{post.title}</div>
-          <div>{post.nick_name}</div>
-          <div>{post.body}</div>
-        </PostBox>
-      ))}
-    </Container>
+  <Container>
+    {state === null ? <div>로딩 중입니다.</div> : 
+    state.posts.map((post:any) => (
+      <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
+        <div>{post.title}</div>
+        <div>{post.nick_name}</div>
+        <div>{post.body}</div>
+      </PostBox>
+    ))}
+  </Container>
   );
 }
 

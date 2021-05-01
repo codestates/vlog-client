@@ -1,7 +1,44 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+// axios.defaults.withCredentials = true
 
 function LoginModal(props: any) {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const history = useHistory();
+
+  const handleChange = (e: any) => {
+    if (e.target.name === "email") {
+      setUserInfo({ ...userInfo, email: e.target.value });
+    } else if (e.target.name === "password") {
+      setUserInfo({ ...userInfo, password: e.target.value });
+    }
+  };
+
+  const handleSubmit = () => {
+    const { email, password } = userInfo;
+    if (email && password) {
+      axios
+        .post("http://localhost:8080/session", { email: email, password: password })
+        .then((res) => {
+          console.log(res)
+          props.handleLoginModal();
+          props.setIsLogin(true);
+          history.push("/");
+        })
+        .catch((err) => alert("로그인 불가"));
+      // props.handleLoginModal();
+      // props.setIsLogin(true);
+      // history.push("/");
+    } else {
+      alert("올바르게 입력해주세요");
+    }
+  };
+  console.log(userInfo);
 
   return (
     <ModalContainer onClick={props.handleLoginModal}>
@@ -9,13 +46,14 @@ function LoginModal(props: any) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            handleSubmit();
           }}
         >
           <Modal_Title>로그인</Modal_Title>
           <Modal_UserInfo>이메일</Modal_UserInfo>
-          <Modal_Input></Modal_Input>
+          <Modal_Input name="email" onChange={(e: any) => handleChange(e)}></Modal_Input>
           <Modal_UserInfo>비밀번호</Modal_UserInfo>
-          <Modal_Input></Modal_Input>
+          <Modal_Input type="password" name="password" onChange={(e: any) => handleChange(e)}></Modal_Input>
           <div>
             <Modal_LoginBtn>로그인</Modal_LoginBtn>
           </div>

@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { newPosttitle } from "../modules/newPostModule";
 import { newPostbody } from "../modules/newPostModule";
 import { newPostHash } from "../modules/newPostModule";
+import imgaeIcon from "../icon/image.png";
 
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function NewPost() {
   const history = useHistory();
@@ -25,8 +27,10 @@ export default function NewPost() {
   }
 
   function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(state);
-    history.push("/");
+    axios
+      .post("http://localhost:8080/posts", { title: state.title, body: state.body })
+      .then((res) => history.push("/"))
+      .catch((err) => console.log(err));
   }
 
   function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {
@@ -37,55 +41,100 @@ export default function NewPost() {
 
   return (
     <Container>
-      <TitleContainer>
-        <PostTitle name="newPostTitle" type="text" placeholder="제목을 입력하세요" onChange={handleInputValue} />
-        <HashTage name="hashTage" type="text" placeholder="해쉬테그를 입력하세요" onChange={handleInputValue} />
-      </TitleContainer>
-      <BodyContainer>
-        <PostBody name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue} />
-      </BodyContainer>
-      <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
-      <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+      <Toolbar>
+        <IconContainer>
+          <Icon src={imgaeIcon} />
+          이미지
+        </IconContainer>
+      </Toolbar>
+      <PageContainer>
+        <TitleContainer>
+          <PostTitle name="newPostTitle" type="text" placeholder="제목을 입력하세요" onChange={handleInputValue} />
+        </TitleContainer>
+        <HashTagContainer>
+          <HashTage name="hashTage" type="text" placeholder="해쉬테그를 입력하세요" onChange={handleInputValue} />
+        </HashTagContainer>
+        <BodyContainer>
+          <PostBody name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue} />
+        </BodyContainer>
+        <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
+        <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+      </PageContainer>
     </Container>
   );
 }
 
+const Toolbar = styled.div`
+  width: 100vw;
+  background-color: white;
+  border-top: solid #bdbdbd;
+  border-bottom: solid #bdbdbd;
+`;
+
+const IconContainer = styled.div`
+  display: inline-block;
+`;
+const Icon = styled.img`
+  display: inline-block;
+
+  margin: 20px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+`;
+
+const IconText = styled.span`
+  margin: 20px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+`;
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-`;
-const TitleContainer = styled.div`
-  padding-top: 2rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  background-color: #f5f5f5;
 `;
 
+const PageContainer = styled.div`
+  padding-top: 5rem;
+  background-color: white;
+  max-width: 800px;
+  margin: auto;
+`;
+const TitleContainer = styled.div`
+  padding: 1rem;
+  outline: none;
+`;
+
+const HashTagContainer = styled.div`
+  padding: 1rem;
+`;
 const BodyContainer = styled.div`
-  padding: 3rem;
+  border-top: solid #bdbdbd;
+  padding: 1rem;
 `;
 
 const PostTitle = styled.input`
   font-size: 2rem;
   line-height: 2rem;
   margin-top: 1rem;
-  border: 4px inset;
-  border-radius: 10px;
+  border: none;
+  outline: none;
 `;
 
 const HashTage = styled.input`
   font-size: 1.125rem;
   line-height: 2rem;
-  margin: 1rem;
-  border: 4px inset;
-  border-radius: 10px;
+  border: none;
+  outline: none;
 `;
 const PostBody = styled.textarea`
   font-size: 1.5rem;
-  margin: 0px;
   width: 603px;
   height: 608px;
-  border: 4px inset;
-  border-radius: 10px;
+  border: none;
+  outline: none;
 `;
 
 const NewPostButton = styled.button`
