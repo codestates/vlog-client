@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useMyPage from "../Hooks/useMyPage";
 import { useHistory } from "react-router-dom";
+<<<<<<< HEAD
 
+=======
+>>>>>>> f9b91d921a8670960028edc14aa8c3d42b6bd5bb
 import {useDispatch} from 'react-redux'
 import {displayMyPost} from '../modules/myPageModule'
 

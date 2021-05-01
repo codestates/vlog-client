@@ -7,6 +7,7 @@ import axios from "axios";
 
 function MenuModal(props: any) {
   const history = useHistory();
+  // const dispatch = useDispatch()
 
   const handleMoveToMypage = () => {
     // axios.get('https://localhost:8080/mypage')
