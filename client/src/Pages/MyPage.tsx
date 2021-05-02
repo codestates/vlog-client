@@ -15,10 +15,7 @@ function MyPage() {
   const handleCurrentPage = (postId: number) => {
     console.log('hi')
     console.log(myPageState)
-    const filtered = myPageState.posts.filter((post: any) => {
-      console.log('-------------------')
-      console.log(post.id, postId)
-      return post.id === postId});
+    const filtered = myPageState.posts.filter((post: any) => post.id === postId);
     console.log(filtered)
     dispatch(displayMyPost(filtered));
     history.push("/MypageCurrentPost");
@@ -39,6 +36,7 @@ function MyPage() {
 
   const handleSubmit = () => {
     console.log("요청 보낼거");
+    
     axios
       .patch("https://localhost:8080/userInfo", {
         nick_name: myPageState.userInfo.nick_name,

@@ -10,17 +10,6 @@ export default function usePoster() {
   const state = useSelector((state: RootState) => state.mainPageReducer);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   axios.get("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&key=AIzaSyCk0LNtPlTSTmoV8-OwRpqY3z38q78v1aM").then((res) => {
-  //     console.log("componentDidMount");
-  //     dispatch(displayData(res.data.items));
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    dispatch(displayData(fakedata));
-  }, []);
-
   return {
     state,
   };

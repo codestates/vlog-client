@@ -1,23 +1,46 @@
 import React, { useEffect, useState } from "react";
 import useMyPage from "../Hooks/useMyPage";
 import styled from "styled-components"
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {editTitle, editBody} from '../modules/EditPostModule'
+import {editTitle, editBody, editId} from '../modules/EditPostModule'
+import {displayMyData} from '../modules/myPageModule'
+axios.defaults.withCredentials = true;
+
+
 
 function MyPageCurrentPostPage() {
-  const { myPageState }: any = useMyPage();
+  const { myPageState }:any = useMyPage();
   const history = useHistory();
   const post = myPageState.currentPost[0];
   const dispatch = useDispatch()
-  console.log(post.title);
-  console.log(myPageState)
+  // console.log(post.title);
+  // console.log(myPageState)
+  const { id, title, body } = post
+
+  const axiosRequestConfig:AxiosRequestConfig = {
+    headers: { postId: id}
+  }
   
   const handleModifyPost = () => {
-    dispatch(editTitle(post.title))
-    dispatch(editBody(post.body))
+    dispatch(editId(id))
+    dispatch(editTitle(title))
+    dispatch(editBody(body))
     history.push('/EditPost')
+  }
+
+
+
+  const handleDeletePost = () => {
+    console.log('글 삭제 요청 보낼거임')
+    axios.delete('https://localhost:8080/posts', axiosRequestConfig)
+    .then(res => {
+      console.log('글 삭제 요청 성공!')
+      console.log(res)
+      dispatch(displayMyData(res.data));
+    })
+
   }
 
 
@@ -32,6 +55,7 @@ function MyPageCurrentPostPage() {
           <div>{post.nick_name}</div>
           <div>{post.body}</div>
           <button onClick={handleModifyPost}>수정</button>
+          <button onClick={handleDeletePost}>삭제</button>
           <div></div>
         </div>
       )}

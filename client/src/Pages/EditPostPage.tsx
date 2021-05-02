@@ -3,11 +3,10 @@ import useEditPoster from "../Hooks/useEditPoster";
 import useMyPage from "../Hooks/useEditPoster";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { newPosttitle } from "../modules/newPostModule";
-import { newPostbody } from "../modules/newPostModule";
-import { newPostHash } from "../modules/newPostModule";
-import imgaeIcon from "../icon/image.png";
+import { editBody, editHash ,editId,editTitle} from "../modules/EditPostModule";
 
+
+import imgaeIcon from "../icon/image.png";
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -16,22 +15,24 @@ export default function EditPostPage() {
   const history = useHistory();
   const { editState } = useEditPoster();
   const dispatch = useDispatch();
-  const {title, body} = editState;
+  const { title, body, id } = editState;
+  console.log(editState)
 
   function handleInputValue(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
-    if (e.target.name === "newPostTitle") {
-      dispatch(newPosttitle(value));
+    if (e.target.name === "title") {
+      dispatch(editTitle(value));
     } else if (e.target.name === "hashTage") {
-      dispatch(newPostHash(value));
-    } else {
-      dispatch(newPostbody(value));
-    }
+      dispatch(editHash(value));
+    } else if (e.target.name === "body") {
+      dispatch(editBody(value));
   }
+}
 
-  function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleUploadBtn(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log(editState)
     axios
-      .post("https://localhost:8080/posts", { title: editState.title, body: editState.body })
+      .patch("https://localhost:8080/posts", { title: title, body: body, postId: id })
       .then((res) => history.push("/"))
       .catch((err) => console.log(err));
   }
@@ -52,19 +53,22 @@ export default function EditPostPage() {
       </Toolbar>
       <PageContainer>
         <TitleContainer>
-          <PostTitle name="newPostTitle" onChange={handleInputValue}>{editState.title}</PostTitle>
+          <PostTitle name="title" onChange={handleInputValue}>
+            {editState.title}
+          </PostTitle>
         </TitleContainer>
         <HashTagContainer>
-          <HashTage name="hashTage" placeholder ={"해쉬태그 입력해주세요"}onChange={handleInputValue}></HashTage>
+          <HashTage name="hashTage" placeholder={"해쉬태그 입력해주세요"} onChange={handleInputValue}></HashTage>
         </HashTagContainer>
         <BodyContainer>
-          <PostBody name="newPostBody" onChange={handleInputValue}>{editState.body}</PostBody>
+          <PostBody name="body" onChange={handleInputValue}>
+            {editState.body}
+          </PostBody>
         </BodyContainer>
-        <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
+        <NewPostButton onClick={handleUploadBtn}> 업로드 </NewPostButton>
         <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
       </PageContainer>
     </Container>
- 
   );
 }
 
@@ -150,8 +154,9 @@ const NewPostButton = styled.button`
   transition: 0.2s ease-in-out;
   cursor: pointer;
 
-  &: hover {
+  &:hover {
     background: #9e9e9e;
     border: 1px solid #9e9e9e;
   }
 `;
+

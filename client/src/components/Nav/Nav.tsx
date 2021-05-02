@@ -5,12 +5,14 @@ import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
 import menuIcon from "../../icon/menu_gray.png";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Nav() {
   const [isLogin, setIsLogin] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
+  const history = useHistory();
 
   const handleLoginModal = () => {
     if (loginModal) {
@@ -50,10 +52,14 @@ function Nav() {
     }
   };
 
+  const handleHomeBtn = () => {
+    history.push("/");
+  };
+
   return (
     <Container>
       <LeftNav>
-        <HomeBtn>Vlog</HomeBtn>
+        <HomeBtn onClick={handleHomeBtn}>Vlog</HomeBtn>
       </LeftNav>
       <RightNav>
         {isLogin ? (
@@ -102,6 +108,7 @@ const HomeBtn = styled.button`
   background: none;
   font-size: 35px;
   margin-top: 10px;
+  cursor: pointer;
 `;
 const MainLoginBtn = styled.button`
   border: 1px solid #424242;
