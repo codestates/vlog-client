@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { displayMyPost } from "../modules/myPageModule";
 
+import { fakedata } from "./../fakedata";
+
 function MyPage() {
   const { state }: any = useMyPage();
   const history = useHistory();
@@ -20,23 +22,33 @@ function MyPage() {
     console.log("이제 곧 상태 업데이트 됨!!");
   });
 
-  console.log(state);
-
   return (
     <Container>
-      {state.posts === null ? (
-        <div>로딩 중입니다.</div>
-      ) : (
-        state.posts.map((post: any) => (
-          <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
-            <div>{post.title}</div>
-            <div>{post.nick_name}</div>
-            <div>{post.body}</div>
-          </PostBox>
-        ))
-      )}
+      {fakedata.map((post: any) => (
+        <PostBox>
+          <div>{post.title}</div>
+          <div>{post.nick_name}</div>
+          <div>{post.body}</div>
+        </PostBox>
+      ))}
     </Container>
   );
+
+  // return (
+  //   <Container>
+  //     {state.posts === null ? (
+  //       <div>로딩 중입니다.</div>
+  //     ) : (
+  //       state.posts.map((post: any) => (
+  //         <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
+  //           <div>{post.title}</div>
+  //           <div>{post.nick_name}</div>
+  //           <div>{post.body}</div>
+  //         </PostBox>
+  //       ))
+  //     )}
+  //   </Container>
+  // );
 }
 
 export default MyPage;
