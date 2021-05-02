@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import xIconGray from "../../icon/X_icon_gray.png";
-// axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true
 
 function LoginModal(props: any) {
   const [userInfo, setUserInfo] = useState({
@@ -26,20 +26,16 @@ function LoginModal(props: any) {
       axios
         .post("https://localhost:8080/session", { email: email, password: password })
         .then((res) => {
-          console.log(res);
+          console.log(res)
           props.handleLoginModal();
           props.setIsLogin(true);
           history.push("/");
         })
         .catch((err) => alert("로그인 불가"));
-      props.handleLoginModal();
-      props.setIsLogin(true);
-      history.push("/");
     } else {
       alert("올바르게 입력해주세요");
     }
   };
-  console.log(userInfo);
 
   return (
     <ModalContainer onClick={props.handleLoginModal}>

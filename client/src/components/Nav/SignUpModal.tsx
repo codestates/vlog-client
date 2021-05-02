@@ -63,7 +63,7 @@ function SignUpModal(props: any) {
       console.log(userInfo);
       //회원가입에 성공했을경우 서버에 요청보냄
       axios
-        .post("http://localhost:8080/signup", {
+        .post("https://localhost:8080/signup", {
           email: userInfo.email,
           password: userInfo.password,
           nick_name: userInfo.nickname,

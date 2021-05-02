@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import usePoster from "../Hooks/usePoster";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { openPostPage } from "../modules/mainPageModule";
 import { useHistory } from "react-router-dom";
+import {displayData} from "../modules/mainPageModule"
+import axios from 'axios'
+axios.defaults.withCredentials=true;
 
 function PostList() {
   const { state } = usePoster();
@@ -14,6 +17,17 @@ function PostList() {
     dispatch(openPostPage(el));
     history.push("/MainCurrentPost");
   }
+  
+  useEffect(() => {
+    axios
+    .get("https://localhost:8080/posts")
+    .then((res) => {
+      console.log(res)
+      dispatch(displayData(res.data.data));
+    });
+  }, []);
+
+  console.log(state)
 
   return (
     <Container>

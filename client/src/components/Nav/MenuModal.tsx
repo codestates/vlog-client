@@ -2,35 +2,38 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-// axios.defaults.withCredentials = true
-
+import { displayMyData, displayUserInfo } from "../../modules/myPageModule";
+import { useDispatch } from "react-redux";
+axios.defaults.withCredentials = true;
 
 function MenuModal(props: any) {
   const history = useHistory();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleMoveToMypage = () => {
-    // axios.get('https://localhost:8080/mypage')
-    // .then(res => {
-    //   console.log(res)
-    //   history.push("/page");
-    //   props.handleMenuModal();
-    // })
+    console.log("마이페이지 정보 뿌려주는 요청 보내짐");
+    axios.get("https://localhost:8080/userinfo").then(async (res) => {
+      // console.log('여기 밑에가 userInfo res')
+      // console.log(res.data.data)
+      dispatch(displayUserInfo(res.data.data));
       history.push("/page");
       props.handleMenuModal();
-    
+    })
+    .then(res => {
+      console.log('포스트 가져오는 요청 보내질거임')
+      axios.get("https://localhost:8080/mypage").then((res) => {
+        dispatch(displayMyData(res.data.data))
+    });
+    })
   };
 
   const handleLogout = () => {
-    // axios.delete('http://localhost:8080/session')
-    // .then(res => {
-    //   props.setIsLogin(false)
-    //   props.setMenuModal(false)
-    //   history.push('/')
-    // })
-          history.push('/')
-
-  }
+    axios.delete("https://localhost:8080/session").then((res) => {
+      props.setIsLogin(false);
+      props.setMenuModal(false);
+      history.push("/");
+    });
+  };
 
   useEffect(() => {
     window.addEventListener("click", props.handleMenuModal);

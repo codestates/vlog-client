@@ -30,7 +30,7 @@ const initialState: StateOption = {
 };
 
 // reducer 작성
-function postReducer(state: StateOption = initialState, action: PostAction): StateOption {
+function mainPageReducer(state: StateOption = initialState, action: PostAction): StateOption {
   switch (action.type) {
     case DISPLAYDATA:
       return {
@@ -48,4 +48,4 @@ function postReducer(state: StateOption = initialState, action: PostAction): Sta
   }
 }
 
-export default postReducer;
+export default mainPageReducer;

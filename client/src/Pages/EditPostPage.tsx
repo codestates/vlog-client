@@ -1,34 +1,38 @@
 import styled from "styled-components";
-import useNewPoster from "../Hooks/useNewPoster";
+import useEditPoster from "../Hooks/useEditPoster";
+import useMyPage from "../Hooks/useEditPoster";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { newPosttitle } from "../modules/newPostModule";
-import { newPostbody } from "../modules/newPostModule";
-import { newPostHash } from "../modules/newPostModule";
+import { editBody, editHash ,editId,editTitle} from "../modules/EditPostModule";
+
+
 import imgaeIcon from "../icon/image.png";
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-export default function NewPost() {
+export default function EditPostPage() {
   const history = useHistory();
-  const { state } = useNewPoster();
+  const { editState } = useEditPoster();
   const dispatch = useDispatch();
+  const { title, body, id } = editState;
+  console.log(editState)
 
   function handleInputValue(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
-    if (e.target.name === "newPostTitle") {
-      dispatch(newPosttitle(value));
+    if (e.target.name === "title") {
+      dispatch(editTitle(value));
     } else if (e.target.name === "hashTage") {
-      dispatch(newPostHash(value));
-    } else {
-      dispatch(newPostbody(value));
-    }
+      dispatch(editHash(value));
+    } else if (e.target.name === "body") {
+      dispatch(editBody(value));
   }
+}
 
-  function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleUploadBtn(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log(editState)
     axios
-      .post("https://localhost:8080/posts", { title: state.title, body: state.body })
+      .patch("https://localhost:8080/posts", { title: title, body: body, postId: id })
       .then((res) => history.push("/"))
       .catch((err) => console.log(err));
   }
@@ -37,29 +41,31 @@ export default function NewPost() {
     history.push("/");
   }
 
-  console.log(state);
+  console.log(editState);
 
   return (
     <Container>
       <Toolbar>
         <IconContainer>
-          <AlinIcon>
-            <Icon src={imgaeIcon} />
-            <div>이미지</div>
-          </AlinIcon>
+          <Icon src={imgaeIcon} />
+          이미지
         </IconContainer>
       </Toolbar>
       <PageContainer>
         <TitleContainer>
-          <PostTitle name="newPostTitle" type="text" placeholder="제목을 입력하세요" onChange={handleInputValue} />
+          <PostTitle name="title" onChange={handleInputValue}>
+            {editState.title}
+          </PostTitle>
         </TitleContainer>
         <HashTagContainer>
-          <HashTage name="hashTage" type="text" placeholder="해쉬테그를 입력하세요" onChange={handleInputValue} />
+          <HashTage name="hashTage" placeholder={"해쉬태그 입력해주세요"} onChange={handleInputValue}></HashTage>
         </HashTagContainer>
         <BodyContainer>
-          <PostBody name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue} />
+          <PostBody name="body" onChange={handleInputValue}>
+            {editState.body}
+          </PostBody>
         </BodyContainer>
-        <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
+        <NewPostButton onClick={handleUploadBtn}> 업로드 </NewPostButton>
         <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
       </PageContainer>
     </Container>
@@ -72,11 +78,9 @@ const Toolbar = styled.div`
   border-top: solid #bdbdbd;
   border-bottom: solid #bdbdbd;
 `;
-const AlinIcon = styled.div`
-  justify-content: center;
-`;
+
 const IconContainer = styled.div`
-  display: flex;
+  display: inline-block;
 `;
 const Icon = styled.img`
   display: inline-block;
@@ -101,12 +105,10 @@ const Container = styled.div`
 `;
 
 const PageContainer = styled.div`
-  border-radius: 5px;
-  padding-top: 2rem;
+  padding-top: 5rem;
   background-color: white;
   max-width: 800px;
   margin: auto;
-  height: 90%;
 `;
 const TitleContainer = styled.div`
   padding: 1rem;
@@ -121,7 +123,7 @@ const BodyContainer = styled.div`
   padding: 1rem;
 `;
 
-const PostTitle = styled.input`
+const PostTitle = styled.textarea`
   font-size: 2rem;
   line-height: 2rem;
   margin-top: 1rem;
@@ -129,7 +131,7 @@ const PostTitle = styled.input`
   outline: none;
 `;
 
-const HashTage = styled.input`
+const HashTage = styled.textarea`
   font-size: 1.125rem;
   line-height: 2rem;
   border: none;
@@ -144,16 +146,17 @@ const PostBody = styled.textarea`
 `;
 
 const NewPostButton = styled.button`
-  border: 2px solid #bdbdbd;
-  border-radius: 6px;
-  color: black;
-  background-color: #f5f5f5;
+  border: 1px solid #424242;
+  border-radius: 20px;
+  background: #424242;
+  color: white;
   font-size: 17px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
 
-  &: hover {
+  &:hover {
     background: #9e9e9e;
     border: 1px solid #9e9e9e;
   }
 `;
+

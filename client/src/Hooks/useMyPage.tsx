@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 // import {displayMyPost} from '../modules/myPageModule'
 
 export default function useMyPage() {
-  const state = useSelector((state: RootState) => state.myPageReducer);
+  const myPageState = useSelector((state: RootState) => state.myPageReducer);
   const dispatch = useDispatch()
 
 //   console.log(displayMyPost)
@@ -14,6 +14,6 @@ export default function useMyPage() {
 
 
   return {
-      state,
+      myPageState,
     }
 }
