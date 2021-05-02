@@ -10,7 +10,11 @@ function PostList() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  console.log(state);
+  function handleClicked(el: any) {
+    dispatch(openPostPage(el));
+    history.push("/MainCurrentPost");
+  }
+
   return (
     <Container>
       <ItemsContainer>
@@ -18,7 +22,7 @@ function PostList() {
           <div>로딩 중입니다</div>
         ) : (
           state.data.map((el: any) => (
-            <Item>
+            <Item onClick={() => handleClicked(el)}>
               <PostTitle>
                 {el.title}
                 <UserName>{el.nick_name}</UserName>
@@ -58,19 +62,19 @@ const Container = styled.div`
 const ItemsContainer = styled.div`
   display: flex;
   max-width: 5 em;
-  background-color: yellow;
 `;
 
-const Item = styled.div`
-  // // height: 10rem;
-  // // width: 15rem;
-  // background: white;
-  // border-radius: 4px;
-  // // margin: 1rem;
-  // // overflow: hidden;
-  // // display: flex;
-  // // flex-direction: column;
-  // cursor: pointer;
+const Item = styled.button`
+  height: 10rem;
+  width: 15rem;
+  background: white;
+  border: none;
+  border-radius: 4px;
+  margin: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 
   &:hover {
     z-index: 1;

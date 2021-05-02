@@ -4,17 +4,19 @@ import usePoster from "../Hooks/usePoster";
 
 function OpenContentPage() {
   const { state }: any = usePoster();
-  console.log(state.currentPost[0]);
+
+  function handleEditPage() {
+    console.log("move edit page");
+  }
+
   return (
     <div>
-      {state.data.map((post: any) => (
-        <div>
-          <div>{post.title}</div>
-          <div>{post.nick_name}</div>
-          <div>{post.body}</div>
-        </div>
-      ))}
-      {/* <img src={state.currentPost[0].snippet.thumbnails.default.url} /> */}
+      <div>
+        <div>{state.currentPost.title}</div>
+        <div>{state.currentPost.nick_name}</div>
+        <div>{state.currentPost.body}</div>
+        <button onClick={handleEditPage}>수정</button>
+      </div>
     </div>
   );
 }

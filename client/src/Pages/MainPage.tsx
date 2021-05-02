@@ -7,12 +7,16 @@ import imageMap from "../img/map.jpg";
 
 function MainPage() {
   console.log("mainpage");
+
+  function handlebutton() {
+    console.log("clicked");
+  }
   return (
     <>
       <TopContainer>
         <Img src={imageMap} />
       </TopContainer>
-        <PostListTitle>기록</PostListTitle>
+      <PostListTitle>기록</PostListTitle>
       <MainPostList />
     </>
   );
@@ -35,8 +39,6 @@ const Img = styled.img`
   outline-color
 `;
 
-const PostListTitle = styled.h1`
-  margin-left: 60px;
-`;
+const PostListTitle = styled.h1``;
 
 export default MainPage;

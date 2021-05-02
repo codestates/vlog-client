@@ -43,8 +43,10 @@ export default function NewPost() {
     <Container>
       <Toolbar>
         <IconContainer>
-          <Icon src={imgaeIcon} />
-          이미지
+          <AlinIcon>
+            <Icon src={imgaeIcon} />
+            <div>이미지</div>
+          </AlinIcon>
         </IconContainer>
       </Toolbar>
       <PageContainer>
@@ -70,9 +72,11 @@ const Toolbar = styled.div`
   border-top: solid #bdbdbd;
   border-bottom: solid #bdbdbd;
 `;
-
+const AlinIcon = styled.div`
+  justify-content: center;
+`;
 const IconContainer = styled.div`
-  display: inline-block;
+  display: flex;
 `;
 const Icon = styled.img`
   display: inline-block;
