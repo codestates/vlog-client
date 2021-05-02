@@ -12,22 +12,23 @@ function PostList() {
 
   console.log(state);
   return (
-    <ListContainer>
-      {state.data === null ? (
-        <div>로딩 중입니다</div>
-      ) : (
-        state.data.map((el: any) => (
-          <Item>
-            <PostTitle>
-              {el.title}
-              <UserName>{el.nick_name}</UserName>
-            </PostTitle>
-
-            <PostBody>{el.body}</PostBody>
-          </Item>
-        ))
-      )}
-    </ListContainer>
+    <Container>
+      <ItemsContainer>
+        {state.data === null ? (
+          <div>로딩 중입니다</div>
+        ) : (
+          state.data.map((el: any) => (
+            <Item>
+              <PostTitle>
+                {el.title}
+                <UserName>{el.nick_name}</UserName>
+              </PostTitle>
+              <PostBody>{el.body}</PostBody>
+            </Item>
+          ))
+        )}
+      </ItemsContainer>
+    </Container>
   );
 
   // function handleClick(e: React.MouseEvent<HTMLDivElement> | any) {
@@ -48,29 +49,34 @@ function PostList() {
   // );
 }
 
-const ListContainer = styled.div`
+const Container = styled.div`
+  background-color: #f5f5f5;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const ItemsContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  max-width: 5 em;
+  background-color: yellow;
 `;
 
 const Item = styled.div`
-  height: 10rem;
-  width: 15rem;
-  background: white;
-  border-radius: 4px;
-  margin: 1rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  // // height: 10rem;
+  // // width: 15rem;
+  // background: white;
+  // border-radius: 4px;
+  // // margin: 1rem;
+  // // overflow: hidden;
+  // // display: flex;
+  // // flex-direction: column;
+  // cursor: pointer;
 
   &:hover {
     z-index: 1;
     background-color: white;
-    transform: scale(1.5);
-    background: #9e9e9e;
-    border: 5px solid gold;
+    transform: scale(1.2);
+    border: 5px groove #eeeeee;
   }
 `;
 

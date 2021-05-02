@@ -23,15 +23,15 @@ function LoginModal(props: any) {
 
   const handleSubmit = () => {
     if (email && password) {
-      // axios
-      //   .post("https://localhost:8080/session", { email: email, password: password })
-      //   .then((res) => {
-      //     console.log(res)
-      //     props.handleLoginModal();
-      //     props.setIsLogin(true);
-      //     history.push("/");
-      //   })
-      //   .catch((err) => alert("로그인 불가"));
+      axios
+        .post("https://localhost:8080/session", { email: email, password: password })
+        .then((res) => {
+          console.log(res);
+          props.handleLoginModal();
+          props.setIsLogin(true);
+          history.push("/");
+        })
+        .catch((err) => alert("로그인 불가"));
       props.handleLoginModal();
       props.setIsLogin(true);
       history.push("/");
