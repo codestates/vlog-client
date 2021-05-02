@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import useNewPoster from "../Hooks/useNewPoster";
+import useEditPoster from "../Hooks/useEditPoster";
+import useMyPage from "../Hooks/useEditPoster";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { newPosttitle } from "../modules/newPostModule";
@@ -7,13 +8,15 @@ import { newPostbody } from "../modules/newPostModule";
 import { newPostHash } from "../modules/newPostModule";
 import imgaeIcon from "../icon/image.png";
 
+
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-export default function NewPost() {
+export default function EditPostPage() {
   const history = useHistory();
-  const { state } = useNewPoster();
+  const { editState } = useEditPoster();
   const dispatch = useDispatch();
+  const {title, body} = editState;
 
   function handleInputValue(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
@@ -28,7 +31,7 @@ export default function NewPost() {
 
   function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
     axios
-      .post("https://localhost:8080/posts", { title: state.title, body: state.body })
+      .post("https://localhost:8080/posts", { title: editState.title, body: editState.body })
       .then((res) => history.push("/"))
       .catch((err) => console.log(err));
   }
@@ -37,7 +40,7 @@ export default function NewPost() {
     history.push("/");
   }
 
-  console.log(state);
+  console.log(editState);
 
   return (
     <Container>
@@ -49,18 +52,19 @@ export default function NewPost() {
       </Toolbar>
       <PageContainer>
         <TitleContainer>
-          <PostTitle name="newPostTitle" type="text" placeholder="제목을 입력하세요" onChange={handleInputValue} />
+          <PostTitle name="newPostTitle" onChange={handleInputValue}>{editState.title}</PostTitle>
         </TitleContainer>
         <HashTagContainer>
-          <HashTage name="hashTage" type="text" placeholder="해쉬테그를 입력하세요" onChange={handleInputValue} />
+          <HashTage name="hashTage" placeholder ={"해쉬태그 입력해주세요"}onChange={handleInputValue}></HashTage>
         </HashTagContainer>
         <BodyContainer>
-          <PostBody name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue} />
+          <PostBody name="newPostBody" onChange={handleInputValue}>{editState.body}</PostBody>
         </BodyContainer>
         <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
         <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
       </PageContainer>
     </Container>
+ 
   );
 }
 
@@ -115,7 +119,7 @@ const BodyContainer = styled.div`
   padding: 1rem;
 `;
 
-const PostTitle = styled.input`
+const PostTitle = styled.textarea`
   font-size: 2rem;
   line-height: 2rem;
   margin-top: 1rem;
@@ -123,7 +127,7 @@ const PostTitle = styled.input`
   outline: none;
 `;
 
-const HashTage = styled.input`
+const HashTage = styled.textarea`
   font-size: 1.125rem;
   line-height: 2rem;
   border: none;

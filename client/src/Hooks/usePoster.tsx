@@ -7,7 +7,7 @@ import { fakedata } from "../fakedata";
 import axios from "axios";
 
 export default function usePoster() {
-  const state = useSelector((state: RootState) => state.postReducer);
+  const state = useSelector((state: RootState) => state.mainPageReducer);
   const dispatch = useDispatch();
 
   // useEffect(() => {
