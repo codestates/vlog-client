@@ -6,6 +6,13 @@ import { newPosttitle } from "../modules/newPostModule";
 import { newPostbody } from "../modules/newPostModule";
 import { newPostHash } from "../modules/newPostModule";
 import imgaeIcon from "../icon/image.png";
+import A from "../icon/Toolbar/A.png";
+import B from "../icon/Toolbar/B.png";
+import C from "../icon/Toolbar/C.png";
+import D from "../icon/Toolbar/D.png";
+import E from "../icon/Toolbar/E.png";
+import textSize from "../icon/Toolbar/textSize.png";
+import textType from "../icon/Toolbar/textType.png";
 
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -44,8 +51,32 @@ export default function NewPost() {
       <Toolbar>
         <IconContainer>
           <AlinIcon>
-            <Icon src={imgaeIcon} />
-            <div>이미지</div>
+            <Icon src={A} />
+            <IconText>새글</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={B} />
+            <IconText>좋아요</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={C} />
+            <IconText>업로드</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={D} />
+            <IconText>GPS</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={E} />
+            <IconText>날씨</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={textSize} />
+            <IconText>글씨크기</IconText>
+          </AlinIcon>
+          <AlinIcon>
+            <Icon src={textType} />
+            <IconText>텍스트 타입</IconText>
           </AlinIcon>
         </IconContainer>
       </Toolbar>
@@ -56,42 +87,49 @@ export default function NewPost() {
         <HashTagContainer>
           <HashTage name="hashTage" type="text" placeholder="해쉬테그를 입력하세요" onChange={handleInputValue} />
         </HashTagContainer>
-        <BodyContainer>
-          <PostBody name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue} />
-        </BodyContainer>
-        <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
+        <BodyContainer name="newPostBody" placeholder="기억에 남을만한 일들을 기록해보세요" onChange={handleInputValue}></BodyContainer>
         <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+
+        <NewPostButton onClick={handleButton}> 업로드 </NewPostButton>
       </PageContainer>
     </Container>
   );
 }
 
+const TestName = styled.div`
+  text-align: center;
+  margin: 0.2em;
+`;
+
 const Toolbar = styled.div`
   width: 100vw;
   background-color: white;
-  border-top: solid #bdbdbd;
-  border-bottom: solid #bdbdbd;
+  padding: 8px;
+  border-top: 6px double #bdbdbd;
+  border-bottom: 6px double #bdbdbd;
 `;
-const AlinIcon = styled.div`
-  justify-content: center;
-`;
+const AlinIcon = styled.div``;
 const IconContainer = styled.div`
+  justify-content: space-between;
   display: flex;
+  width: 50%;
+  margin: auto;
 `;
 const Icon = styled.img`
-  display: inline-block;
-
   margin: 20px;
   width: 28px;
   height: 28px;
   cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+  }
 `;
 
-const IconText = styled.span`
-  margin: 20px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
+const IconText = styled.div`
+  font-size: 0.8rem;
+  text-align: center;
 `;
 
 const Container = styled.div`
@@ -116,9 +154,17 @@ const TitleContainer = styled.div`
 const HashTagContainer = styled.div`
   padding: 1rem;
 `;
-const BodyContainer = styled.div`
+const BodyContainer = styled.textarea`
+  letter-spacing: 0.01em;
+  line-height: 150%;
+  font-size: 1.5rem;
   border-top: solid #bdbdbd;
+  border: none;
+  width: 95%;
   padding: 1rem;
+  height: 70%;
+  outline: none;
+  border-bottom: 2px solid #bdbdbd;
 `;
 
 const PostTitle = styled.input`
@@ -135,25 +181,19 @@ const HashTage = styled.input`
   border: none;
   outline: none;
 `;
-const PostBody = styled.textarea`
-  font-size: 1.5rem;
-  width: 603px;
-  height: 608px;
-  border: none;
-  outline: none;
-`;
 
 const NewPostButton = styled.button`
-  border: 2px solid #bdbdbd;
-  border-radius: 6px;
-  color: black;
-  background-color: #f5f5f5;
-  font-size: 17px;
+  float: right;
+  color: #616161;
+  background-color: white;
+  border: none;
+  font-size: 22px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
 
-  &: hover {
-    background: #9e9e9e;
-    border: 1px solid #9e9e9e;
+  &:hover {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5em;
   }
 `;

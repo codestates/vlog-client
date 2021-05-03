@@ -3,8 +3,7 @@ import useEditPoster from "../Hooks/useEditPoster";
 import useMyPage from "../Hooks/useEditPoster";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editBody, editHash ,editId,editTitle} from "../modules/EditPostModule";
-
+import { editBody, editHash, editId, editTitle } from "../modules/EditPostModule";
 
 import imgaeIcon from "../icon/image.png";
 
@@ -16,7 +15,7 @@ export default function EditPostPage() {
   const { editState } = useEditPoster();
   const dispatch = useDispatch();
   const { title, body, id } = editState;
-  console.log(editState)
+  console.log(editState);
 
   function handleInputValue(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
@@ -26,11 +25,11 @@ export default function EditPostPage() {
       dispatch(editHash(value));
     } else if (e.target.name === "body") {
       dispatch(editBody(value));
+    }
   }
-}
 
   function handleUploadBtn(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(editState)
+    console.log(editState);
     axios
       .patch("https://localhost:8080/posts", { title: title, body: body, postId: id })
       .then((res) => history.push("/"))
@@ -153,10 +152,10 @@ const NewPostButton = styled.button`
   font-size: 17px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 
   &:hover {
     background: #9e9e9e;
     border: 1px solid #9e9e9e;
   }
 `;
-
