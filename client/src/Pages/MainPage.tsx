@@ -16,7 +16,10 @@ function MainPage() {
       <TopContainer>
         <Img src={imageMap} />
       </TopContainer>
-      <PostListTitle>기록</PostListTitle>
+      <TitleList>
+      <MemoryPosts>기록</MemoryPosts>
+      <PartyPosts>동행</PartyPosts>
+      </TitleList>
       <MainPostList />
     </>
   );
@@ -31,6 +34,7 @@ const TopContainer = styled.div`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
+  // background: black;
 `;
 
 const Img = styled.img`
@@ -39,6 +43,14 @@ const Img = styled.img`
   outline-color
 `;
 
-const PostListTitle = styled.h1``;
+const TitleList = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const MemoryPosts = styled.h1`
+  margin-right: 30px;
+`;
+
+const PartyPosts = styled.h1``;
 
 export default MainPage;
