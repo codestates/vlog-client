@@ -13,7 +13,56 @@ import worldmap from "../icon/worldmap.png"
 import { fakedata } from "./../fakedata";
 
 function MyPage() {
-  function handlePage(e: any) {}
+  const { myPageState }: any = useMyPage();
+  const [inputUser, setInputUser] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleCurrentPage = (postId: number) => {
+    console.log('hi')
+    console.log(myPageState)
+    const filtered = myPageState.posts.filter((post: any) => post.id === postId);
+    console.log(filtered)
+    dispatch(displayMyPost(filtered));
+    history.push("/MypageCurrentPost");
+  };
+
+  const handleInput = () => {
+    if (inputUser) {
+      setInputUser(false);
+    } else {
+      setInputUser(true);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(e.target.value);
+    dispatch(changeUsername(e.target.value));
+  };
+
+  const handleSubmit = () => {
+    console.log("요청 보낼거");
+    
+    axios
+      .patch("https://localhost:8080/userInfo", {
+        nick_name: myPageState.userInfo.nick_name,
+      })
+      .then((res) => {
+        console.log("유저 정보 수정 완료" + res);
+        setInputUser(false);
+      });
+  };
+
+  const handlePostDelete = (e: any) => {
+    // 게시물 삭제하는 axios 요청 보낸다. -> 받아와야되는 데이터는 해당
+    
+    console.log(e.target.id);
+  };
+
+  useEffect(() => {
+    console.log("이제 곧 상태 업데이트 됨!!");
+  });
+  
 
   return (
     <Container>

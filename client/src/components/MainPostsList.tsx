@@ -19,10 +19,13 @@ function PostList() {
   }
 
   useEffect(() => {
-    axios.get("https://localhost:8080/posts").then((res) => {
+    console.log('get 요청 보내짐')
+    axios.get("https://localhost:8080/posts")
+    .then((res) => {
       console.log(res);
       dispatch(displayData(res.data.data));
-    });
+    })
+    .catch(err => console.log(err))
   }, []);
 
   console.log(state);
