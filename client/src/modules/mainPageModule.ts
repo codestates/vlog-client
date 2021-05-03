@@ -8,7 +8,7 @@ export const displayData = (el: any) => ({
   payload: { el },
 });
 
-export const openPostPage = (current: []) => ({
+export const openPostPage = (current: object) => ({
   type: OPENPOSTPAGE,
   payload: current,
 });
@@ -26,7 +26,7 @@ type StateOption = {
 // state 초기값 선언
 const initialState: StateOption = {
   data: null,
-  currentPost: [],
+  currentPost: {},
 };
 
 // reducer 작성

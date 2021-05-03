@@ -43,8 +43,10 @@ export default function NewPost() {
     <Container>
       <Toolbar>
         <IconContainer>
-          <Icon src={imgaeIcon} />
-          이미지
+          <AlinIcon>
+            <Icon src={imgaeIcon} />
+            <div>이미지</div>
+          </AlinIcon>
         </IconContainer>
       </Toolbar>
       <PageContainer>
@@ -70,9 +72,11 @@ const Toolbar = styled.div`
   border-top: solid #bdbdbd;
   border-bottom: solid #bdbdbd;
 `;
-
+const AlinIcon = styled.div`
+  justify-content: center;
+`;
 const IconContainer = styled.div`
-  display: inline-block;
+  display: flex;
 `;
 const Icon = styled.img`
   display: inline-block;
@@ -97,10 +101,12 @@ const Container = styled.div`
 `;
 
 const PageContainer = styled.div`
-  padding-top: 5rem;
+  border-radius: 5px;
+  padding-top: 2rem;
   background-color: white;
   max-width: 800px;
   margin: auto;
+  height: 90%;
 `;
 const TitleContainer = styled.div`
   padding: 1rem;
@@ -138,10 +144,10 @@ const PostBody = styled.textarea`
 `;
 
 const NewPostButton = styled.button`
-  border: 1px solid #424242;
-  border-radius: 20px;
-  background: #424242;
-  color: white;
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  color: black;
+  background-color: #f5f5f5;
   font-size: 17px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
