@@ -17,22 +17,25 @@ function MyPage() {
         <UserImage src={user} />
 
         <UserName_edit placeholder={"에딧네임"}></UserName_edit>
-        <div>
-          <EditImage src={edit2} alt="edit2" />
-          <InfoButton>완료ㅎㅎ</InfoButton>
-        </div>
+
+        <InfoButton>완료ㅎㅎ</InfoButton>
       </InfoContainer>
+
+      <MovePage>
+        <MovePageList>글</MovePageList>
+        <MovePageList>시리즈</MovePageList>
+        <MovePageList>소개</MovePageList>
+      </MovePage>
 
       {fakedata.map((post: any) => (
         <PostBoxContainer>
           <PostBox>
-            <div>{post.title}</div>
-            <div>{post.nick_name}</div>
-            <div>{post.body}</div>
+            <PostTitle>{post.title}</PostTitle>
+            <PostName>{post.nick_name}</PostName>
+            <PostBody>{post.body}</PostBody>
           </PostBox>
-          <div>
-            <button>삭제</button>
-          </div>
+
+          <DeleteButton>Delete</DeleteButton>
         </PostBoxContainer>
       ))}
     </Container>
@@ -51,19 +54,55 @@ const Container = styled.div`
 const InfoContainer = styled.div`
   display: flex;
   border-bottom: 4px solid #bdbdbd;
-  margin-bottom: 5rem;
+  padding-bottom: 5em;
   margin-top: 2rem;
 `;
 
+const MovePage = styled.div`
+  display: flex;
+  padding: 20px;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  justify-content: center;
+`;
+
+const MovePageList = styled.div`
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 20px;
+  border-bottom: 4px solid #bdbdbd;
+  width: 15%;
+`;
+
 const PostBoxContainer = styled.div`
-  border: 3px solid red;
+  border-bottom: 2px solid #bdbdbd;
+  padding-bottom: 2rem;
+  margin: 15px;
+`;
+
+const PostTitle = styled.div`
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+const PostName = styled.div`
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+`;
+
+const PostBody = styled.div`
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
 `;
 
 const PostBox = styled.div`
-  // border: 1px solid black;
+  width: 70%;
+  margin: auto;
   cursor: pointer;
-  // width: 50%;
-  // margin: auto;
+  padding: 1.5rem;
 `;
 
 const UserName = styled.input`
@@ -75,6 +114,7 @@ const UserName = styled.input`
 
 const UserImage = styled.img`
   width: 150px;
+  margin-right: 2rem;
 `;
 
 const EditImage = styled.img`
@@ -85,9 +125,11 @@ const UserName_edit = styled.input`
   margin-top: 3rem;
   height: 55px;
   border: none;
+  width: 12rem;
 `;
 
 const InfoButton = styled.button`
+border-radius: 12px;
   align-items: center;
   height: 40px;
   margin-top 3rem;
@@ -96,20 +138,13 @@ const InfoButton = styled.button`
   border:none;
 `;
 
-// 구현해야될 것들
-// 1. 로그인한 유저의 데이터들을 담은 myPageState 구현
-// --> 로그인 한 유저의 ID를 이용하여 서버에 해당하는 유저의 Posts 데이터들만 가져와서 state에 저장
-// 2. 가져와야 할 데이터들 목록
-// --> title, description, date
-// 3. Mypage 컴포넌트 구성
-// --> 상단에는 title, 하단부터는 postsList가 표현을 해야 된다.
-// 4. 유저 이름 수정
-// --> 유저 이름 옆에 연필 버튼을 클릭하면, 유저가 수정할 수 있는 Input 태그가 뜨고 완료 버튼을 클릭하면 서버에 수정 요청을 보낸다.
-// 5. post 조회
-// --> 하나의 post를 클릭하면, 해당 post 페이지로 이동을 하게 된다.
-// --> 이동한 페이지에서는, 기본적으로 해당 post의 title과 description을 확인할 수 있다.
-// --> advanced : 해당 post를 수정할 수 있는 수정 버튼이 있다.
+const DeleteButton = styled.button`
+  float: right;
+  border-radius: 12px;
+  align-items: center;
+  height: 1.5rem;
 
-// advanced
-// 1. 해당하는 글에 있는 hashTags들을 확인할 수 있는 사이드바 구현
-// --> hashTag를 클릭하면, 해당 hashTag를 가진 게시물들을 필터할 수 있다.
+  cursor: pointer;
+
+  border: none;
+`;
