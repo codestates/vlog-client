@@ -1,19 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
-import { useCallback } from 'react'
+import { useCallback } from "react";
 // import {displayMyPost} from '../modules/myPageModule'
 
 export default function useMyPage() {
   const myPageState = useSelector((state: RootState) => state.myPageReducer);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-//   console.log(displayMyPost)
-//   const onclick = useCallback(() => dispatch(displayMyPost()), [dispatch])
-//   const onClick = useCallback(() => dispatch(displayMyPost()), [dispatch]);
-
-
+  //   console.log(displayMyPost)
+  //   const onclick = useCallback(() => dispatch(displayMyPost()), [dispatch])
+  //   const onClick = useCallback(() => dispatch(displayMyPost()), [dispatch]);
 
   return {
-      myPageState,
-    }
+    myPageState,
+  };
 }

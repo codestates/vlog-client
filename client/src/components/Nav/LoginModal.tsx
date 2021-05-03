@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 import xIconGray from "../../icon/X_icon_gray.png";
-import {fadeIn, slideUp } from "../../styled-components/animation"
+import { fadeIn, slideUp } from "../../styled-components/animation";
 axios.defaults.withCredentials = true;
+// HTTPS=true SSL_CRT_FILE=../../vlog-server/cert.pem SSL_KEY_FILE=../../vlog-server/key.pem
 
 function LoginModal(props: any) {
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
   });
-  const [ errorMsg, setErrorMsg ] = useState(true)
+  const [errorMsg, setErrorMsg] = useState(true);
   const history = useHistory();
   const { email, password } = userInfo;
 
@@ -26,7 +27,7 @@ function LoginModal(props: any) {
   const handleSubmit = () => {
     if (email && password) {
       axios
-        .post("https://localhost:8080/session", { email: email, password: password })
+        .post("http://localhost:8080/session", { email: email, password: password })
         .then((res) => {
           console.log(res);
           props.handleLoginModal();
@@ -34,7 +35,7 @@ function LoginModal(props: any) {
           history.push("/");
         })
         .catch((err) => setErrorMsg(false));
-    } 
+    }
   };
 
   return (
@@ -99,19 +100,17 @@ const ModalBox = styled.div`
   animation-fill-mode: forwards;
 `;
 
-
 const CloseBtnBox = styled.div`
-width: 600px;
-display: flex;
-justify-content: flex-end;
-
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const CloseBtn = styled.img`
-cursor: pointer;
-width: 17px;
-height: 17px;
-margin-right: 15px;
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+  margin-right: 15px;
 `;
 
 const Form = styled.form`
@@ -181,13 +180,13 @@ const Modal_SideBtn = styled.button`
 const ErrorMessage = styled.div`
   text-align: center;
   color: red;
-`
+`;
 
 //changed
 // const boxFade= keyframes`
 // // 0% {
 // //   transform: translateY(150px)
-// // } 
+// // }
 // // 100% {
 // //   transform: translateY(0);
 // // }
@@ -214,7 +213,6 @@ const ErrorMessage = styled.div`
 //     </StyledWrapper>
 //   )
 // }
-
 
 // @keyframes moveUp {
 //   0% {

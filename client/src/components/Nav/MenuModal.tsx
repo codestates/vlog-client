@@ -10,24 +10,33 @@ function MenuModal(props: any) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleMoveToMypage = () => {
+  const handleMoveToMypage = async () => {
     console.log("마이페이지 정보 뿌려주는 요청 보내짐");
-    axios.get("https://localhost:8080/userinfo").then(async (res) => {
-      // console.log('여기 밑에가 userInfo res')
-      // console.log(res.data.data)
-      dispatch(displayUserInfo(res.data.data));
-      history.push("/page");
-      props.handleMenuModal();
-    })
-    .then(res => {
-      console.log('포스트 가져오는 요청 보내질거임')
-      axios.get("https://localhost:8080/mypage").then((res) => {
-        dispatch(displayMyData(res.data.data))
-    });
-    })
+
+    await axios
+      .get("http://localhost:8080/userinfo")
+      .then((res) => {
+        console.log("여기 밑에가 userInfo res");
+        console.log(res.data.data);
+        dispatch(displayUserInfo(res.data.data));
+        props.handleMenuModal();
+        console.log("마이페이지 게시물들 요청 보내질거임");
+      })
+      .then((res) => {
+        axios.get("http://localhost:8080/mypage").then((res) => {
+          dispatch(displayMyData(res.data.data));
+          history.push("/page");
+        });
+      });
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    axios.delete("http://localhost:8080/session").then((res) => {
+      props.setIsLogin(false);
+      props.setMenuModal(false);
+      history.push("/");
+    });
+  };
 
   useEffect(() => {
     window.addEventListener("click", props.handleMenuModal);

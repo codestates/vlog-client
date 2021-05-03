@@ -24,14 +24,14 @@ export default function NewPost() {
     }
   }
 
-  function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleUpload(e: React.MouseEvent<HTMLButtonElement>) {
     axios
-      .post("https://localhost:8080/posts", { title: state.title, body: state.body })
+      .post("http://localhost:8080/posts", { title: state.title, body: state.body })
       .then((res) => history.push("/"))
       .catch((err) => console.log(err));
   }
 
-  function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {
+  function handleExit(e: React.MouseEvent<HTMLButtonElement>) {
     history.push("/");
   }
 
@@ -44,19 +44,19 @@ export default function NewPost() {
       </PageNameBox> */}
       <PageContainer>
         <ContentBox>
-        <TitleInput name="newPostTitle" placeholder="제목을 입력해주세요" onChange={handleInputValue}></TitleInput>
-        <Line></Line>
-        <BodyArea name="newPostBody" placeholder="내용을 입력해주세요..." onChange={handleInputValue}></BodyArea>
+          <TitleInput name="newPostTitle" placeholder="제목을 입력해주세요" onChange={handleInputValue}></TitleInput>
+          <Line></Line>
+          <BodyArea name="newPostBody" placeholder="내용을 입력해주세요..." onChange={handleInputValue}></BodyArea>
         </ContentBox>
         <ButtonBox>
-          <ExitBtn onClick={handleButton_Exit}> 나가기 </ExitBtn>
-          <UploadBtn onClick={handleButton}> 출간하기 </UploadBtn>
+          <ExitBtn onClick={handleExit}> 나가기 </ExitBtn>
+          <UploadBtn onClick={handleUpload}> 출간하기 </UploadBtn>
         </ButtonBox>
       </PageContainer>
       <ResultContainer>
         <PostBox>
-        <PostTitle>{state.title}</PostTitle>
-        <PostBody>{state.body}</PostBody>
+          <PostTitle>{state.title}</PostTitle>
+          <PostBody>{state.body}</PostBody>
         </PostBox>
       </ResultContainer>
     </Container>
@@ -73,17 +73,14 @@ export default function NewPost() {
 // `;
 
 const PostBox = styled.div`
-margin-top: 100px;
-height: 100%;
-width: 100%;
-padding: 0px 0px 0px 40px;
-`
-const PostTitle = styled.h1`
-`
+  margin-top: 100px;
+  height: 100%;
+  width: 100%;
+  padding: 0px 0px 0px 40px;
+`;
+const PostTitle = styled.h1``;
 
-const PostBody = styled.h3`
-
-`
+const PostBody = styled.h3``;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -97,12 +94,12 @@ const PageContainer = styled.div`
 `;
 
 const ResultContainer = styled.div`
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 `;
 
 const ContentBox = styled.div`
-margin: 50px;
-`
+  margin: 50px;
+`;
 const Line = styled.div`
   width: 100%;
   border: 1px solid #e0e0e0;
@@ -139,25 +136,24 @@ const ButtonBox = styled.div`
   bottom: 0px;
   left: 0px;
   margin-top: 20px;
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid #e0e0e0;
   width: 50%;
   height: 70px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
+`;
 
-  `;
-
-  const ExitBtn = styled.button`
+const ExitBtn = styled.button`
   border: none;
   background: white;
   font-size: 20px;
   cursor: pointer;
-  `
+`;
 
-  const UploadBtn = styled.button`
+const UploadBtn = styled.button`
   border: none;
-  background: #3F51B5;
+  background: #3f51b5;
   color: white;
   border-radius: 10px;
   font-size: 17px;
@@ -168,26 +164,12 @@ const ButtonBox = styled.div`
   transition: 0.2s ease-in-out;
 
   &:hover {
-    background: #7986CB
+    background: #7986cb;
   }
+`;
 
-  `
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  {
-    /* <HashTagContainer>
+{
+  /* <HashTagContainer>
             <HashTage name="hashTage" type="text" placeholder="해쉬태그" onChange={handleInputValue} />
           </HashTagContainer> */
-  }
+}

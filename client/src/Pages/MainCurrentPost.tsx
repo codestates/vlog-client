@@ -5,24 +5,19 @@ import usePoster from "../Hooks/usePoster";
 function OpenContentPage() {
   const { state }: any = usePoster();
 
+  console.log(state);
   return (
     <Container>
       <PostBox>
-        <PostTitle>💤 코로나 언택트 시대, 우리는 어떻게 수업 시간에 잘 수 있을까요?</PostTitle>
+        <PostTitle>{state.currentPost.title}</PostTitle>
         <div>
           <ButtonContainer>
             <EditButton>수정</EditButton>
             <EditButton>삭제</EditButton>
           </ButtonContainer>
         </div>
-        <PostName>kimbyungchan</PostName>
-        <PostBody>
-          ⏰ 고등학교, 시간 관리의 중요성 작년까지만 해도 저는 학교를 다니고 있었어요. 하라는 공부는 안하고 여러가지 딴짓을 많이 했었죠. 하지만 하루는 고작 24시간, 인간이 딴짓을 할 수 있는 시간은
-          한정되어 있습니다. 이는 수면 시간 보존의 법칙(Law of conservation of sleep hours)에 의한 것인데요. 인간 중에서도 나약한 편에 속하는 저는 무슨 일이 있어도 8시간은 채워 자게 됩니다. 그리고
-          미인은 잠꾸러기인 법이니까요. 그렇기 때문에 제가 코딩하는 시간을 늘리려면 학교 수업 시간을 최대한 효율적으로, 즉 자는 데 사용해야 했습니다(25%만 자는 데 써도 2시간을 벌 수 있습니다).
-          고등학교 1학년을 마치면서 선생님들께서는 제게 이제 2학년이 되니 시간을 효율적으로 사용하라는 목표를 마음속에 새기라는, 어... 대충 멋진 말씀을 해 주셨습니다. 선생님 말씀을 잘 듣는 착한 아이인
-          저는 2020년이 되고 일년 목표를 시간 효율적으로 사용하기 로 정했습니다
-        </PostBody>
+        <PostName>닉네임</PostName>
+        <PostBody>{state.currentPost.body}</PostBody>
       </PostBox>
     </Container>
   );
