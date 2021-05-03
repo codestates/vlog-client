@@ -8,6 +8,7 @@ import { displayMyPost, changeUsername } from "../modules/myPageModule";
 import axios from "axios";
 import user from "../icon/user_Blue.jpg";
 import A from "../icon/Toolbar/A.png";
+import worldmap from "../icon/worldmap.png"
 
 import { fakedata } from "./../fakedata";
 
@@ -16,12 +17,14 @@ function MyPage() {
 
   return (
     <Container>
+      <LeftContainer>
+        <ImgBox>
+        <Img src={worldmap}></Img>
+        </ImgBox>
+      </LeftContainer>
+      <RightContainer>
       <InfoContainer>
-        <UserImage src={user} />
-
-        <UserName_edit placeholder={"에딧네임"}></UserName_edit>
-
-        <InfoButton src={A} />
+        <UserName>여행자 문성석</UserName>
       </InfoContainer>
 
       {fakedata.map((post: any) => (
@@ -33,107 +36,68 @@ function MyPage() {
           </PostBox>
         </PostBoxContainer>
       ))}
+      </RightContainer>
     </Container>
   );
 }
 export default MyPage;
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  width: 60%;
-  margin: auto;
-  padding-top 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
 `;
+
+const LeftContainer = styled.div`
+border: 1px solid #EEEEEE
+`
+
+const ImgBox = styled.div`
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  margin: 200px 0px 0px 20px;
+`
+
+const Img = styled.img`
+  width: 40rem;
+  height: 20rem;
+`
+
+const RightContainer = styled.div`
+  padding: 50px;
+  background: #FAFAFA
+`
 
 const InfoContainer = styled.div`
   display: flex;
-  border-bottom: 4px solid #bdbdbd;
   padding-bottom: 5em;
   margin-top: 2rem;
 `;
 
 const PostBoxContainer = styled.div`
-  border-bottom: 2px solid #bdbdbd;
-  padding-bottom: 2rem;
-  margin: 15px;
+  background: white;
+  padding: 10px;
+  margin-bottom: 15px;
 `;
 
 const PostTitle = styled.div`
-  margin: 0.5rem 0;
   font-size: 2rem;
-  font-weight: bold;
 `;
 
 const PostName = styled.div`
-  margin: 0.5rem 0;
   font-size: 1.2rem;
 `;
 
 const PostBody = styled.div`
-  margin: 0.5rem 0;
   font-size: 1.2rem;
 `;
 
 const PostBox = styled.div`
-  width: 70%;
-  margin: auto;
   cursor: pointer;
-  padding: 1.5rem;
 `;
 
-const UserName = styled.input`
-  font-size: 50px;
-  margin-top: 3rem;
-  height: 55px;
-  border: none;
-`;
+const UserName = styled.h1`
 
-const UserImage = styled.img`
-  width: 150px;
-  margin-right: 2rem;
-  border-radius: 10px;
-`;
+`
 
-const EditImage = styled.img`
-  heigth: 20px;
-`;
-const UserName_edit = styled.input`
-  font-size: 30px;
-  margin-top: 3rem;
-  height: 55px;
-  border: none;
-  width: 15rem;
-`;
-
-const InfoButton = styled.img`
-  align-items: center;
-  height: 40px;
-  margin-top: 3rem;
-
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
-  border: none;
-`;
-
-// const InfoButton = styled.button`
-//   border-radius: 12px;
-//   background-color: white;
-//   color: #9e9e9e;
-
-//   align-items: center;
-//   height: 40px;
-//   margin-top: 3rem;
-//   margin-left: 3rem;
-//   transition: 0.2s ease-in-out;
-
-//   cursor: pointer;
-
-//   border: none;
-
-//   &:hover {
-//     color: black;
-//     font-weight: bold;
-//     font-size: 1.2em;
-//   }
-// `;

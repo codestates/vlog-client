@@ -141,9 +141,9 @@ const BtnContainer = styled.div`
 `;
 
 const NewPostBtn = styled.div`
-  border: 1px solid #424242;
+  border: 1px solid #7986CB;
   border-radius: 20px;
-  background: #424242;
+  background: #3F51B5;
   color: white;
   width: 100px;
   height: 30px;
@@ -154,8 +154,8 @@ const NewPostBtn = styled.div`
   margin: 18px;
 
   &:hover {
-    background: #9e9e9e;
-    border: 1px solid #9e9e9e;
+    background: #7986CB;
+    border: 1px solid #7986CB;
   }
 `;
 

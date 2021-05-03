@@ -157,7 +157,7 @@ const ButtonBox = styled.div`
 
   const UploadBtn = styled.button`
   border: none;
-  background: #1E88E5;
+  background: #3F51B5;
   color: white;
   border-radius: 10px;
   font-size: 17px;
@@ -168,7 +168,7 @@ const ButtonBox = styled.div`
   transition: 0.2s ease-in-out;
 
   &:hover {
-    background: #64B5F6
+    background: #7986CB
   }
 
   `
