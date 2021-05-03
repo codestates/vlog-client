@@ -14,6 +14,7 @@ function Nav() {
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
+  const [navColor, setNavColor] = useState('white')
   const history = useHistory();
 
   const handleLoginModal = () => {
@@ -90,9 +91,13 @@ const Container = styled.div`
   display: flex;
   background: white;
   width: 100%;
-  height: 70px;
-  margin-top: 10px;
-`;
+  height: 10%;
+  position: fixed;
+  top: 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 1;
+  `;
+
 
 const LeftNav = styled.div`
   position: absolute;
@@ -108,7 +113,7 @@ const RightNav = styled.div`
 
 const HomeBtn = styled.button`
   border: none;
-  background: none;
+  background: white;
   font-size: 35px;
   margin-top: 10px;
   cursor: pointer;

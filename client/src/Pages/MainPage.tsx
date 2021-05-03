@@ -17,8 +17,8 @@ function MainPage() {
         <Img src={imageMap} />
       </TopContainer>
       <TitleList>
-      <MemoryPosts>기록</MemoryPosts>
-      <PartyPosts>동행</PartyPosts>
+      <MemoryPosts>{'기록 & 동행'}</MemoryPosts>
+      {/* <PartyPosts>동행</PartyPosts> */}
       </TitleList>
       <MainPostList />
     </>
@@ -59,7 +59,7 @@ const TitleList = styled.div`
   justify-content: center;
 `
 const MemoryPosts = styled.h1`
-  margin-right: 30px;
+  margin-right: -20px;
 `;
 
 const PartyPosts = styled.h1``;

@@ -74,10 +74,11 @@ const ItemsContainer = styled.div`
 
 const ItemBox = styled.div`
 background: #FAFAFA;
-border: 1px solid black;
+border: none;
 transition: 0.3s ease-in-out;
 cursor: pointer;
 border-radius: 5px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
 &:hover {
   transform: translateY(-7px)
@@ -99,7 +100,7 @@ const PostTitle = styled.h3`
 const UserName = styled.div`
   display: flex;
   justify-content: flex-end;
-  border-top: 1px solid black;
+  border-top: 1px solid #E0E0E0;
   padding: 10px;
 `;
 

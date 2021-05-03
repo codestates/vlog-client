@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { displayMyPost, changeUsername } from "../modules/myPageModule";
 import axios from "axios";
-import user from "../icon/user.png";
-import edit2 from "../icon/edit2.png";
+import user from "../icon/user_Blue.jpg";
 import A from "../icon/Toolbar/A.png";
 
 import { fakedata } from "./../fakedata";
@@ -24,11 +23,6 @@ function MyPage() {
 
         <InfoButton src={A} />
       </InfoContainer>
-
-      <MovePage>
-        <MovePageList onClick={handlePage}>기록</MovePageList>
-        <MovePageList onClick={handlePage}>동행</MovePageList>
-      </MovePage>
 
       {fakedata.map((post: any) => (
         <PostBoxContainer>
@@ -57,33 +51,6 @@ const InfoContainer = styled.div`
   border-bottom: 4px solid #bdbdbd;
   padding-bottom: 5em;
   margin-top: 2rem;
-`;
-
-const MovePage = styled.div`
-  display: flex;
-  padding: 50px;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-`;
-
-const MovePageList = styled.button`
-  cursor: pointer;
-  text-align: center;
-  font-size: 2em;
-  margin: 20px;
-  background-color: white;
-  border: none;
-  border-bottom: 2px solid #bdbdbd;
-  width: 15%;
-  transition: 0.2s ease-in-out;
-  padding: 20px;
-
-  &:hover {
-    color: black;
-    font-weight: bold;
-    font-size: 2em;
-  }
 `;
 
 const PostBoxContainer = styled.div`
