@@ -51,23 +51,33 @@ function PostList() {
 const Container = styled.div`
   background-color: #f5f5f5;
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
 `;
 
 const ItemsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, auto));
-  padding: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  padding: 30px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(3, 200px);
+    padding: 55px;
+
+  }
+
+  @media (max-width: 375px) {
+    grid-template-columns: repeat(1, 375px);
+  }
 
 `;
 
 const ItemBox = styled.div`
 background: #FAFAFA;
-width: 200px;
-margin: 50px;
 border: 1px solid black;
 transition: 0.3s ease-in-out;
 cursor: pointer;
+border-radius: 5px;
 
 &:hover {
   transform: translateY(-7px)
@@ -81,10 +91,14 @@ const Item = styled.div`
 
 `;
 
-const PostTitle = styled.div`
+const PostTitle = styled.h3`
   display: flex;
+  width: 300px;
+
 `;
 const UserName = styled.div`
+  display: flex;
+  justify-content: flex-end;
   border-top: 1px solid black;
   padding: 10px;
 `;

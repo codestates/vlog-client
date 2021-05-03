@@ -1,9 +1,10 @@
 import axios from "axios";
 import react, { useState } from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import checkIcon from "../../icon/check_icon.png";
 import xIcon from "../../icon/X_icon.png";
 import xIconGray from "../../icon/X_icon_gray.png";
+import {fadeIn, slideUp} from "../../styled-components/animation"
 
 // axios.defaults.withCredentials = true
 
@@ -104,12 +105,14 @@ function SignUpModal(props: any) {
           e.stopPropagation();
         }}
       >
+        <CloseBtnBox>
+          <CloseBtn onClick={props.handleSignUpModal} src={xIconGray} />
+        </CloseBtnBox>
         <form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
-          <CloseBtn onClick={props.handleSignUpModal} src={xIconGray} />
           <Modal_Title>회원가입</Modal_Title>
           <Modal_UserInfo>이메일</Modal_UserInfo>
           <Modal_Input name="email" onChange={(e) => handleUserInfo(e.target)}></Modal_Input>
@@ -164,26 +167,42 @@ const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(3px);
+
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
 `;
 
 const ModalBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 600px;
   height: 500px;
   border: 1px solid #9e9e9e;
   border-radius: 10px;
   background: white;
+  transition: 0.4s ease-in;
+
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideUp};
+  animation-fill-mode: forwards;
+`;
+
+const CloseBtnBox = styled.div`
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const CloseBtn = styled.img`
   cursor: pointer;
   width: 17px;
   height: 17px;
-  position: fixed;
-  top: 135px;
-  right: 440px;
+  margin-right: 15px;
 `;
 
 const Modal_Title = styled.h1``;
@@ -194,7 +213,7 @@ const Modal_UserInfo = styled.div`
 
 const Modal_Input = styled.input`
   -webkit-box-shadow: 0 0 0 1000px rgba(237, 237, 237, 1) inset;
-  width: 310px;
+  width: 320px;
   border-radius: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -215,6 +234,7 @@ const Modal_SideBtn = styled.button`
   cursor: pointer;
   outline: none;
   transition: 0.4s ease-in-out;
+  margin-bottom: 20px;
 
   &:hover {
     background-color: black;

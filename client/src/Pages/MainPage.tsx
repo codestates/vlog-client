@@ -38,9 +38,20 @@ const TopContainer = styled.div`
 `;
 
 const Img = styled.img`
-  width: 70vw;
-  height: 80vh;
-  outline-color
+  width: 1000px;
+  height: 700px;
+
+  @media (max-width: 375px) {
+    width: 300px;
+    height: 300px;
+    margin-top: -1000px;
+    margin-bottom: -1000px;
+  }
+
+  @media (max-width: 768px) {
+    width: 768px;
+    height: 500px;
+  }
 `;
 
 const TitleList = styled.div`

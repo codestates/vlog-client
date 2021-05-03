@@ -27,13 +27,7 @@ function MenuModal(props: any) {
     })
   };
 
-  const handleLogout = () => {
-    axios.delete("https://localhost:8080/session").then((res) => {
-      props.setIsLogin(false);
-      props.setMenuModal(false);
-      history.push("/");
-    });
-  };
+  const handleLogout = () => {};
 
   useEffect(() => {
     window.addEventListener("click", props.handleMenuModal);

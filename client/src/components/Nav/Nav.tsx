@@ -4,6 +4,8 @@ import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
 import menuIcon from "../../icon/menu_gray.png";
+// import userIcon from "../../icon/userIcon.png"
+import userIcon from "../../icon/userIcon_gray.png"
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -69,7 +71,7 @@ function Nav() {
                 새 글 작성
               </NewPostLink>
             </NewPostBtn>
-            <MenuBtn src={menuIcon} onClick={handleMenuModal} />
+            <MenuBtn src={userIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (
           <MainLoginBtn onClick={handleLoginModal}>로그인</MainLoginBtn>
@@ -89,6 +91,7 @@ const Container = styled.div`
   background: white;
   width: 100%;
   height: 70px;
+  margin-top: 10px;
 `;
 
 const LeftNav = styled.div`
@@ -157,8 +160,8 @@ const NewPostLink = styled(Link)`
 `;
 
 const MenuBtn = styled.img`
-  margin: 20px;
-  width: 28px;
-  height: 28px;
+  margin: 18px 8px 0px 8px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 `;
