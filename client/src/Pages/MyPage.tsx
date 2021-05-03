@@ -5,144 +5,95 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { displayMyPost, changeUsername } from "../modules/myPageModule";
 import axios from "axios";
+import user from "../icon/user.png";
+import edit2 from "../icon/edit2.png";
 
 import { fakedata } from "./../fakedata";
 
 function MyPage() {
-  const { myPageState }: any = useMyPage();
-  const [inputUser, setInputUser] = useState(false);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const handleCurrentPage = (postId: number) => {
-    console.log('hi')
-    console.log(myPageState)
-    const filtered = myPageState.posts.filter((post: any) => post.id === postId);
-    console.log(filtered)
-    dispatch(displayMyPost(filtered));
-    history.push("/MypageCurrentPost");
-  };
-
-  const handleInput = () => {
-    if (inputUser) {
-      setInputUser(false);
-    } else {
-      setInputUser(true);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value);
-    dispatch(changeUsername(e.target.value));
-  };
-
-  const handleSubmit = () => {
-    console.log("요청 보낼거");
-    
-    axios
-      .patch("https://localhost:8080/userInfo", {
-        nick_name: myPageState.userInfo.nick_name,
-      })
-      .then((res) => {
-        console.log("유저 정보 수정 완료" + res);
-        setInputUser(false);
-      });
-  };
-
-  const handlePostDelete = (e: any) => {
-    // 게시물 삭제하는 axios 요청 보낸다. -> 받아와야되는 데이터는 해당
-    
-    console.log(e.target.id);
-  };
-
-  useEffect(() => {
-    console.log("이제 곧 상태 업데이트 됨!!");
-  });
-<<<<<<< HEAD
-
   return (
     <Container>
+      <InfoContainer>
+        <UserImage src={user} />
+
+        <UserName_edit placeholder={"에딧네임"}></UserName_edit>
+        <div>
+          <EditImage src={edit2} alt="edit2" />
+          <InfoButton>완료ㅎㅎ</InfoButton>
+        </div>
+      </InfoContainer>
+
       {fakedata.map((post: any) => (
-        <PostBox>
-          <div>{post.title}</div>
-          <div>{post.nick_name}</div>
-          <div>{post.body}</div>
-        </PostBox>
+        <PostBoxContainer>
+          <PostBox>
+            <div>{post.title}</div>
+            <div>{post.nick_name}</div>
+            <div>{post.body}</div>
+          </PostBox>
+          <div>
+            <button>삭제</button>
+          </div>
+        </PostBoxContainer>
       ))}
-=======
-  console.log(myPageState);
-  return (
-    <Container>
-      {inputUser === false ? (
-        <div>
-          <UserName value={myPageState.userInfo.nick_name} disabled></UserName>
-          <button onClick={handleInput}>수정</button>
-        </div>
-      ) : (
-        <div>
-          <UserName_edit onChange={handleInputChange} placeholder={myPageState.userInfo.nick_name} autoFocus></UserName_edit>
-          <button onClick={handleSubmit}>완료</button>
-        </div>
-      )}
-
-      {myPageState.posts === null ? (
-        <div>로딩 중입니다.</div>
-      ) : (
-        myPageState.posts.map((post: any) => (
-          <>
-            <PostBox key={post.id} onClick={() => {handleCurrentPage(post.id)}}>
-              <div>{post.title}</div>
-              <div>{post.nick_name}</div>
-              <div>{post.body}</div>
-            </PostBox>
-            <span>
-              <button id={post.id} onClick={handlePostDelete}>삭제</button>
-            </span>
-          </>
-        ))
-      )}
->>>>>>> 39ae7a95ffb79a2859fd9a8f10d1bf59e4ae2e26
     </Container>
   );
-
-  // return (
-  //   <Container>
-  //     {state.posts === null ? (
-  //       <div>로딩 중입니다.</div>
-  //     ) : (
-  //       state.posts.map((post: any) => (
-  //         <PostBox key={post.id} onClick={() => handleClick(post.nick_name)}>
-  //           <div>{post.title}</div>
-  //           <div>{post.nick_name}</div>
-  //           <div>{post.body}</div>
-  //         </PostBox>
-  //       ))
-  //     )}
-  //   </Container>
-  // );
 }
-
 export default MyPage;
 
 const Container = styled.div`
-  border: 1px solid black;
+  width: 100vw;
+  height: 100vh;
+  width: 70%;
+  margin: auto;
+  padding-top 6rem;
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  border-bottom: 4px solid #bdbdbd;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+`;
+
+const PostBoxContainer = styled.div`
+  border: 3px solid red;
 `;
 
 const PostBox = styled.div`
-  border: 1px solid black;
+  // border: 1px solid black;
   cursor: pointer;
+  // width: 50%;
+  // margin: auto;
 `;
 
 const UserName = styled.input`
-  font-size: 20px;
-  width: 100px;
+  font-size: 50px;
+  margin-top: 3rem;
+  height: 55px;
   border: none;
 `;
 
+const UserImage = styled.img`
+  width: 150px;
+`;
+
+const EditImage = styled.img`
+  heigth: 20px;
+`;
 const UserName_edit = styled.input`
-  font-size: 20px;
-  width: 100px;
+  font-size: 50px;
+  margin-top: 3rem;
+  height: 55px;
   border: none;
+`;
+
+const InfoButton = styled.button`
+  align-items: center;
+  height: 40px;
+  margin-top 3rem;
+  cursor: pointer;
+
+  border:none;
 `;
 
 // 구현해야될 것들

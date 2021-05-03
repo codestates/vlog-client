@@ -12,28 +12,10 @@ function MenuModal(props: any) {
 
   const handleMoveToMypage = () => {
     console.log("마이페이지 정보 뿌려주는 요청 보내짐");
-    axios.get("https://localhost:8080/userinfo").then(async (res) => {
-      // console.log('여기 밑에가 userInfo res')
-      // console.log(res.data.data)
-      dispatch(displayUserInfo(res.data.data));
-      history.push("/page");
-      props.handleMenuModal();
-    })
-    .then(res => {
-      console.log('포스트 가져오는 요청 보내질거임')
-      axios.get("https://localhost:8080/mypage").then((res) => {
-        dispatch(displayMyData(res.data.data))
-    });
-    })
+    history.push("/page");
   };
 
-  const handleLogout = () => {
-    axios.delete("https://localhost:8080/session").then((res) => {
-      props.setIsLogin(false);
-      props.setMenuModal(false);
-      history.push("/");
-    });
-  };
+  const handleLogout = () => {};
 
   useEffect(() => {
     window.addEventListener("click", props.handleMenuModal);
