@@ -13,6 +13,7 @@ axios.defaults.withCredentials = true;
 function MyPageCurrentPostPage() {
   const { myPageState }: any = useMyPage();
   const history = useHistory();
+<<<<<<< HEAD
   // const post = myPageState.currentPost[0];
   const dispatch = useDispatch();
   // console.log(post.title);
@@ -60,10 +61,41 @@ function MyPageCurrentPostPage() {
   //     </Container>
   //   );
   // }
+=======
+  const post = myPageState.currentPost[0];
+  const dispatch = useDispatch();
+  const { id, title, body } = post;
+
+  console.log(myPageState.currentPost.body);
+
+  const axiosRequestConfig: AxiosRequestConfig = {
+    headers: { postId: id },
+  };
+
+  const handleModifyPost = () => {
+    dispatch(editId(id));
+    dispatch(editTitle(title));
+    dispatch(editBody(body));
+    history.push("/EditPost");
+  };
+
+  const handleDeletePost = () => {
+    console.log("글 삭제 요청 보낼거임");
+    axios.delete("http://localhost:8080/posts", axiosRequestConfig).then((res) => {
+      console.log("글 삭제 요청 성공!");
+      console.log(res);
+      dispatch(displayMyData(res.data.data));
+      history.push("/page");
+    });
+  };
+
+  console.log(post.body);
+>>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
 
   return (
     <Container>
       <PostBox>
+<<<<<<< HEAD
         <PostTitle>🎆 프론트개발자 연봉 떡상하는 스킬 - GLSL</PostTitle>
         <div>
           <ButtonContainer>
@@ -77,6 +109,17 @@ function MyPageCurrentPostPage() {
           자세한 내용은 여기를 참고하시면 됩니다. 🍴 개발환경 https://github.com/KimByungChan/shader-starter-kit 제가 미리 만들어둔 shader-starter-kit 을 clone하시고 시작하시면 됩니다~ yarn yarn dev
           위 내용을 입력하면 webpack-dev-server가 실행됩니다.
         </PostBody>
+=======
+        <PostTitle>{post.title}</PostTitle>
+        <div>
+          <ButtonContainer>
+            <EditButton onClick={handleModifyPost}>수정</EditButton>
+            <EditButton onClick={handleDeletePost}>삭제</EditButton>
+          </ButtonContainer>
+        </div>
+        <PostName>{post.nick_name}</PostName>
+        <PostBody>{post.body}</PostBody>
+>>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
       </PostBox>
     </Container>
   );
@@ -110,6 +153,11 @@ const PostBody = styled.div`
   letter-spacing: 0.01em;
   font-size: 1.4rem;
   line-height: 230%;
+<<<<<<< HEAD
+=======
+  height: 100vh;
+  // border: 1px solid black;
+>>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
 `;
 
 const PostBox = styled.div`

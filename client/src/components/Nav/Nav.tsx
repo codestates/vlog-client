@@ -4,14 +4,17 @@ import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
 import menuIcon from "../../icon/menu_gray.png";
+// import userIcon from "../../icon/userIcon.png"
+import userIcon from "../../icon/userIcon_gray.png"
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 function Nav() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
+  const [navColor, setNavColor] = useState('white')
   const history = useHistory();
 
   const handleLoginModal = () => {
@@ -69,7 +72,7 @@ function Nav() {
                 새 글 작성
               </NewPostLink>
             </NewPostBtn>
-            <MenuBtn src={menuIcon} onClick={handleMenuModal} />
+            <MenuBtn src={userIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (
           <MainLoginBtn onClick={handleLoginModal}>로그인</MainLoginBtn>
@@ -88,8 +91,13 @@ const Container = styled.div`
   display: flex;
   background: white;
   width: 100%;
-  height: 70px;
-`;
+  height: 10%;
+  position: fixed;
+  top: 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 1;
+  `;
+
 
 const LeftNav = styled.div`
   position: absolute;
@@ -105,7 +113,7 @@ const RightNav = styled.div`
 
 const HomeBtn = styled.button`
   border: none;
-  background: none;
+  background: white;
   font-size: 35px;
   margin-top: 10px;
   cursor: pointer;
@@ -133,9 +141,9 @@ const BtnContainer = styled.div`
 `;
 
 const NewPostBtn = styled.div`
-  border: 1px solid #424242;
+  border: 1px solid #7986CB;
   border-radius: 20px;
-  background: #424242;
+  background: #3F51B5;
   color: white;
   width: 100px;
   height: 30px;
@@ -146,8 +154,8 @@ const NewPostBtn = styled.div`
   margin: 18px;
 
   &:hover {
-    background: #9e9e9e;
-    border: 1px solid #9e9e9e;
+    background: #7986CB;
+    border: 1px solid #7986CB;
   }
 `;
 
@@ -157,8 +165,8 @@ const NewPostLink = styled(Link)`
 `;
 
 const MenuBtn = styled.img`
-  margin: 20px;
-  width: 28px;
-  height: 28px;
+  margin: 18px 8px 0px 8px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 `;

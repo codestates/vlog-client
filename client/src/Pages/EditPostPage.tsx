@@ -31,13 +31,13 @@ export default function EditPostPage() {
   function handleUploadBtn(e: React.MouseEvent<HTMLButtonElement>) {
     console.log(editState);
     axios
-      .patch("https://localhost:8080/posts", { title: title, body: body, postId: id })
+      .patch("http://localhost:8080/posts", { title: title, body: body, postId: id })
       .then((res) => history.push("/"))
       .catch((err) => console.log(err));
   }
 
   function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {
-    history.push("/");
+    history.push("/page");
   }
 
   console.log(editState);

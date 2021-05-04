@@ -5,9 +5,19 @@ import usePoster from "../Hooks/usePoster";
 function OpenContentPage() {
   const { state }: any = usePoster();
 
+  console.log({ state });
+
+  console.log(" current palge ld", state);
+  const filtered = state.usersInfo.filter((user: any) => {
+    return user.id === state.currentPost.user_id;
+  });
+
+  const nickname = filtered[0].nick_name;
+
   return (
     <Container>
       <PostBox>
+<<<<<<< HEAD
         <PostTitle>💤 코로나 언택트 시대, 우리는 어떻게 수업 시간에 잘 수 있을까요?</PostTitle>
         <div>
           <ButtonContainer>
@@ -23,6 +33,14 @@ function OpenContentPage() {
           고등학교 1학년을 마치면서 선생님들께서는 제게 이제 2학년이 되니 시간을 효율적으로 사용하라는 목표를 마음속에 새기라는, 어... 대충 멋진 말씀을 해 주셨습니다. 선생님 말씀을 잘 듣는 착한 아이인
           저는 2020년이 되고 일년 목표를 시간 효율적으로 사용하기 로 정했습니다
         </PostBody>
+=======
+        <PostTitle>{state.currentPost.title}</PostTitle>
+        <PostName>
+          {nickname} <span>{state.currentPost.createdAt}</span>
+        </PostName>
+
+        <PostBody>{state.currentPost.body}</PostBody>
+>>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
       </PostBox>
     </Container>
   );

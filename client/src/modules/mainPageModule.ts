@@ -3,9 +3,9 @@ const DISPLAYDATA = "post/DISPLAYDATA" as const;
 const OPENPOSTPAGE = "post/OPENPOSTPAGE" as const;
 
 //액션 생성 함수 선언
-export const displayData = (el: any) => ({
+export const displayData = (posts: any, users: any) => ({
   type: DISPLAYDATA,
-  payload: { el },
+  payload: { posts, users },
 });
 
 export const openPostPage = (current: object) => ({
@@ -19,14 +19,16 @@ type PostAction = ReturnType<typeof displayData> | ReturnType<typeof openPostPag
 
 // state의 타입
 type StateOption = {
-  data: any;
+  data: null | object[];
   currentPost: object;
+  usersInfo: any;
 };
 
 // state 초기값 선언
 const initialState: StateOption = {
   data: null,
   currentPost: {},
+  usersInfo: null,
 };
 
 // reducer 작성
@@ -35,7 +37,8 @@ function mainPageReducer(state: StateOption = initialState, action: PostAction):
     case DISPLAYDATA:
       return {
         ...state,
-        data: action.payload.el,
+        data: action.payload.posts,
+        usersInfo: action.payload.users,
       };
     case OPENPOSTPAGE:
       return {

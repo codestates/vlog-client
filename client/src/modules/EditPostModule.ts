@@ -32,45 +32,43 @@ export const editHash = (editHash: string) => ({
 export const editId = (editId: number) => ({
   type: EDITID,
   payload: {
-  id: editId,
+    id: editId,
   },
 });
 
-
-
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type EditAction = ReturnType<typeof editTitle> | ReturnType<typeof editBody> | ReturnType<typeof editHash> |ReturnType<typeof editId>;
+type EditAction = ReturnType<typeof editTitle> | ReturnType<typeof editBody> | ReturnType<typeof editHash> | ReturnType<typeof editId>;
 
 // state의 타입
-type EditStateOption = { 
-    id: number,
-    title: string,
-    body: string,
-    hashTag: string
+type EditStateOption = {
+  id: number;
+  title: string;
+  body: string;
+  hashTag: string;
 };
 
 const initialState: EditStateOption = {
-    id: 0,
-    title: "",
-    body: "",
-    hashTag: ""
-}
+  id: 0,
+  title: "",
+  body: "",
+  hashTag: "",
+};
 
 // reducer 작성
 function editReducer(state: EditStateOption = initialState, action: EditAction): EditStateOption {
   switch (action.type) {
     case EDITTITLE:
-      return {...state, title: action.payload.title}
+      return { ...state, title: action.payload.title };
     case EDITBODY:
-      console.log('바디 들어옴')
-      return {...state, body: action.payload.body}
+      console.log("바디 들어옴");
+      return { ...state, body: action.payload.body };
     case EDITHASH:
-      return {...state, hashTag: action.payload.hashTag}
-      case EDITID:
-        console.log('여기 수정된 ID가 들어와야됨')
-        console.log(action.payload)
-        return {...state, id: action.payload.id}
+      return { ...state, hashTag: action.payload.hashTag };
+    case EDITID:
+      console.log("여기 수정된 ID가 들어와야됨");
+      console.log(action.payload);
+      return { ...state, id: action.payload.id };
     default:
       return state;
   }

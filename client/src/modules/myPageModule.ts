@@ -19,61 +19,56 @@ export const displayMyPost = (el: object[]) => ({
 
 export const displayUserInfo = (el: object) => ({
   type: DISPLAYUSERINFO,
-  payload:  el,
+  payload: el,
 });
 
-export const changeUsername= (el: string) => ({
+export const changeUsername = (el: string) => ({
   type: CHANGEUSERNAME,
   payload: el,
 });
 
 //ReturnType<typeof__> 특정 함수의 반환값 추론해줌.
 // 액션 객체들에 대한 type 준비하기(typescript의 type)
-type myPageAction = 
-    |ReturnType<typeof displayMyData>
-    |ReturnType<typeof displayMyPost>
-    |ReturnType<typeof displayUserInfo>
-    |ReturnType<typeof changeUsername>
+type myPageAction = ReturnType<typeof displayMyData> | ReturnType<typeof displayMyPost> | ReturnType<typeof displayUserInfo> | ReturnType<typeof changeUsername>;
 
 // state의 타입
 type StateOption = {
   posts: null | object[];
   currentPost: null | object[];
-  userInfo: null | object
+  userInfo: null | object;
 };
 
 // posts: {
-  //   id: number;
-  //   title: string;
-  //   body: string;
-  //   nick_name: string;
-  //   tag_name: string;
-  // }[];
-
+//   id: number;
+//   title: string;
+//   body: string;
+//   nick_name: string;
+//   tag_name: string;
+// }[];
 
 // state 초기값 선언
 const initialState: StateOption = {
   posts: null,
   currentPost: null,
-  userInfo: null
+  userInfo: null,
 };
 
 // reducer 작성
 function myPageReducer(state: StateOption = initialState, action: myPageAction): StateOption {
   switch (action.type) {
     case DISPLAYMYDATA:
-      return {...state, posts: action.payload.el};
+      return { ...state, posts: action.payload.el };
 
     case DISPLAYMYPOST:
-      console.log(action.payload.el)
-      return {...state, currentPost: action.payload.el};
+      console.log(action.payload.el);
+      return { ...state, currentPost: action.payload.el };
 
-      case DISPLAYUSERINFO:
-        return {...state, userInfo: action.payload}
+    case DISPLAYUSERINFO:
+      return { ...state, userInfo: action.payload };
 
-        case CHANGEUSERNAME:
-          const newUserInfo = {...state.userInfo, nick_name: action.payload}
-        return {...state, userInfo: newUserInfo}
+    case CHANGEUSERNAME:
+      const newUserInfo = { ...state.userInfo, nick_name: action.payload };
+      return { ...state, userInfo: newUserInfo };
 
     default:
       return state;
