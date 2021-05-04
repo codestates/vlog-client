@@ -15,9 +15,9 @@ function MyPageCurrentPostPage() {
   const history = useHistory();
   const post = myPageState.currentPost[0];
   const dispatch = useDispatch();
-  console.log(post.title);
-  console.log(myPageState);
   const { id, title, body } = post;
+
+  console.log(myPageState.currentPost.body);
 
   const axiosRequestConfig: AxiosRequestConfig = {
     headers: { postId: id },
@@ -32,12 +32,15 @@ function MyPageCurrentPostPage() {
 
   const handleDeletePost = () => {
     console.log("글 삭제 요청 보낼거임");
-    axios.delete("https://localhost:8080/posts", axiosRequestConfig).then((res) => {
+    axios.delete("http://localhost:8080/posts", axiosRequestConfig).then((res) => {
       console.log("글 삭제 요청 성공!");
       console.log(res);
-      dispatch(displayMyData(res.data));
+      dispatch(displayMyData(res.data.data));
+      history.push("/page");
     });
   };
+
+  console.log(post.body);
 
   return (
     <Container>
@@ -84,6 +87,8 @@ const PostBody = styled.div`
   letter-spacing: 0.01em;
   font-size: 1.4rem;
   line-height: 230%;
+  height: 100vh;
+  // border: 1px solid black;
 `;
 
 const PostBox = styled.div`

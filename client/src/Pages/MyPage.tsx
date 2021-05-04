@@ -56,7 +56,9 @@ function MyPage() {
   const handlePostDelete = (e: any) => {
     // 게시물 삭제하는 axios 요청 보낸다. -> 받아와야되는 데이터는 해당
 
-    console.log(e.target.id);
+    axios.delete("http://localhost:8080/posts").then((res) => {
+      console.log("게시물삭제 성공" + res);
+    });
   };
 
   useEffect(() => {
@@ -65,12 +67,12 @@ function MyPage() {
 
   return (
     <Container>
-      <LeftContainer>
+      <TopContainer>
         <ImgBox>
           <Img src={worldmap}></Img>
         </ImgBox>
-      </LeftContainer>
-      <RightContainer>
+      </TopContainer>
+      <BottomContainer>
         <InfoContainer>
           <UserName>{myPageState.userInfo.nick_name}</UserName>
         </InfoContainer>
@@ -80,11 +82,11 @@ function MyPage() {
             <PostBox>
               <PostTitle>{post.title}</PostTitle>
               <PostName>{post.nick_name}</PostName>
-              <PostBody>{post.body}</PostBody>
+              <PostBody>{post.body.slice(0, 80)}</PostBody>
             </PostBox>
           </PostBoxContainer>
         ))}
-      </RightContainer>
+      </BottomContainer>
     </Container>
   );
 }
@@ -92,17 +94,17 @@ export default MyPage;
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 30vw 70vw);
 `;
 
-const LeftContainer = styled.div`
-  border: 1px solid #eeeeee;
+const TopContainer = styled.div`
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ImgBox = styled.div`
-  position: fixed;
-  top: 50px;
-  left: 50px;
   margin: 200px 0px 0px 20px;
 `;
 
@@ -111,7 +113,7 @@ const Img = styled.img`
   height: 20rem;
 `;
 
-const RightContainer = styled.div`
+const BottomContainer = styled.div`
   padding: 50px;
   background: #fafafa;
 `;

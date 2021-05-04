@@ -25,10 +25,20 @@ export default function NewPost() {
   }
 
   function handleUpload(e: React.MouseEvent<HTMLButtonElement>) {
-    axios
-      .post("http://localhost:8080/posts", { title: state.title, body: state.body })
-      .then((res) => history.push("/"))
-      .catch((err) => console.log(err));
+    console.log("요청버튼 누름");
+    if (state.title.trim() || state.body.trim()) {
+      axios
+        .post("http://localhost:8080/posts", { title: state.title, body: state.body })
+        .then((res) => {
+          dispatch(newPosttitle(""));
+          dispatch(newPostbody(""));
+          console.log(state.title, state.body);
+          history.push("/");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      alert("게시물들을 작성해주세요.");
+    }
   }
 
   function handleExit(e: React.MouseEvent<HTMLButtonElement>) {
@@ -45,7 +55,7 @@ export default function NewPost() {
       <PageContainer>
         <ContentBox>
           <TitleInput name="newPostTitle" placeholder="제목을 입력해주세요" onChange={handleInputValue}></TitleInput>
-          <Line></Line>
+
           <BodyArea name="newPostBody" placeholder="내용을 입력해주세요..." onChange={handleInputValue}></BodyArea>
         </ContentBox>
         <ButtonBox>
@@ -80,7 +90,10 @@ const PostBox = styled.div`
 `;
 const PostTitle = styled.h1``;
 
-const PostBody = styled.h3``;
+const PostBody = styled.h3`
+  letter-spacing: 0.02em;
+  line-height: 190%;
+`;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -115,7 +128,7 @@ const TitleInput = styled.input`
 `;
 const BodyArea = styled.textarea`
   -webkit-box-shadow: 0 0 0 1000px white inset;
-  width: 32em;
+  width: 47vw;
   height: 100vh;
   font-size: 18px;
   outline: none;
@@ -142,6 +155,7 @@ const ButtonBox = styled.div`
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  background: white;
 `;
 
 const ExitBtn = styled.button`

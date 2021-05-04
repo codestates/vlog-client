@@ -5,18 +5,23 @@ import usePoster from "../Hooks/usePoster";
 function OpenContentPage() {
   const { state }: any = usePoster();
 
-  console.log(state);
+  console.log({ state });
+
+  console.log(" current palge ld", state);
+  const filtered = state.usersInfo.filter((user: any) => {
+    return user.id === state.currentPost.user_id;
+  });
+
+  const nickname = filtered[0].nick_name;
+
   return (
     <Container>
       <PostBox>
         <PostTitle>{state.currentPost.title}</PostTitle>
-        <div>
-          <ButtonContainer>
-            <EditButton>수정</EditButton>
-            <EditButton>삭제</EditButton>
-          </ButtonContainer>
-        </div>
-        <PostName>닉네임</PostName>
+        <PostName>
+          {nickname} <span>{state.currentPost.createdAt}</span>
+        </PostName>
+
         <PostBody>{state.currentPost.body}</PostBody>
       </PostBox>
     </Container>

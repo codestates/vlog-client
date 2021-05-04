@@ -8,8 +8,16 @@ import { displayData } from "../modules/mainPageModule";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
+// 목표: 서버에서 응답으로 넘겨준 유저 정보에서 nick_name들을 게시물에 넣어줘야됨.
+
+// 1. mainPage를 관리하는 state에 userInfo를 추가해서 응답받아온 user들의 정보를 다 저장한다. (id, nick_name, email, password ...)
+// 2. 현재 게시물들을 뿌려줄 때 사용되는 코드
+//    ->> map을 이용해서 전체 데이터들을 하나 하나 뿌려준다.
+// 3. 위에서 하나하나 게시물들을 뿌려줄 때, nick_name을 추가해줘야 함. (posts 테이블에는 nick_name이 없고 user_id가 있다.)
+// 4. 하나의 포스트에 들어있는 user_id와 userInfo.id를 비교하여 nick_name을 하나의 포스트에 추가해주면 됨.
+
 function PostList() {
-  const { state } = usePoster();
+  const { state }: any = usePoster();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,12 +31,26 @@ function PostList() {
     axios
       .get("http://localhost:8080/posts")
       .then((res) => {
-        console.log(res);
-        dispatch(displayData(res.data.data));
+        console.log(res.data);
+        dispatch(displayData(res.data.data, res.data.usersInfo));
       })
       .catch((err) => console.log(err));
   }, []);
 
+  // // console.log("nike name``````````````", state);
+  // if (state.userInfo === null) {
+  //   console.log("userInfo 없음");
+  // } else {
+  //   const filtered = state.userInfo.filter((user: any) => {
+  //     console.log("hi");
+  //     return user.id === 1;
+  //   });
+
+  // }
+
+  // const personInfo = state.userInfo.filter((person:any) => {
+  //   return post.user_id === person.id
+  // })
   console.log(state);
 
   return (
@@ -37,13 +59,21 @@ function PostList() {
         {state.data === null ? (
           <div>로딩 중입니다</div>
         ) : (
-          state.data.map((el: any) => (
+          state.data.map((post: any) => (
             <ItemBox>
-              <Item onClick={() => handleClicked(el)}>
-                <PostTitle>{el.title}</PostTitle>
-                <PostBody>{el.body}</PostBody>
+              <Item onClick={() => handleClicked(post)}>
+                <PostTitle>{post.title}</PostTitle>
+                <PostBody>{post.body.slice(0, 80)}</PostBody>
               </Item>
-              <UserName>유저이름</UserName>
+              <UserName>
+                {}
+                {/*   
+                {
+                  state.userInfo.filter((user: any) => {
+                    return user.id === post.user_id;
+                  })[0].nick_name
+                } */}
+              </UserName>
             </ItemBox>
           ))
         )}
@@ -88,7 +118,7 @@ const ItemBox = styled.div`
 `;
 
 const Item = styled.div`
-  width: 200px;
+  width: 500px;
   height: 200px;
   padding: 20px;
 `;
@@ -104,6 +134,8 @@ const UserName = styled.div`
   padding: 10px;
 `;
 
-const PostBody = styled.div``;
+const PostBody = styled.div`
+  width: 100%;
+`;
 
 export default PostList;
