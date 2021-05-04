@@ -9,6 +9,7 @@ import MainCurrentPost from "./Pages/MainCurrentPost";
 import MyPageCurrentPost from "./Pages/MyPageCurrentPost";
 import axios from 'axios';
 import EditPostPage from './Pages/EditPostPage';
+import PartyPostsPage from './Pages/PartyPostsPage';
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/MainCurrentPost" render={() => <MainCurrentPost />} />
         <Route path="/MypageCurrentPost" render={() => <MyPageCurrentPost />} />
         <Route path="/EditPost" render={() => <EditPostPage />} />
+        <Route path="/party" render={() => <PartyPostsPage />} />
       </Switch>
     </div>
   );

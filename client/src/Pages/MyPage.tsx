@@ -6,41 +6,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { displayMyPost, changeUsername } from "../modules/myPageModule";
 import axios from "axios";
-<<<<<<< HEAD
-import user from "../icon/user.png";
-import edit2 from "../icon/edit2.png";
-import A from "../icon/Toolbar/A.png";
-
-import { fakedata } from "./../fakedata";
-
-function MyPage() {
-  function handlePage(e: any) {}
-
-  return (
-    <Container>
-      <InfoContainer>
-        <UserImage src={user} />
-
-        <UserName_edit placeholder={"에딧네임"}></UserName_edit>
-
-        <InfoButton src={A} />
-      </InfoContainer>
-
-      <MovePage>
-        <MovePageList onClick={handlePage}>기록</MovePageList>
-        <MovePageList onClick={handlePage}>동행</MovePageList>
-      </MovePage>
-
-      {fakedata.map((post: any) => (
-        <PostBoxContainer>
-          <PostBox>
-            <PostTitle>{post.title}</PostTitle>
-            <PostName>{post.nick_name}</PostName>
-            <PostBody>{post.body}</PostBody>
-          </PostBox>
-        </PostBoxContainer>
-      ))}
-=======
 import user from "../icon/user_Blue.jpg";
 import A from "../icon/Toolbar/A.png";
 import worldmap from "../icon/worldmap.png";
@@ -109,10 +74,12 @@ function MyPage() {
       </TopContainer>
       <BottomContainer>
         <InfoContainer>
-          <UserName>{myPageState.userInfo.nick_name}</UserName>
+          <UserName value={myPageState.userInfo.nick_name} disabled></UserName>
+          {/* <UserName placeholder={myPageState.userInfo.nick_name}></UserName> */}
+          {/* <EditBtn></EditBtn> */}
         </InfoContainer>
-
-        {myPageState.posts.map((post: any) => (
+        {myPageState.posts === null ? <div>로딩 중입니다</div> : 
+        myPageState.posts.map((post: any) => (
           <PostBoxContainer onClick={() => handleCurrentPage(post.id)}>
             <PostBox>
               <PostTitle>{post.title}</PostTitle>
@@ -122,23 +89,14 @@ function MyPage() {
           </PostBoxContainer>
         ))}
       </BottomContainer>
->>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
     </Container>
   );
 }
 export default MyPage;
 
 const Container = styled.div`
-<<<<<<< HEAD
-  width: 100vw;
-  height: 100vh;
-  width: 60%;
-  margin: auto;
-  padding-top 6rem;
-=======
   display: grid;
   grid-template-rows: repeat(2, 30vw 70vw);
->>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
 `;
 
 const TopContainer = styled.div`
@@ -148,33 +106,6 @@ const TopContainer = styled.div`
   align-items: center;
 `;
 
-<<<<<<< HEAD
-const MovePage = styled.div`
-  display: flex;
-  padding: 50px;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-`;
-
-const MovePageList = styled.button`
-  cursor: pointer;
-  text-align: center;
-  font-size: 2em;
-  margin: 20px;
-  background-color: white;
-  border: none;
-  border-bottom: 2px solid #bdbdbd;
-  width: 15%;
-  transition: 0.2s ease-in-out;
-  padding: 20px;
-
-  &:hover {
-    color: black;
-    font-weight: bold;
-    font-size: 2em;
-  }
-=======
 const ImgBox = styled.div`
   margin: 200px 0px 0px 20px;
 `;
@@ -193,7 +124,6 @@ const InfoContainer = styled.div`
   display: flex;
   padding-bottom: 5em;
   margin-top: 2rem;
->>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f
 `;
 
 const PostBoxContainer = styled.div`
@@ -218,64 +148,12 @@ const PostBox = styled.div`
   cursor: pointer;
 `;
 
-<<<<<<< HEAD
-const UserName = styled.input`
-  font-size: 50px;
-  margin-top: 3rem;
-  height: 55px;
-  border: none;
-`;
+const UserName = styled.input``;
 
-const UserImage = styled.img`
-  width: 150px;
-  margin-right: 2rem;
-  border-radius: 10px;
-`;
-
-const EditImage = styled.img`
-  heigth: 20px;
-`;
-const UserName_edit = styled.input`
-  font-size: 30px;
-  margin-top: 3rem;
-  height: 55px;
-  border: none;
-  width: 15rem;
-`;
-
-const InfoButton = styled.img`
-  align-items: center;
-  height: 40px;
-  margin-top: 3rem;
-
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
-  border: none;
-`;
-
-// const InfoButton = styled.button`
-//   border-radius: 12px;
-//   background-color: white;
-//   color: #9e9e9e;
-
-//   align-items: center;
-//   height: 40px;
-//   margin-top: 3rem;
-//   margin-left: 3rem;
-//   transition: 0.2s ease-in-out;
-
-//   cursor: pointer;
-
-//   border: none;
-
-//   &:hover {
-//     color: black;
-//     font-weight: bold;
-//     font-size: 1.2em;
-//   }
-// `;
-=======
-const UserName = styled.h1``;
+const EditBtn = styled.button`
+width: 30px;
+height: 30px;
+`
 
 // import React, { useEffect, useState } from "react";
 // import styled from "styled-components";
@@ -367,4 +245,3 @@ const UserName = styled.h1``;
 {
   /* <input type="file" accept="image/*" name="profile_img" onChange={e => handleFileChange(e)} /> */
 }
->>>>>>> 46c7b5515d14a36f65c869f8d376a688428af26f

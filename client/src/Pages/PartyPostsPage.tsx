@@ -2,18 +2,44 @@ import React from "react";
 import PostListContainer from "../Hooks/usePoster";
 import axios from "axios";
 import MainPostsList from "../components/MainPostsList";
+import PartyPostsList from "../components/PartyPostsList"
 import styled from "styled-components";
 import imageMap from "../img/map.jpg";
 import usePoster from "../Hooks/usePoster";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
-function MainPage() {
+function PartyPostsPage() {
+  const { state, filterMomory,filterParty,openPostPage,displayData }: any = usePoster();
+  const dispatch = useDispatch()
   const history = useHistory()
-  localStorage.setItem('isLogin', JSON.stringify(true))
 
+  const handlebutton = () => {
+    console.log("clicked");
+  };
+
+  const handleMemoryPosts = () => {
+    history.push('/')
+    // const filtered = state.data.filter((post: any) => {
+    //   return post.title.search("동행") === -1;
+    // });
+    // console.log(filtered);
+    // dispatch(filterMomory(filtered))
+  };
+
+  //   var str = "Visit W3Schools!";
+  // var n = str.search("W3Schools");
 
   const handlePartyPosts = () => {
+    // 파티가 클릭이 되면, partyPosts state가 null에서 object[]로 바뀌는 dispatch를 보내야됨
+    // 그리고 페이지 이동
+    const filtered = state.data.filter((post: any) => {
+      return post.title.search("동행") !== -1;
+    });
+    console.log('party posts filter')
+    console.log(filtered);
+
+    dispatch(filterParty(filtered))
     history.push('/party')
   };
 
@@ -23,13 +49,16 @@ function MainPage() {
         <Img src={imageMap} />
       </TopContainer>
       <TitleList>
-        <MemoryPosts>기록</MemoryPosts>
+        <MemoryPosts onClick={handleMemoryPosts}>기록</MemoryPosts>
         <PartyPosts onClick={handlePartyPosts}>동행</PartyPosts>
       </TitleList>
-      <MainPostsList />
+      <PartyPostsList />
     </>
   );
 }
+
+export default PartyPostsPage;
+
 
 const TopContainer = styled.div`
   display: flex;
@@ -70,4 +99,3 @@ const MemoryPosts = styled.div`
 
 const PartyPosts = styled.div``;
 
-export default MainPage;

@@ -32,6 +32,7 @@ function LoginModal(props: any) {
           console.log(res);
           props.handleLoginModal();
           props.setIsLogin(true);
+          localStorage.setItem('sessionId', JSON.stringify(res.data.sessionId))
           history.push("/");
         })
         .catch((err) => setErrorMsg(false));

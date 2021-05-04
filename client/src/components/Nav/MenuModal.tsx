@@ -34,6 +34,7 @@ function MenuModal(props: any) {
     axios.delete("http://localhost:8080/session").then((res) => {
       props.setIsLogin(false);
       props.setMenuModal(false);
+      localStorage.removeItem("sessionId")
       history.push("/");
     });
   };

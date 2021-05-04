@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { displayData } from "../modules/mainPageModule";
 import { RootState } from "../modules";
 import { fakedata } from "../fakedata";
+import {filterParty, filterMomory, openPostPage, displayData} from "../modules/mainPageModule"
 
 import axios from "axios";
 
@@ -12,5 +12,9 @@ export default function usePoster() {
 
   return {
     state,
+    filterParty,
+    filterMomory,
+    openPostPage,
+    displayData
   };
 }

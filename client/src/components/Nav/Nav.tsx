@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
@@ -16,6 +16,16 @@ function Nav() {
   const [signUpModal, setSignUpModal] = useState(false);
   const [navColor, setNavColor] = useState('white')
   const history = useHistory();
+
+  // const loginLocalStorage = localStorage.getItem("isLogin")
+  const sessionId = localStorage.getItem("sessionId")
+
+  useEffect(() => {
+    if(sessionId) {
+      setIsLogin(true)
+    }
+  }, [])
+
 
   const handleLoginModal = () => {
     if (loginModal) {
