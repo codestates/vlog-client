@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 
-import postReducer from "./mainPageModule";
+import mainPageReducer from "./mainPageModule";
 import newPostReducer from "./newPostModule";
 import myPageReducer from "./myPageModule";
+import editReducer from "./EditPostModule"
 
 const rootReducer = combineReducers({
   newPostReducer,
-  postReducer,
+  mainPageReducer,
   myPageReducer,
+  editReducer,
 });
 
 export default rootReducer;

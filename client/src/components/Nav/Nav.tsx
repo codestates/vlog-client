@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
-import menuIcon from "../../icon/menu_gray.png";
+import userIcon from "../../icon/userIcon_gray.png"
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Nav() {
   const [isLogin, setIsLogin] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
+  const [navColor, setNavColor] = useState('white')
+  const history = useHistory();
+
+  // const loginLocalStorage = localStorage.getItem("isLogin")
+  const sessionId = localStorage.getItem("sessionId")
+  // const sessionId = sessionStorage.getItem("sessionId")
+
+  useEffect(() => {
+    if(sessionId) {
+      setIsLogin(true)
+    }
+  }, [])
+
 
   const handleLoginModal = () => {
     if (loginModal) {
       setLoginModal(false);
+      document.body.style.overflow = "unset";
     } else {
       setLoginModal(true);
+      document.body.style.overflow = "hidden";
     }
   };
 
   const handleSignUpModal = () => {
     if (signUpModal) {
       setSignUpModal(false);
+      document.body.style.overflow = "unset";
     } else {
       setSignUpModal(true);
+      document.body.style.overflow = "hidden";
     }
   };
 
@@ -46,16 +64,24 @@ function Nav() {
     }
   };
 
+  const handleHomeBtn = () => {
+    history.push("/");
+  };
+
   return (
     <Container>
       <LeftNav>
-        <HomeBtn>Vlog</HomeBtn>
+        <HomeBtn onClick={handleHomeBtn}>Vlog</HomeBtn>
       </LeftNav>
       <RightNav>
         {isLogin ? (
           <BtnContainer>
-            <NewPostBtn to="/newPost">새 글 작성</NewPostBtn>
-            <MenuBtn src={menuIcon} onClick={handleMenuModal} />
+            <NewPostBtn>
+              <NewPostLink to="/newPost" style={{ textDecoration: "none" }}>
+                새 글 작성
+              </NewPostLink>
+            </NewPostBtn>
+            <MenuBtn src={userIcon} onClick={handleMenuModal} />
           </BtnContainer>
         ) : (
           <MainLoginBtn onClick={handleLoginModal}>로그인</MainLoginBtn>
@@ -74,8 +100,13 @@ const Container = styled.div`
   display: flex;
   background: white;
   width: 100%;
-  height: 70px;
-`;
+  height: 10%;
+  position: fixed;
+  top: 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 1;
+  `;
+
 
 const LeftNav = styled.div`
   position: absolute;
@@ -91,10 +122,10 @@ const RightNav = styled.div`
 
 const HomeBtn = styled.button`
   border: none;
-  background: none;
-  width: 70px;
-  height: 60px;
-  font-size: 30px;
+  background: white;
+  font-size: 35px;
+  margin-top: 10px;
+  cursor: pointer;
 `;
 const MainLoginBtn = styled.button`
   border: 1px solid #424242;
@@ -107,11 +138,10 @@ const MainLoginBtn = styled.button`
   margin: 20px;
   transition: 0.2s ease-in-out;
   cursor: pointer;
-  
 
   &:hover {
-      background: #9E9E9E;
-      border: 1px solid #9E9E9E
+    background: #9e9e9e;
+    border: 1px solid #9e9e9e;
   }
 `;
 
@@ -119,7 +149,7 @@ const BtnContainer = styled.div`
   display: flex;
 `;
 
-const NewPostBtn = styled(Link)`
+const NewPostBtn = styled.div`
   border: 1px solid #424242;
   border-radius: 20px;
   background: #424242;
@@ -127,18 +157,27 @@ const NewPostBtn = styled(Link)`
   width: 100px;
   height: 30px;
   font-size: 17px;
-  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px;
+  transition: 0.2s ease-in-out;
 
-&:hover {
+  &:hover {
     background: #9E9E9E;
-    border: 1px solid #9E9E9E
-}
+    border: 1px solid #9E9E9E;
+  }
+`;
 
+const NewPostLink = styled(Link)`
+  color: white;
+  margin-right: 5px;
 `;
 
 const MenuBtn = styled.img`
-  margin: 20px;
-  width: 28px;
-  height: 28px;
+  margin: 18px 8px 0px 8px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
+
 `;
