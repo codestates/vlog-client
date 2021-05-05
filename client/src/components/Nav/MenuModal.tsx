@@ -4,11 +4,15 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { displayMyData, displayUserInfo } from "../../modules/myPageModule";
 import { useDispatch } from "react-redux";
+import {fadeIn} from "../../styled-components/Animation"
 axios.defaults.withCredentials = true;
 
 function MenuModal(props: any) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const sessionId = sessionStorage.getItem('sessionId')
+  console.log(sessionId)
+
 
   const handleMoveToMypage = async () => {
     console.log("마이페이지 정보 뿌려주는 요청 보내짐");
@@ -65,6 +69,11 @@ const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
   background: 0 0 0 0;
+
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-name: ${fadeIn};
+  animation-fill-mode: forwards;
 `;
 const ModalBox = styled.div`
   position: fixed;

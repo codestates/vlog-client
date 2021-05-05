@@ -42,6 +42,8 @@ export default function NewPost() {
   }
 
   function handleExit(e: React.MouseEvent<HTMLButtonElement>) {
+    dispatch(newPosttitle(""));
+    dispatch(newPostbody(""));
     history.push("/");
   }
 
@@ -108,11 +110,13 @@ const PageContainer = styled.div`
 
 const ResultContainer = styled.div`
   background-color: #fafafa;
+  height: 100vw;
 `;
 
 const ContentBox = styled.div`
   margin: 50px;
 `;
+
 const Line = styled.div`
   width: 100%;
   border: 1px solid #e0e0e0;
@@ -128,20 +132,13 @@ const TitleInput = styled.input`
 `;
 const BodyArea = styled.textarea`
   -webkit-box-shadow: 0 0 0 1000px white inset;
-  width: 47vw;
+  width: 40vw;
   height: 100vh;
   font-size: 18px;
   outline: none;
   border: none;
   margin-top: 20px;
   resize: none;
-`;
-
-const HashTage = styled.input`
-  font-size: 1.125rem;
-  line-height: 2rem;
-  border: none;
-  outline: none;
 `;
 
 const ButtonBox = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PostListContainer from "../Hooks/usePoster";
 import axios from "axios";
 import MainPostsList from "../components/MainPostsList";
@@ -7,10 +7,12 @@ import imageMap from "../img/map.jpg";
 import usePoster from "../Hooks/usePoster";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import {Img, TitleList, TopContainer} from "../styled-components/MainTopContainer"
 
 function MainPage() {
   const history = useHistory()
   localStorage.setItem('isLogin', JSON.stringify(true))
+
 
 
   const handlePartyPosts = () => {
@@ -31,43 +33,15 @@ function MainPage() {
   );
 }
 
-const TopContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  // background: black;
-`;
-
-const Img = styled.img`
-  width: 1000px;
-  height: 700px;
-
-  @media (max-width: 375px) {
-    width: 300px;
-    height: 300px;
-    margin-top: -1000px;
-    margin-bottom: -1000px;
-  }
-
-  @media (max-width: 768px) {
-    width: 768px;
-    height: 500px;
-  }
-`;
-
-const TitleList = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const MemoryPosts = styled.div`
+const MemoryPosts = styled.h1`
   margin-right: 20px;
-`;
+  cursor: pointer;
+`
 
-const PartyPosts = styled.div``;
+const PartyPosts = styled.h1`
+color: #BDBDBD;
+cursor: pointer;
+
+`;
 
 export default MainPage;

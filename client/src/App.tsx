@@ -18,11 +18,11 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/" render={() => <MainPage />} />
-        <Route exact path="/page" render={() => <MyPage />} />
-        <Route exact path="/newPost" render={() => <NewPost />} />
-        <Route exact path="/MainCurrentPost" render={() => <MainCurrentPost />} />
+        <Route path="/page" render={() => <MyPage />} />
+        <Route path="/newPost" render={() => <NewPost />} />
+        <Route path="/MainCurrentPost" render={() => <MainCurrentPost />} />
         <Route path="/MypageCurrentPost" render={() => <MyPageCurrentPost />} />
-        <Route path="/EditPost" render={() => <EditPostPage />} />
+        <Route path="/EditPostPage" render={() => <EditPostPage />} />
         <Route path="/party" render={() => <PartyPostsPage />} />
       </Switch>
     </div>

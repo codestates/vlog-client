@@ -6,6 +6,7 @@ import { filterMomory, filterParty, openPostPage } from "../modules/mainPageModu
 import { useHistory } from "react-router-dom";
 import { displayData } from "../modules/mainPageModule";
 import axios from "axios";
+import {Container, Item, ItemBox, ItemsContainer, PostBody, PostTitle} from "../styled-components/PostsList"
 axios.defaults.withCredentials = true;
 
 // 목표: 서버에서 응답으로 넘겨준 유저 정보에서 nick_name들을 게시물에 넣어줘야됨.
@@ -67,60 +68,4 @@ function MainPostsList() {
 
 export default MainPostsList;
 
-
-const Container = styled.div`
-  background-color: #f5f5f5;
-  width: 100vw;
-  height: 100vw;
-`;
-
-const ItemsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-  padding: 30px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(3, 200px);
-    padding: 55px;
-  }
-
-  @media (max-width: 375px) {
-    grid-template-columns: repeat(1, 375px);
-  }
-`;
-
-const ItemBox = styled.div`
-  background: #fafafa;
-  border: none;
-  transition: 0.3s ease-in-out;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-
-  &:hover {
-    transform: translateY(-7px);
-  }
-`;
-
-const Item = styled.div`
-  // width: 500px;
-  // height: 200px;
-  padding: 10px;
-`;
-
-const PostTitle = styled.h3`
-  display: flex;
-  width: 300px;
-`;
-const UserName = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  border-top: 1px solid #e0e0e0;
-  padding: 10px;
-`;
-
-const PostBody = styled.div`
-  // width: 100%;
-`;
 

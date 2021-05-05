@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 import xIconGray from "../../icon/X_icon_gray.png";
-import { fadeIn, slideUp } from "../../styled-components/animation";
-axios.defaults.withCredentials = true;
+import {fadeIn, slideUp} from "../../styled-components/Animation"
 // HTTPS=true SSL_CRT_FILE=../../vlog-server/cert.pem SSL_KEY_FILE=../../vlog-server/key.pem
+axios.defaults.withCredentials = true;
 
 function LoginModal(props: any) {
   const [userInfo, setUserInfo] = useState({

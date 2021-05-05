@@ -3,8 +3,6 @@ import styled from "styled-components";
 import LoginModal from "./LoginModal";
 import MenuModal from "./MenuModal";
 import SignUpModal from "./SignUpModal";
-import menuIcon from "../../icon/menu_gray.png";
-// import userIcon from "../../icon/userIcon.png"
 import userIcon from "../../icon/userIcon_gray.png"
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -19,6 +17,7 @@ function Nav() {
 
   // const loginLocalStorage = localStorage.getItem("isLogin")
   const sessionId = localStorage.getItem("sessionId")
+  // const sessionId = sessionStorage.getItem("sessionId")
 
   useEffect(() => {
     if(sessionId) {
@@ -151,9 +150,9 @@ const BtnContainer = styled.div`
 `;
 
 const NewPostBtn = styled.div`
-  border: 1px solid #7986CB;
+  border: 1px solid #424242;
   border-radius: 20px;
-  background: #3F51B5;
+  background: #424242;
   color: white;
   width: 100px;
   height: 30px;
@@ -162,10 +161,11 @@ const NewPostBtn = styled.div`
   justify-content: center;
   align-items: center;
   margin: 18px;
+  transition: 0.2s ease-in-out;
 
   &:hover {
-    background: #7986CB;
-    border: 1px solid #7986CB;
+    background: #9E9E9E;
+    border: 1px solid #9E9E9E;
   }
 `;
 
@@ -179,4 +179,5 @@ const MenuBtn = styled.img`
   width: 30px;
   height: 30px;
   cursor: pointer;
+
 `;

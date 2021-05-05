@@ -17,7 +17,7 @@ function MyPageCurrentPostPage() {
   const dispatch = useDispatch();
   const { id, title, body } = post;
 
-  console.log(myPageState.currentPost.body);
+  window.scrollTo(0, 0);
 
   const axiosRequestConfig: AxiosRequestConfig = {
     headers: { postId: id },
@@ -27,7 +27,7 @@ function MyPageCurrentPostPage() {
     dispatch(editId(id));
     dispatch(editTitle(title));
     dispatch(editBody(body));
-    history.push("/EditPost");
+    history.push("/EditPostPage");
   };
 
   const handleDeletePost = () => {
@@ -46,12 +46,10 @@ function MyPageCurrentPostPage() {
     <Container>
       <PostBox>
         <PostTitle>{post.title}</PostTitle>
-        <div>
           <ButtonContainer>
             <EditButton onClick={handleModifyPost}>수정</EditButton>
             <EditButton onClick={handleDeletePost}>삭제</EditButton>
           </ButtonContainer>
-        </div>
         <PostName>{post.nick_name}</PostName>
         <PostBody>{post.body}</PostBody>
       </PostBox>
@@ -63,15 +61,19 @@ export default MyPageCurrentPostPage;
 const Container = styled.div`
 width: 100vw;
 height: 100vh;
-width: 50%;
+width: 70%;
 margin: auto;
 padding-top 6rem;
+`;
+
+const PostBox = styled.div`
+  padding: 1.5rem;
 `;
 
 const PostTitle = styled.div`
   display: flex;
   flex-wrap: wrap;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   padding-bottom: 20px;
   border-bottom: 1px solid #bdbdbd;
@@ -85,15 +87,18 @@ const PostName = styled.div`
 const PostBody = styled.div`
   margin: 0.5rem 0;
   letter-spacing: 0.01em;
-  font-size: 1.4rem;
-  line-height: 230%;
+  font-size: 1.3rem;
+  line-height: 220%;
   height: 100vh;
   // border: 1px solid black;
 `;
 
-const PostBox = styled.div`
-  padding: 1.5rem;
+const ButtonContainer = styled.div`
+  float: right;
+  margin-left: 12em;
+  margin-top: 10px;
 `;
+
 
 const EditButton = styled.button`
   font-size: 1em;
@@ -109,9 +114,4 @@ const EditButton = styled.button`
     font-weight: bold;
     font-size: 1em;
   }
-`;
-
-const ButtonContainer = styled.div`
-  float: right;
-  margin-left: 12em;
 `;

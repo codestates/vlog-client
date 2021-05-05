@@ -44,62 +44,29 @@ export default function EditPostPage() {
 
   return (
     <Container>
-      <Toolbar>
-        <IconContainer>
-          <Icon src={imgaeIcon} />
-          이미지
-        </IconContainer>
-      </Toolbar>
       <PageContainer>
         <TitleContainer>
           <PostTitle name="title" onChange={handleInputValue}>
             {editState.title}
           </PostTitle>
         </TitleContainer>
-        <HashTagContainer>
-          <HashTage name="hashTage" placeholder={"해쉬태그 입력해주세요"} onChange={handleInputValue}></HashTage>
-        </HashTagContainer>
         <BodyContainer>
-          <PostBody name="body" onChange={handleInputValue}>
+          <PostBody name="body" onChange={handleInputValue} autoFocus>
             {editState.body}
           </PostBody>
         </BodyContainer>
+        <BtnContainer>
         <NewPostButton onClick={handleUploadBtn}> 업로드 </NewPostButton>
         <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+        </BtnContainer>
       </PageContainer>
     </Container>
   );
 }
 
-const Toolbar = styled.div`
-  width: 100vw;
-  background-color: white;
-  border-top: solid #bdbdbd;
-  border-bottom: solid #bdbdbd;
-`;
-
-const IconContainer = styled.div`
-  display: inline-block;
-`;
-const Icon = styled.img`
-  display: inline-block;
-
-  margin: 20px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-`;
-
-const IconText = styled.span`
-  margin: 20px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-`;
-
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
   background-color: #f5f5f5;
 `;
 
@@ -114,11 +81,8 @@ const TitleContainer = styled.div`
   outline: none;
 `;
 
-const HashTagContainer = styled.div`
-  padding: 1rem;
-`;
 const BodyContainer = styled.div`
-  border-top: solid #bdbdbd;
+  border-top: 1px solid #9E9E9E;
   padding: 1rem;
 `;
 
@@ -128,20 +92,21 @@ const PostTitle = styled.textarea`
   margin-top: 1rem;
   border: none;
   outline: none;
+  width: 100%;
+  border: none;
+  overflow: auto;
+  outline: none;
+  resize: none;
 `;
 
-const HashTage = styled.textarea`
-  font-size: 1.125rem;
-  line-height: 2rem;
-  border: none;
-  outline: none;
-`;
 const PostBody = styled.textarea`
-  font-size: 1.5rem;
-  width: 603px;
-  height: 608px;
+  font-size: 1.2rem;
+  width: 100%;
+  height: 100vw;
   border: none;
   outline: none;
+  overflow: hidden;
+  resize: none;
 `;
 
 const NewPostButton = styled.button`
@@ -153,9 +118,20 @@ const NewPostButton = styled.button`
   transition: 0.2s ease-in-out;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  margin-right: 13px;
 
   &:hover {
     background: #9e9e9e;
     border: 1px solid #9e9e9e;
   }
 `;
+
+const BtnContainer = styled.div`
+position: fixed;
+top: 680px;
+right: 320px;
+display: flex;
+justify-content: flex-end;
+// border: 1px  black;
+width: 55%;
+`

@@ -6,9 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { displayMyPost, changeUsername } from "../modules/myPageModule";
 import axios from "axios";
-import user from "../icon/user_Blue.jpg";
-import A from "../icon/Toolbar/A.png";
-import worldmap from "../icon/worldmap.png";
+import pencil from "../icon/pencil.jpg";
 
 function MyPage() {
   const { myPageState }: any = useMyPage();
@@ -45,114 +43,154 @@ function MyPage() {
 
     axios
       .patch("http://localhost:8080/userInfo", {
-        nick_name: myPageState.userInfo.nick_name,
+        nick_name: myPageState.userInfo.nick_name
       })
       .then((res) => {
         console.log("유저 정보 수정 완료" + res);
         setInputUser(false);
-      });
+      })
+      .catch(err => console.log('실패'))
   };
-
-  const handlePostDelete = (e: any) => {
-    // 게시물 삭제하는 axios 요청 보낸다. -> 받아와야되는 데이터는 해당
-
-    axios.delete("http://localhost:8080/posts").then((res) => {
-      console.log("게시물삭제 성공" + res);
-    });
-  };
-
-  useEffect(() => {
-    console.log("이제 곧 상태 업데이트 됨!!");
-  });
 
   return (
     <Container>
-      <TopContainer>
-        <ImgBox>
-          <Img src={worldmap}></Img>
-        </ImgBox>
-      </TopContainer>
-      <BottomContainer>
+      <Stage>
         <InfoContainer>
-          <UserName value={myPageState.userInfo.nick_name} disabled></UserName>
-          {/* <UserName placeholder={myPageState.userInfo.nick_name}></UserName> */}
-          {/* <EditBtn></EditBtn> */}
+          <PageTitle>Writer</PageTitle>
+          <UserBox>
+            {inputUser === false ? (
+              <>
+                <UserName value={myPageState.userInfo.nick_name} disabled></UserName>
+                <EditBtn onClick={handleInput} src={pencil}></EditBtn>
+              </>
+            ) : (
+              <>
+                <UserName_edit onChange={handleInputChange} value={myPageState.userInfo.nick_name} autoFocus></UserName_edit>
+                <EditBtn onClick={handleInput} src={pencil}></EditBtn>
+                <SubmitBtn onClick={handleSubmit}>완료</SubmitBtn>
+              </>
+            )}
+          </UserBox>
         </InfoContainer>
-        {myPageState.posts === null ? <div>로딩 중입니다</div> : 
-        myPageState.posts.map((post: any) => (
-          <PostBoxContainer onClick={() => handleCurrentPage(post.id)}>
-            <PostBox>
-              <PostTitle>{post.title}</PostTitle>
-              <PostName>{post.nick_name}</PostName>
-              <PostBody>{post.body.slice(0, 80)}</PostBody>
-            </PostBox>
-          </PostBoxContainer>
-        ))}
-      </BottomContainer>
+        <SmallTitleBox>
+          <SmallTitle>기록들</SmallTitle>
+        </SmallTitleBox>
+        <ItemsContainer>
+          {myPageState.posts === null ? (
+            <div>로딩 중입니다</div>
+          ) : (
+            myPageState.posts.map((post: any) => (
+              <ItemBox onClick={() => handleCurrentPage(post.id)}>
+                <Item>
+                  <PostTitle>{post.title}</PostTitle>
+                </Item>
+              </ItemBox>
+            ))
+          )}
+        </ItemsContainer>
+      </Stage>
     </Container>
   );
 }
 export default MyPage;
 
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: repeat(2, 30vw 70vw);
-`;
-
-const TopContainer = styled.div`
-  border: 1px solid black;
+  margin-top: -100px;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+  width: 100vw;
+  height: 100vw;
+  background: #eeeeee;
+  overflow-x:hidden;
 
-const ImgBox = styled.div`
-  margin: 200px 0px 0px 20px;
-`;
 
-const Img = styled.img`
-  width: 40rem;
-  height: 20rem;
-`;
-
-const BottomContainer = styled.div`
-  padding: 50px;
-  background: #fafafa;
 `;
 
 const InfoContainer = styled.div`
+  margin-left: 60px;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 40px;
+`;
+
+const SmallTitleBox = styled.div`
   display: flex;
-  padding-bottom: 5em;
-  margin-top: 2rem;
+  justify-content: center;
+  height: 10px;
 `;
 
-const PostBoxContainer = styled.div`
+const SmallTitle = styled.h1`
+  margin-right: 15px;
+`;
+
+const Stage = styled.div`
+  width: 70%;
+  height: 70%;
+  display: grid;
+  grid-template-columns: reapeat(2, 100px 1fr);
+`;
+
+const ItemsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 180px);
+  grid-gap: 50px;
+  margin: 60px;
+`;
+
+const ItemBox = styled.div`
   background: white;
-  padding: 10px;
-  margin-bottom: 15px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  &:hover {
+    transform: translateY(-7px);
+  }
 `;
 
-const PostTitle = styled.div`
-  font-size: 2rem;
+const Item = styled.div`
+  padding: 30px;
 `;
 
-const PostName = styled.div`
-  font-size: 1.2rem;
-`;
-
-const PostBody = styled.div`
-  font-size: 1.2rem;
-`;
-
-const PostBox = styled.div`
+const PostTitle = styled.h3`
   cursor: pointer;
 `;
 
-const UserName = styled.input``;
+const PostBody = styled.div``;
 
-const EditBtn = styled.button`
-width: 30px;
-height: 30px;
+const UserBox = styled.div`
+display: flex;
+`;
+
+const UserName = styled.input`
+  font-size: 30px;
+  border: none;
+  width: 90px;
+`;
+
+const UserName_edit = styled.input`
+  font-size: 30px;
+  display: inline-block;
+  width: 90px;
+  outline: none;
+  border: none;
+  background: #EEEEEE;
+`;
+
+const EditBtn = styled.img`
+  margin-top: 10px;
+  width: 25px;
+  height: 15px;
+`;
+
+const SubmitBtn = styled.span`
+border-radius: 5px;
+margin: 10px;
+margin-bottom: 3px;
+cursor: pointer;
 `
 
 // import React, { useEffect, useState } from "react";

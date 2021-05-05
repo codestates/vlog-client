@@ -2,24 +2,24 @@ import React from "react";
 import PostListContainer from "../Hooks/usePoster";
 import axios from "axios";
 import MainPostsList from "../components/MainPostsList";
-import PartyPostsList from "../components/PartyPostsList"
+import PartyPostsList from "../components/PartyPostsList";
 import styled from "styled-components";
 import imageMap from "../img/map.jpg";
 import usePoster from "../Hooks/usePoster";
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function PartyPostsPage() {
-  const { state, filterMomory,filterParty,openPostPage,displayData }: any = usePoster();
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const { state, filterMomory, filterParty, openPostPage, displayData }: any = usePoster();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handlebutton = () => {
     console.log("clicked");
   };
 
   const handleMemoryPosts = () => {
-    history.push('/')
+    history.push("/");
     // const filtered = state.data.filter((post: any) => {
     //   return post.title.search("동행") === -1;
     // });
@@ -36,11 +36,11 @@ function PartyPostsPage() {
     const filtered = state.data.filter((post: any) => {
       return post.title.search("동행") !== -1;
     });
-    console.log('party posts filter')
+    console.log("party posts filter");
     console.log(filtered);
 
-    dispatch(filterParty(filtered))
-    history.push('/party')
+    dispatch(filterParty(filtered));
+    history.push("/party");
   };
 
   return (
@@ -59,7 +59,6 @@ function PartyPostsPage() {
 
 export default PartyPostsPage;
 
-
 const TopContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -69,7 +68,6 @@ const TopContainer = styled.div`
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  // background: black;
 `;
 
 const Img = styled.img`
@@ -93,9 +91,13 @@ const TitleList = styled.div`
   display: flex;
   justify-content: center;
 `;
-const MemoryPosts = styled.div`
+
+const MemoryPosts = styled.h1`
+  color: #bdbdbd;
   margin-right: 20px;
+  cursor: pointer;
 `;
 
-const PartyPosts = styled.div``;
-
+const PartyPosts = styled.h1`
+  cursor: pointer;
+`;

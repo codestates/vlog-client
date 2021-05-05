@@ -4,10 +4,10 @@ import styled, {keyframes} from "styled-components";
 import checkIcon from "../../icon/check_icon.png";
 import xIcon from "../../icon/X_icon.png";
 import xIconGray from "../../icon/X_icon_gray.png";
-import {fadeIn, slideUp} from "../../styled-components/animation"
+import {fadeIn, slideUp} from "../../styled-components/Animation"
 
 // axios.defaults.withCredentials = true
-
+// ￣/^[a-zA-z0-9]{4,12}$￣
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const userNamePattern = /^[가-힣]{2,4}$/;
 const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -64,7 +64,7 @@ function SignUpModal(props: any) {
       console.log(userInfo);
       //회원가입에 성공했을경우 서버에 요청보냄
       axios
-        .post("https://localhost:8080/signup", {
+        .post("http://localhost:8080/signup", {
           email: userInfo.email,
           password: userInfo.password,
           nick_name: userInfo.nickname,
@@ -75,7 +75,7 @@ function SignUpModal(props: any) {
         })
         .catch((err) => {
           alert("오류임");
-          props.handleSideBtn();
+          // props.handleSideBtn();
         });
 
       // axios
@@ -144,7 +144,9 @@ function SignUpModal(props: any) {
             </IconBox>
           ) : (
             <IconBox>
-              <XIcon src={xIcon} />
+              {/* <XIcon src={xIcon} /> */}
+              <PasswordErr>8~16 characters consisting of letters(A-Z, a-z),</PasswordErr>
+              <PasswordErr>numbers, or special characters.</PasswordErr>
             </IconBox>
           )}
 
@@ -159,6 +161,11 @@ function SignUpModal(props: any) {
 }
 
 export default SignUpModal;
+
+const PasswordErr = styled.div`
+  font-size: 13px;
+  color: red;
+`
 
 const ModalContainer = styled.div`
   display: flex;
@@ -180,7 +187,7 @@ const ModalBox = styled.div`
   align-items: center;
   flex-direction: column;
   width: 600px;
-  height: 500px;
+  height: 600px;
   border: 1px solid #9e9e9e;
   border-radius: 10px;
   background: white;
@@ -202,7 +209,8 @@ const CloseBtn = styled.img`
   cursor: pointer;
   width: 17px;
   height: 17px;
-  margin-right: 15px;
+  margin-top: -50px;
+  margin-right: 18px;
 `;
 
 const Modal_Title = styled.h1``;
