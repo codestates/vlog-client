@@ -10,18 +10,16 @@ function OpenContentPage() {
   });
 
   const postname = filtered[0].nick_name;
-  const postTime = state.currentPost.createdAt.slice(0, 10)
+  const postTime = state.currentPost.createdAt.slice(0, 10);
 
   return (
     <Container>
       <PostBox>
         <PostTitle>{state.currentPost.title}</PostTitle>
         <PostInfoBox>
-        <PostTime>{postTime}</PostTime>
-        <PostName>{postname}</PostName>
+          <PostTime>{postTime}</PostTime>
+          <PostName>{postname}</PostName>
         </PostInfoBox>
-        
-
         <PostBody>{state.currentPost.body}</PostBody>
       </PostBox>
     </Container>
@@ -52,17 +50,15 @@ const PostInfoBox = styled.div`
   height: 30px;
   justify-content: flex-end;
   margin-bottom: 30px;
-`
-
+`;
 
 const PostName = styled.h3`
-margin-right: 20px;
+  margin-right: 20px;
 `;
 
 const PostTime = styled.h3`
-margin-right:20px;
-
-`
+  margin-right: 20px;
+`;
 
 const PostBody = styled.div`
   margin: 0.5rem 0;
@@ -73,25 +69,4 @@ const PostBody = styled.div`
 
 const PostBox = styled.div`
   padding: 1.5rem;
-`;
-
-const EditButton = styled.button`
-  font-size: 1em;
-
-  background-color: white;
-  cursor: pointer;
-  border: none;
-  color: #9e9e9e;
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    color: black;
-    font-weight: bold;
-    font-size: 1em;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  float: right;
-  margin-left: 12em;
 `;

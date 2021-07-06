@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editTitle, editBody, editId } from "../modules/EditPostModule";
 import { displayMyData } from "../modules/myPageModule";
-import { fakedata } from "./../fakedata";
 
 axios.defaults.withCredentials = true;
 
@@ -31,16 +30,11 @@ function MyPageCurrentPostPage() {
   };
 
   const handleDeletePost = () => {
-    console.log("글 삭제 요청 보낼거임");
     axios.delete("http://localhost:8080/posts", axiosRequestConfig).then((res) => {
-      console.log("글 삭제 요청 성공!");
-      console.log(res);
       dispatch(displayMyData(res.data.data));
       history.push("/page");
     });
   };
-
-  console.log(post.body);
 
   return (
     <Container>

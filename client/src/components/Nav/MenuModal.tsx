@@ -4,27 +4,19 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { displayMyData, displayUserInfo } from "../../modules/myPageModule";
 import { useDispatch } from "react-redux";
-import {fadeIn} from "../../styled-components/Animation"
+import { fadeIn } from "../../styled-components/Animation";
 axios.defaults.withCredentials = true;
 
 function MenuModal(props: any) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const sessionId = sessionStorage.getItem('sessionId')
-  console.log(sessionId)
-
-
   const handleMoveToMypage = async () => {
-    console.log("마이페이지 정보 뿌려주는 요청 보내짐");
 
     await axios
       .get("http://localhost:8080/userinfo")
       .then((res) => {
-        console.log("여기 밑에가 userInfo res");
-        console.log(res.data.data);
         dispatch(displayUserInfo(res.data.data));
         props.handleMenuModal();
-        console.log("마이페이지 게시물들 요청 보내질거임");
       })
       .then((res) => {
         axios.get("http://localhost:8080/mypage").then((res) => {
@@ -38,7 +30,7 @@ function MenuModal(props: any) {
     axios.delete("http://localhost:8080/session").then((res) => {
       props.setIsLogin(false);
       props.setMenuModal(false);
-      localStorage.removeItem("sessionId")
+      localStorage.removeItem("sessionId");
       history.push("/");
     });
   };

@@ -1,22 +1,14 @@
 import axios from "axios";
 import react, { useState } from "react";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import checkIcon from "../../icon/check_icon.png";
 import xIcon from "../../icon/X_icon.png";
 import xIconGray from "../../icon/X_icon_gray.png";
 import {fadeIn, slideUp} from "../../styled-components/Animation"
 
-// axios.defaults.withCredentials = true
-// ￣/^[a-zA-z0-9]{4,12}$￣
 const pwPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const userNamePattern = /^[가-힣]{2,4}$/;
 const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-
-// 목표하는 기능 구현
-// 유효성 검사
-
-//1. 유효성 검사 패턴 가져오기
-//2. 유효성 검사 test 메소드에 넣어줄 value 값을 받아올 수 있어야 됨.
 
 function SignUpModal(props: any) {
   const [userInfo, setUserInfo] = useState({
@@ -29,7 +21,7 @@ function SignUpModal(props: any) {
     passwordResult: null,
     nicknameResult: null,
   });
-  const { email, password, nickname } = userInfo;
+
   const { emailResult, passwordResult, nicknameResult } = testResults;
 
   const handleUserInfo = ({ name, value }: any) => {
@@ -57,12 +49,9 @@ function SignUpModal(props: any) {
     }
   };
 
-  //회원가입 버튼을 눌렀을 경우
   const handleSubmit = (e: react.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (emailResult && passwordResult && nicknameResult) {
-      console.log(userInfo);
-      //회원가입에 성공했을경우 서버에 요청보냄
       axios
         .post("http://localhost:8080/signup", {
           email: userInfo.email,
@@ -70,31 +59,14 @@ function SignUpModal(props: any) {
           nick_name: userInfo.nickname,
         })
         .then((res) => {
-          console.log("회원가입 성공!");
           props.handleSideBtn();
         })
         .catch((err) => {
           alert("오류임");
-          // props.handleSideBtn();
         });
 
-      // axios
-      //   .post("http://localhost:8080/signup", {
-      //     email: userInfo.email,
-      //     password: userInfo.password,
-      //     nick_name: userInfo.nickname,
-      //   })
-      //   .then((res) => {
-      //     console.log("회원가입 성공!");
-      //     props.handleSideBtn();
-      //   })
-      //   .catch((err) => {
-      //     alert("오류임");
-      //     props.handleSideBtn();
-      //   });
     } else {
       e.preventDefault();
-      console.log("완벽하게 입력해주세요.");
     }
   };
 
@@ -144,7 +116,6 @@ function SignUpModal(props: any) {
             </IconBox>
           ) : (
             <IconBox>
-              {/* <XIcon src={xIcon} /> */}
               <PasswordErr>8~16 characters consisting of letters(A-Z, a-z),</PasswordErr>
               <PasswordErr>numbers, or special characters.</PasswordErr>
             </IconBox>

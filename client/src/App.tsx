@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./App.css";
 import MainPage from "./Pages/MainPage";
 import { Router, Switch, Route } from "react-router-dom";
@@ -7,12 +7,10 @@ import MyPage from "./Pages/MyPage";
 import NewPost from "./Pages/NewPost";
 import MainCurrentPost from "./Pages/MainCurrentPost";
 import MyPageCurrentPost from "./Pages/MyPageCurrentPost";
-import axios from 'axios';
-import EditPostPage from './Pages/EditPostPage';
-import PartyPostsPage from './Pages/PartyPostsPage';
+import EditPostPage from "./Pages/EditPostPage";
+import PartyPostsPage from "./Pages/PartyPostsPage";
 
 function App() {
-  
   return (
     <div>
       <Nav />

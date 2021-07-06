@@ -25,14 +25,12 @@ export default function NewPost() {
   }
 
   function handleUpload(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log("요청버튼 누름");
     if (state.title.trim() || state.body.trim()) {
       axios
         .post("http://localhost:8080/posts", { title: state.title, body: state.body })
         .then((res) => {
           dispatch(newPosttitle(""));
           dispatch(newPostbody(""));
-          console.log(state.title, state.body);
           history.push("/");
         })
         .catch((err) => console.log(err));
@@ -47,17 +45,11 @@ export default function NewPost() {
     history.push("/");
   }
 
-  console.log(state);
-
   return (
     <Container>
-      {/* <PageNameBox>
-        <PageName>게시물 작성</PageName>
-      </PageNameBox> */}
       <PageContainer>
         <ContentBox>
           <TitleInput name="newPostTitle" placeholder="제목을 입력해주세요" onChange={handleInputValue}></TitleInput>
-
           <BodyArea name="newPostBody" placeholder="내용을 입력해주세요..." onChange={handleInputValue}></BodyArea>
         </ContentBox>
         <ButtonBox>
@@ -74,15 +66,6 @@ export default function NewPost() {
     </Container>
   );
 }
-
-// const PageNameBox = styled.div`
-//   display: flex;
-//   justify-content: flex-start;
-//   width: 50%;
-// `;
-// const PageName = styled.h1`
-//   margin-left: 20px;
-// `;
 
 const PostBox = styled.div`
   margin-top: 100px;
@@ -178,9 +161,3 @@ const UploadBtn = styled.button`
     background: #7986cb;
   }
 `;
-
-{
-  /* <HashTagContainer>
-            <HashTage name="hashTage" type="text" placeholder="해쉬태그" onChange={handleInputValue} />
-          </HashTagContainer> */
-}

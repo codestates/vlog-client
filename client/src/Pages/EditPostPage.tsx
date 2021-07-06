@@ -1,21 +1,16 @@
 import styled from "styled-components";
 import useEditPoster from "../Hooks/useEditPoster";
-import useMyPage from "../Hooks/useEditPoster";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { editBody, editHash, editId, editTitle } from "../modules/EditPostModule";
-
-import imgaeIcon from "../icon/image.png";
-
+import { editBody, editHash, editTitle } from "../modules/EditPostModule";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function EditPostPage() {
   const history = useHistory();
   const { editState } = useEditPoster();
-  const dispatch = useDispatch();
   const { title, body, id } = editState;
-  console.log(editState);
+  const dispatch = useDispatch();
 
   function handleInputValue(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value;
@@ -29,7 +24,6 @@ export default function EditPostPage() {
   }
 
   function handleUploadBtn(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(editState);
     axios
       .patch("http://localhost:8080/posts", { title: title, body: body, postId: id })
       .then((res) => history.push("/"))
@@ -39,8 +33,6 @@ export default function EditPostPage() {
   function handleButton_Exit(e: React.MouseEvent<HTMLButtonElement>) {
     history.push("/page");
   }
-
-  console.log(editState);
 
   return (
     <Container>
@@ -56,8 +48,8 @@ export default function EditPostPage() {
           </PostBody>
         </BodyContainer>
         <BtnContainer>
-        <NewPostButton onClick={handleUploadBtn}> 업로드 </NewPostButton>
-        <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
+          <NewPostButton onClick={handleUploadBtn}> 업로드 </NewPostButton>
+          <NewPostButton onClick={handleButton_Exit}> 나가기 </NewPostButton>
         </BtnContainer>
       </PageContainer>
     </Container>
@@ -82,7 +74,7 @@ const TitleContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  border-top: 1px solid #9E9E9E;
+  border-top: 1px solid #9e9e9e;
   padding: 1rem;
 `;
 
@@ -127,11 +119,11 @@ const NewPostButton = styled.button`
 `;
 
 const BtnContainer = styled.div`
-position: fixed;
-top: 680px;
-right: 320px;
-display: flex;
-justify-content: flex-end;
-// border: 1px  black;
-width: 55%;
-`
+  position: fixed;
+  top: 680px;
+  right: 320px;
+  display: flex;
+  justify-content: flex-end;
+  // border: 1px  black;
+  width: 55%;
+`;

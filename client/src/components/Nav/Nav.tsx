@@ -12,12 +12,9 @@ function Nav() {
   const [loginModal, setLoginModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
-  const [navColor, setNavColor] = useState('white')
   const history = useHistory();
 
-  // const loginLocalStorage = localStorage.getItem("isLogin")
   const sessionId = localStorage.getItem("sessionId")
-  // const sessionId = sessionStorage.getItem("sessionId")
 
   useEffect(() => {
     if(sessionId) {

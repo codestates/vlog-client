@@ -4,7 +4,6 @@ import styled, { keyframes } from "styled-components";
 import { useHistory } from "react-router-dom";
 import xIconGray from "../../icon/X_icon_gray.png";
 import {fadeIn, slideUp} from "../../styled-components/Animation"
-// HTTPS=true SSL_CRT_FILE=../../vlog-server/cert.pem SSL_KEY_FILE=../../vlog-server/key.pem
 axios.defaults.withCredentials = true;
 
 function LoginModal(props: any) {
@@ -29,7 +28,6 @@ function LoginModal(props: any) {
       axios
         .post("http://localhost:8080/session", { email: email, password: password })
         .then((res) => {
-          console.log(res);
           props.handleLoginModal();
           props.setIsLogin(true);
           localStorage.setItem('sessionId', JSON.stringify(res.data.sessionId))
@@ -182,44 +180,3 @@ const ErrorMessage = styled.div`
   text-align: center;
   color: red;
 `;
-
-//changed
-// const boxFade= keyframes`
-// // 0% {
-// //   transform: translateY(150px)
-// // }
-// // 100% {
-// //   transform: translateY(0);
-// // }
-//  0% {
-//    opacity: 1;
-//  } 50% {
-//    opacity: 0;
-//  } 100% {
-//    opacity: 1;
-//  }
-// `
-// const StyledWrapper = styled.div`
-//   width: 100px;
-//   height: 100px;
-//   background: gray;
-//   ${(props:any) => props.active && `
-//   animation: ${boxFade} 2s 1s infinite linear alternate`}
-// `
-
-// const Box = ({children, ...rest}:any) => {
-//   return (
-//     <StyledWrapper>
-//       {children}
-//     </StyledWrapper>
-//   )
-// }
-
-// @keyframes moveUp {
-//   0% {
-//     transform:translateY(150px);
-//   }
-//   100% {
-//     transform:translateY(0);
-//   }
-// }
